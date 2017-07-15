@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataProviders\PayloadRange.cs" />
+    <Compile Include="DataProviders\Trajectory.cs" />
+    <Compile Include="DataProviders\TrajectoryParameters.cs" />
+    <Compile Include="DataProviders\VehicleCapability.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataControllers\" />
-    <Folder Include="DataProviders\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

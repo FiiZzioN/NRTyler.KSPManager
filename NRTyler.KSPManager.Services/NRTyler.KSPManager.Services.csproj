@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NRTyler.CodeLibrary">
+      <HintPath>..\..\NRTyler.CodeLibrary\NRTyler.CodeLibrary\bin\Debug\NRTyler.CodeLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,11 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\BuildingLevel.cs" />
+    <Compile Include="Enums\BuildingName.cs" />
+    <Compile Include="Enums\CraftSituation.cs" />
+    <Compile Include="Enums\FlightProfile.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\LifeStatus.cs" />
+    <Compile Include="Enums\MissionState.cs" />
+    <Compile Include="Enums\MissionType.cs" />
+    <Compile Include="Enums\PayloadType.cs" />
+    <Compile Include="Enums\Specialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Enums\" />
     <Folder Include="EventArgs\" />
+    <Folder Include="Infrastructure\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Utilities\" />
   </ItemGroup>

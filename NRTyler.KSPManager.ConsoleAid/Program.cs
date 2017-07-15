@@ -10,6 +10,9 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
+using NRTyler.KSPManager.Models.DataProviders;
+
 namespace NRTyler.KSPManager.ConsoleAid
 {
 	public class Program
