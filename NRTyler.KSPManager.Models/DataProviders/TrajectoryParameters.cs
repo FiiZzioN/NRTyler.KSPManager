@@ -14,11 +14,14 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
+using NRTyler.KSPManager.Services.Interfaces;
 
 namespace NRTyler.KSPManager.Models.DataProviders
 {
-	public class TrajectoryParameters : INotifyPropertyChanged
+	public class TrajectoryParameters : INotifyPropertyChanged, IManeuver
 	{
+		#region Constructors
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TrajectoryParameters"/> class.
 		/// </summary>
@@ -61,10 +64,14 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			Console.WriteLine(this);
 		}
 
+		#endregion
+
 		private double apoapsis;
 		private double periapsis;
 		private double inclination;
 		private double requiredDeltaV;
+
+		#region Properties
 
 		/// <summary>
 		/// Gets or sets the targeted apoapsis.
@@ -110,7 +117,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			{
 				if (value > 180.0) return;
 				if (value < -180.0) return;
-				
+
 				this.inclination = value;
 				OnPropertyChanged(nameof(Inclination));
 			}
@@ -130,6 +137,8 @@ namespace NRTyler.KSPManager.Models.DataProviders
 				OnPropertyChanged(nameof(RequiredDeltaV));
 			}
 		}
+
+		#endregion
 
 		/// <summary>
 		/// Ensures that the altitude values are assigned to the proper fields.

@@ -11,7 +11,7 @@
 // ***********************************************************************
 
 using System;
-using NRTyler.CodeLibrary.Attributes;
+using NRTyler.KSPManager.Services.Attributes;
 
 namespace NRTyler.KSPManager.Services.Enums
 {

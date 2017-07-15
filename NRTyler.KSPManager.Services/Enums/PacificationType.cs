@@ -16,23 +16,17 @@ using NRTyler.KSPManager.Services.Attributes;
 namespace NRTyler.KSPManager.Services.Enums
 {
 	/// <summary>
-	/// An <see cref="Enum"/> containing the various states that any vessel or kerbal can be in.
+	/// An <see cref="Enum"/> containing various vehicle pacification options.
 	/// </summary>
-	public enum CraftSituation
-    {
-        [StringValue("Landed")]
-        Landed = 0,
+	public enum PacificationType
+	{
+		[StringValue("Deorbit")]
+		Deorbit = 0,
 
-        [StringValue("Suborbital")]
-        Suborbital = 1,
+		[StringValue("Graveyard Orbit")]
+		GraveyardOrbit = 1,
 
-        [StringValue("On Orbit")]
-        OnOrbit = 2,
-
-        [StringValue("In Flight")]
-        InFlight = 3,
-
-        [StringValue("Undefined")]
-        Undefined = 4,
-    }
+		[StringValue("Undefined")]
+		Undefined = 2,
+	}
 }

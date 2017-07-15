@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataProviderTests\PacificationOptionTests.cs" />
     <Compile Include="DataProviderTests\PayloadRangeTests.cs" />
     <Compile Include="DataProviderTests\TrajectoryParametersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,8 +62,13 @@
       <Project>{2ff4d7e5-52c4-4fad-8fdb-0b14a673f251}</Project>
       <Name>NRTyler.KSPManager.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NRTyler.KSPManager.Services\NRTyler.KSPManager.Services.csproj">
+      <Project>{03DA5E5D-C80F-4E1B-B0AC-AB5F1E1A704F}</Project>
+      <Name>NRTyler.KSPManager.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DataCollectionTests\" />
     <Folder Include="DataControllerTests\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

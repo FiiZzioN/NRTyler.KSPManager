@@ -10,23 +10,13 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
-using System;
-using NRTyler.KSPManager.Services.Attributes;
-
-namespace NRTyler.KSPManager.Services.Enums
+namespace NRTyler.KSPManager.Services.Interfaces
 {
 	/// <summary>
-	/// An <see cref="Enum"/> containing the name and numerical value for a given level.
+	/// Indicates that a given type can execute a maneuver.
 	/// </summary>
-	public enum BuildingLevel
-    {
-        [StringValue("One")]
-        One = 0,
-
-        [StringValue("Two")]
-        Two = 1,
-
-        [StringValue("Three")]
-        Three = 2,
-    }
+	public interface IManeuver
+	{
+		double RequiredDeltaV { get; set; }
+	}
 }
