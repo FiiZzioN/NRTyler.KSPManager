@@ -27,38 +27,43 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		public TrajectoryParameters()
 		{
+			this.trajectoryName = new ObjectName("Name Not Set");
 			Console.WriteLine(this);
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="TrajectoryParameters"/> class.
+		/// Initializes a new instance of the <see cref="TrajectoryParameters" /> class.
 		/// </summary>
 		/// <param name="apoapsis">The trajectory's targeted apoapsis.</param>
 		/// <param name="periapsis">The trajectory's targeted periapsis.</param>
 		/// <param name="inclination">The trajectory's targeted inclination.</param>
-		public TrajectoryParameters(double apoapsis, double periapsis, double inclination)
+		/// <param name="name">The name of the trajectory.</param>
+		public TrajectoryParameters(double apoapsis, double periapsis, double inclination, string name = "Name Not Set")
 		{
 			Apoapsis = apoapsis;
 			Periapsis = periapsis;
 			Inclination = inclination;
+			TrajectoryName = new ObjectName(name);
 
 			EnsureProperAssignment();
 			Console.WriteLine(this);
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="TrajectoryParameters"/> class.
+		/// Initializes a new instance of the <see cref="TrajectoryParameters" /> class.
 		/// </summary>
 		/// <param name="apoapsis">The trajectory's targeted apoapsis.</param>
 		/// <param name="periapsis">The trajectory's targeted periapsis.</param>
 		/// <param name="inclination">The trajectory's targeted inclination.</param>
 		/// <param name="requiredDeltaV">The required amount of delta v need to reach the targeted trajectory.</param>
-		public TrajectoryParameters(double apoapsis, double periapsis, double inclination, double requiredDeltaV)
+		/// <param name="name">The name of the trajectory.</param>
+		public TrajectoryParameters(double apoapsis, double periapsis, double inclination, double requiredDeltaV, string name = "Name Not Set")
 		{
 			Apoapsis = apoapsis;
 			Periapsis = periapsis;
 			Inclination = inclination;
 			RequiredDeltaV = requiredDeltaV;
+			TrajectoryName = new ObjectName(name);
 
 			EnsureProperAssignment();
 			Console.WriteLine(this);
@@ -70,6 +75,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		private double periapsis;
 		private double inclination;
 		private double requiredDeltaV;
+		private ObjectName trajectoryName;
 
 		#region Properties
 
@@ -138,6 +144,18 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			}
 		}
 
+		public ObjectName TrajectoryName
+		{
+			get
+			{
+				if (this.trajectoryName != null) return this.trajectoryName;
+				
+				this.trajectoryName = new ObjectName("");
+				return this.trajectoryName;
+			}
+			set { this.trajectoryName = value; }
+		}
+
 		#endregion
 
 		/// <summary>
@@ -160,7 +178,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <returns>A string that represents the current object.</returns>
 		public override string ToString()
 		{
-			var oldString = $"Apoapsis: {Apoapsis}@Periapsis: {Periapsis}@Inclination: {Inclination}@Required DeltaV: {RequiredDeltaV}";
+			var oldString = $"Name: {TrajectoryName.GetName()}@Apoapsis: {Apoapsis}@Periapsis: {Periapsis}@Inclination: {Inclination}@Required DeltaV: {RequiredDeltaV}";
 			var newString = oldString.Replace("@", "\n");
 
 			return newString;

@@ -111,13 +111,27 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 			CollectionAssert.AreEqual(expected, actual);
 		}
 
+		[TestMethod]
+		public void TrajectoryName()
+		{
+			//Arrange
+			var parameters = new TrajectoryParameters(11475000, 200000, 26.2, 7400, "GTO");
+
+			var expected = "GTO";
+
+			//Act
+			var actual = parameters.TrajectoryName.GetName();
+
+			//Assert
+			Assert.AreEqual(expected, actual);
+		}
 
 		[TestMethod]
 		public void TrajectoryParameters_ToString()
 		{
 			//Arrange
-			var parameters = new TrajectoryParameters(320000, 318000, 22.36, 6850);
-			var oldString = $"Apoapsis: {320000}@Periapsis: {318000}@Inclination: {22.36}@Required DeltaV: {6850}";
+			var parameters = new TrajectoryParameters(320000, 318000, 22.36, 6850, "Random");
+			var oldString = $"Name: {"Random"}@Apoapsis: {320000}@Periapsis: {318000}@Inclination: {22.36}@Required DeltaV: {6850}";
 
 			var expected = oldString.Replace("@", "\n");
 

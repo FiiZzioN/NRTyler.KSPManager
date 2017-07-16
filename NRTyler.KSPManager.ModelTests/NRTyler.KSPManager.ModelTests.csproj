@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataProviderTests\ObjectNameTests.cs" />
     <Compile Include="DataProviderTests\PacificationOptionTests.cs" />
     <Compile Include="DataProviderTests\PayloadRangeTests.cs" />
     <Compile Include="DataProviderTests\TrajectoryParametersTests.cs" />

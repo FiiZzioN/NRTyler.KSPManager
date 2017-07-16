@@ -19,6 +19,9 @@ namespace NRTyler.KSPManager.ConsoleAid
 	{
 		public static void Main()
 		{
+			var name = new ObjectName("delta iii");
+
+			name.ToInvariantTitleCase();
 		}
 	}
 }

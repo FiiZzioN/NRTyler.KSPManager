@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="DataCollections\PacificationCollection.cs" />
     <Compile Include="DataCollections\TrajectoryCollection.cs" />
+    <Compile Include="DataControllers\RomanNumeralHandler.cs" />
+    <Compile Include="DataProviders\ObjectName.cs" />
     <Compile Include="DataProviders\PacificationOption.cs" />
     <Compile Include="DataProviders\PayloadRange.cs" />
     <Compile Include="DataProviders\Trajectory.cs" />
@@ -49,9 +51,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataControllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\NRTyler.KSPManager.Services\NRTyler.KSPManager.Services.csproj">
       <Project>{03da5e5d-c80f-4e1b-b0ac-ab5f1e1a704f}</Project>
