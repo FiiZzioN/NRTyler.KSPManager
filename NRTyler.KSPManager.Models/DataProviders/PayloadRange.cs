@@ -28,7 +28,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		public PayloadRange()
 		{
-			Console.WriteLine(this);
+
 		}
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PayloadRange"/> class.
@@ -41,7 +41,6 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			Largest = largest;
 
 			EnsureProperAssignment();
-			Console.WriteLine(this);
 		}
 
 		private int smallest;

@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestAids", "TestAids", "{D6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRTyler.KSPManager.ConsoleAid", "NRTyler.KSPManager.ConsoleAid\NRTyler.KSPManager.ConsoleAid.csproj", "{E30033D0-3529-43D1-8B37-BE2139540576}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRTyler.KSPManager.API", "NRTyler.KSPManager.API\NRTyler.KSPManager.API.csproj", "{4AE1526E-4A47-4782-A535-78558BA5D9AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{E30033D0-3529-43D1-8B37-BE2139540576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E30033D0-3529-43D1-8B37-BE2139540576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E30033D0-3529-43D1-8B37-BE2139540576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE1526E-4A47-4782-A535-78558BA5D9AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE1526E-4A47-4782-A535-78558BA5D9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE1526E-4A47-4782-A535-78558BA5D9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE1526E-4A47-4782-A535-78558BA5D9AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

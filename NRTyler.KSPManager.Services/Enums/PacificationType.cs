@@ -20,13 +20,16 @@ namespace NRTyler.KSPManager.Services.Enums
 	/// </summary>
 	public enum PacificationType
 	{
+		[StringValue("Undefined")]
+		Undefined = 0,
+
 		[StringValue("Deorbit")]
-		Deorbit = 0,
+		Deorbit = 1,
 
 		[StringValue("Graveyard Orbit")]
-		GraveyardOrbit = 1,
+		GraveyardOrbit = 2,
 
-		[StringValue("Undefined")]
-		Undefined = 2,
+		[StringValue("Explosion")]
+		Explosion = 3,
 	}
 }

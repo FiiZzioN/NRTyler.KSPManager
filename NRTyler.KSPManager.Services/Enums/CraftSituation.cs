@@ -20,19 +20,25 @@ namespace NRTyler.KSPManager.Services.Enums
 	/// </summary>
 	public enum CraftSituation
     {
-        [StringValue("Landed")]
-        Landed = 0,
+	    [StringValue("Undefined")]
+	    Undefined = 0,
+
+	    [StringValue("In Vehicle Assembly Building")]
+	    InsideVAB = 1,
+
+	    [StringValue("In SpacePlane Hanger")]
+	    InsideSPH = 2,
+
+		[StringValue("Landed")]
+        Landed = 3,
 
         [StringValue("Suborbital")]
-        Suborbital = 1,
+        Suborbital = 4,
 
         [StringValue("On Orbit")]
-        OnOrbit = 2,
+        OnOrbit = 5,
 
         [StringValue("In Flight")]
-        InFlight = 3,
-
-        [StringValue("Undefined")]
-        Undefined = 4,
+        InFlight = 6,
     }
 }

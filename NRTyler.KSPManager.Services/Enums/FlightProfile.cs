@@ -20,19 +20,22 @@ namespace NRTyler.KSPManager.Services.Enums
 	/// </summary>
 	public enum FlightProfile
     {
-        [StringValue("Atmospheric Flight")]
-        AtmosphericFlight = 0,
+	    [StringValue("Undefined")]
+	    Undefined = 0,
+
+	    [StringValue("Ground Based")]
+	    GroundBased = 1,
+
+		[StringValue("Atmospheric Flight")]
+        AtmosphericFlight = 2,
 
         [StringValue("Suborbital")]
-        Suborbital = 1,
+        Suborbital = 3,
 
         [StringValue("Orbital")]
-        Orbital = 2,
+        Orbital = 4,
 
         [StringValue("Interplanetary")]
-        Interplanetary = 3,
-
-        [StringValue("Undefined")]
-        Undefined = 4,
+        Interplanetary = 5,
     }
 }

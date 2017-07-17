@@ -20,49 +20,51 @@ namespace NRTyler.KSPManager.Services.Enums
 	/// </summary>
 	public enum MissionType
     {
-        [StringValue("Manned")]
-        Manned = 0,
+	    [StringValue("Undefined")]
+	    Undefined = 0,
+
+		[StringValue("Manned")]
+        Manned = 1,
 
         [StringValue("Unmanned")]
-        Unmanned = 1,
+        Unmanned = 2,
 
         [StringValue("Asteroid Redirect")]
-        AsteroidRedirect = 2,
+        AsteroidRedirect = 3,
 
         [StringValue("Contract")]
-        Contract = 3,
+        Contract = 4,
 
         [StringValue("Deorbit Debris")]
-        DeorbitDebris = 4,
+        DeorbitDebris = 5,
 
         [StringValue("Exploration")]
-        Exploration = 5,
+        Exploration = 6,
 
         [StringValue("ISRU")]
-        ISRU = 6,
+        ISRU = 7,
 
         [StringValue("Impactor")]
-        Impactor = 7,
+        Impactor = 8,
 
         [StringValue("Mapping")]
-        Mapping = 8,
+        Mapping = 9,
 
         [StringValue("Rescue")]
-        Rescue = 9,
+        Rescue = 10,
 
         [StringValue("Research")]
-        Research = 10,
+        Research = 11,
 
         [StringValue("Resupply")]
-        Resupply = 11,
+        Resupply = 12,
 
         [StringValue("Survey")]
-        Survey = 12,
+        Survey = 13,
         
         [StringValue("Tourism")]
-        Tourism = 13,
+        Tourism = 14,
 
-        [StringValue("Undefined")]
-        Undefined = 14,
+
     }
 }

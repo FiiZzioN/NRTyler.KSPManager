@@ -16,38 +16,38 @@ using NRTyler.KSPManager.Services.Attributes;
 namespace NRTyler.KSPManager.Services.Enums
 {
 	/// <summary>
-	/// An <see cref="Enum"/> containing the various vessel categories that a payload will fall under.
+	/// An <see cref="Enum"/> containing the various categories that any given vehicle will fall under.
 	/// </summary>
-	public enum PayloadType
+	public enum VehicleType
     {
-        [StringValue("Satellite")]
-        Satellite = 0,
+	    [StringValue("Undefined")]
+	    Undefined = 0,
+
+		[StringValue("Satellite")]
+        Satellite = 1,
 
         [StringValue("Probe")]
-        Probe = 1,
+        Probe = 2,
 
         [StringValue("Rover")]
-        Rover = 2,
+        Rover = 3,
 
         [StringValue("Lander")]
-        Lander = 3,
+        Lander = 4,
 
         [StringValue("Capsule")]
-        Capsule = 4,
+        Capsule = 5,
 
         [StringValue("Station")]
-        Station = 5,
+        Station = 6,
 
         [StringValue("Base")]
-        Base = 6,
+        Base = 7,
 
         [StringValue("Airplane")]
-        Airplane = 7,
+        Airplane = 8,
 
         [StringValue("Kerbal")]
-        Kerbal = 8,
-
-        [StringValue("Undefined")]
-        Undefined = 9,
+        Kerbal = 9,
     }
 }

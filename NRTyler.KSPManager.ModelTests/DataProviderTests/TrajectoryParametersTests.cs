@@ -5,7 +5,7 @@
 // Created          : 07-14-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-14-2017
+// Last Modified On : 07-17-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -28,10 +28,10 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 
 			parameters.Apoapsis = 200000;
 			parameters.Periapsis = 120000;
-			parameters.Inclination = -32.22;
+			parameters.Inclination = -32.22m;
 			parameters.RequiredDeltaV = 6500;
 
-			var parameterList = new List<double>()
+			var parameterList = new List<decimal>()
 			{
 				parameters.Apoapsis,
 				parameters.Periapsis,
@@ -39,11 +39,11 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 				parameters.RequiredDeltaV 
 			};
 
-			var expected = new List<double>()
+			var expected = new List<decimal>()
 			{
 				200000,
 				120000,
-				-32.22,
+				-32.22m,
 				6500
 			};
 
@@ -58,8 +58,8 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void RangeGoof_Succeeded()
 		{
 			//Arrange
-			var parameters = new TrajectoryParameters(103500, 850000, 18.35, 6920);
-			var parameterList = new List<double>()
+			var parameters = new TrajectoryParameters(103500, 850000, 18.35m, 6920);
+			var parameterList = new List<decimal>()
 			{
 				parameters.Apoapsis,
 				parameters.Periapsis,
@@ -67,11 +67,11 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 				parameters.RequiredDeltaV
 			};
 
-			var expected = new List<double>()
+			var expected = new List<decimal>()
 			{
 				850000,
 				103500,
-				18.35,
+				18.35m,
 				6920
 			};
 
@@ -87,8 +87,8 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void NegativeParameter_Succeeded()
 		{
 			//Arrange
-			var parameters = new TrajectoryParameters(103500, -90000, 57.28, 7000);
-			var parameterList = new List<double>()
+			var parameters = new TrajectoryParameters(103500, -90000, 57.28m, 7000);
+			var parameterList = new List<decimal>()
 			{
 				parameters.Apoapsis,
 				parameters.Periapsis,
@@ -96,11 +96,11 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 				parameters.RequiredDeltaV
 			};
 
-			var expected = new List<double>()
+			var expected = new List<decimal>()
 			{
 				103500,
 				0,
-				57.28,
+				57.28m,
 				7000
 			};
 
@@ -115,12 +115,12 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void TrajectoryName()
 		{
 			//Arrange
-			var parameters = new TrajectoryParameters(11475000, 200000, 26.2, 7400, "GTO");
+			var parameters = new TrajectoryParameters(11475000, 200000, 26.2m, 7400, "GTO");
 
 			var expected = "GTO";
 
 			//Act
-			var actual = parameters.TrajectoryName.GetName();
+			var actual = parameters.TrajectoryName;
 
 			//Assert
 			Assert.AreEqual(expected, actual);
@@ -130,7 +130,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void TrajectoryParameters_ToString()
 		{
 			//Arrange
-			var parameters = new TrajectoryParameters(320000, 318000, 22.36, 6850, "Random");
+			var parameters = new TrajectoryParameters(320000, 318000, 22.36m, 6850, "Random");
 			var oldString = $"Name: {"Random"}@Apoapsis: {320000}@Periapsis: {318000}@Inclination: {22.36}@Required DeltaV: {6850}";
 
 			var expected = oldString.Replace("@", "\n");

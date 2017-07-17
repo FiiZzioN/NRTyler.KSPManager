@@ -14,11 +14,12 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
-using NRTyler.KSPManager.Services.Interfaces;
+using NRTyler.KSPManager.Models.Interfaces;
+using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.Models.DataProviders
 {
-	public class TrajectoryParameters : INotifyPropertyChanged, IManeuver
+	public class TrajectoryParameters : INotifyPropertyChanged, IBurn
 	{
 		#region Constructors
 
@@ -27,8 +28,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		public TrajectoryParameters()
 		{
-			this.trajectoryName = new ObjectName("Name Not Set");
-			Console.WriteLine(this);
+
 		}
 
 		/// <summary>
@@ -38,15 +38,14 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <param name="periapsis">The trajectory's targeted periapsis.</param>
 		/// <param name="inclination">The trajectory's targeted inclination.</param>
 		/// <param name="name">The name of the trajectory.</param>
-		public TrajectoryParameters(double apoapsis, double periapsis, double inclination, string name = "Name Not Set")
+		public TrajectoryParameters(decimal apoapsis, decimal periapsis, decimal inclination, string name = "Name Not Set")
 		{
 			Apoapsis = apoapsis;
 			Periapsis = periapsis;
 			Inclination = inclination;
-			TrajectoryName = new ObjectName(name);
+			TrajectoryName = name;
 
 			EnsureProperAssignment();
-			Console.WriteLine(this);
 		}
 
 		/// <summary>
@@ -57,32 +56,31 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <param name="inclination">The trajectory's targeted inclination.</param>
 		/// <param name="requiredDeltaV">The required amount of delta v need to reach the targeted trajectory.</param>
 		/// <param name="name">The name of the trajectory.</param>
-		public TrajectoryParameters(double apoapsis, double periapsis, double inclination, double requiredDeltaV, string name = "Name Not Set")
+		public TrajectoryParameters(decimal apoapsis, decimal periapsis, decimal inclination, decimal requiredDeltaV, string name = "Name Not Set")
 		{
 			Apoapsis = apoapsis;
 			Periapsis = periapsis;
 			Inclination = inclination;
 			RequiredDeltaV = requiredDeltaV;
-			TrajectoryName = new ObjectName(name);
+			TrajectoryName = name;
 
 			EnsureProperAssignment();
-			Console.WriteLine(this);
 		}
 
 		#endregion
 
-		private double apoapsis;
-		private double periapsis;
-		private double inclination;
-		private double requiredDeltaV;
-		private ObjectName trajectoryName;
+		private decimal apoapsis;
+		private decimal periapsis;
+		private decimal inclination;
+		private decimal requiredDeltaV;
+		private string trajectoryName;
 
 		#region Properties
 
 		/// <summary>
 		/// Gets or sets the targeted apoapsis.
 		/// </summary>
-		public double Apoapsis
+		public decimal Apoapsis
 		{
 			get { return this.apoapsis; }
 			set
@@ -99,7 +97,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <summary>
 		/// Gets or sets the targeted periapsis.
 		/// </summary>
-		public double Periapsis
+		public decimal Periapsis
 		{
 			get { return this.periapsis; }
 			set
@@ -116,13 +114,13 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <summary>
 		/// Gets or sets the targeted inclination.
 		/// </summary>
-		public double Inclination
+		public decimal Inclination
 		{
 			get { return this.inclination; }
 			set
 			{
-				if (value > 180.0) return;
-				if (value < -180.0) return;
+				if (value > 180.0m) return;
+				if (value < -180.0m) return;
 
 				this.inclination = value;
 				OnPropertyChanged(nameof(Inclination));
@@ -132,7 +130,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <summary>
 		/// Gets or sets the required amount of delta v to reach the targeted trajectory.
 		/// </summary>
-		public double RequiredDeltaV
+		public decimal RequiredDeltaV
 		{
 			get { return this.requiredDeltaV; }
 			set
@@ -144,16 +142,14 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			}
 		}
 
-		public ObjectName TrajectoryName
+		public string TrajectoryName
 		{
-			get
+			get { return this.trajectoryName; }
+			set
 			{
-				if (this.trajectoryName != null) return this.trajectoryName;
-				
-				this.trajectoryName = new ObjectName("");
-				return this.trajectoryName;
+				StringAssistant.TitleInsurance(value, ref this.trajectoryName);
+				OnPropertyChanged(nameof(TrajectoryName));
 			}
-			set { this.trajectoryName = value; }
 		}
 
 		#endregion
@@ -178,7 +174,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <returns>A string that represents the current object.</returns>
 		public override string ToString()
 		{
-			var oldString = $"Name: {TrajectoryName.GetName()}@Apoapsis: {Apoapsis}@Periapsis: {Periapsis}@Inclination: {Inclination}@Required DeltaV: {RequiredDeltaV}";
+			var oldString = $"Name: {TrajectoryName}@Apoapsis: {Apoapsis}@Periapsis: {Periapsis}@Inclination: {Inclination}@Required DeltaV: {RequiredDeltaV}";
 			var newString = oldString.Replace("@", "\n");
 
 			return newString;

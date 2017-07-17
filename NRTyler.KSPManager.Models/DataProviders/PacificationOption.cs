@@ -14,8 +14,8 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
+using NRTyler.KSPManager.Models.Interfaces;
 using NRTyler.KSPManager.Services.Enums;
-using NRTyler.KSPManager.Services.Interfaces;
 using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.Models.DataProviders
@@ -24,8 +24,8 @@ namespace NRTyler.KSPManager.Models.DataProviders
 	/// Contains pacification information such as the type and the amount of delta v required for such a maneuver.
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-	/// <seealso cref="NRTyler.KSPManager.Services.Interfaces.IManeuver" />
-	public class PacificationOption : INotifyPropertyChanged, IManeuver
+	/// <seealso cref="IBurn" />
+	public class PacificationOption : INotifyPropertyChanged, IBurn
 	{
 		#region Constructors
 
@@ -34,7 +34,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		public PacificationOption()
 		{
-			Console.WriteLine(this);
+
 		}
 
 		/// <summary>
@@ -44,7 +44,6 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		public PacificationOption(PacificationType pacificationType)
 		{
 			PacificationType = pacificationType;
-			Console.WriteLine(this);
 		}
 
 		/// <summary>
@@ -52,17 +51,16 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		/// <param name="pacificationType">The pacification type.</param>
 		/// <param name="requiredDeltaV">The required delta v.</param>
-		public PacificationOption(PacificationType pacificationType, double requiredDeltaV)
+		public PacificationOption(PacificationType pacificationType, decimal requiredDeltaV)
 		{
 			PacificationType = pacificationType;
 			RequiredDeltaV = requiredDeltaV;
-			Console.WriteLine(this);
 		}
 
 		#endregion
 
 		private PacificationType pacificationType;
-		private double requiredDeltaV;
+		private decimal requiredDeltaV;
 
 		#region Properties
 
@@ -84,7 +82,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// Gets or sets the required amount of delta v to accomplish the pacification type.
 		/// </summary>
 		/// <value>The required delta v.</value>
-		public double RequiredDeltaV
+		public decimal RequiredDeltaV
 		{
 			get { return this.requiredDeltaV; }
 			set

@@ -20,19 +20,19 @@ namespace NRTyler.KSPManager.Services.Enums
 	/// </summary>
 	public enum Specialization
     {
-        [StringValue("Pilot")]
-        Pilot = 0,
+	    [StringValue("Undefined")]
+	    Undefined = 0,
+
+		[StringValue("Pilot")]
+        Pilot = 1,
 
         [StringValue("Scientist")]
-        Scientist = 1,
+        Scientist = 2,
 
         [StringValue("Engineer")]
-        Engineer = 2,
+        Engineer = 3,
 
         [StringValue("Tourist")]
-        Tourist = 3,
-
-        [StringValue("Undefined")]
-        Undefined = 4
+        Tourist = 4,
     }
 }
