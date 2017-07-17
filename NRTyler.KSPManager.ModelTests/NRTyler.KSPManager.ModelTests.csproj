@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="DataProviderTests\PacificationOptionTests.cs" />
     <Compile Include="DataProviderTests\PayloadRangeTests.cs" />
-    <Compile Include="DataProviderTests\TrajectoryParametersTests.cs" />
+    <Compile Include="DataProviderTests\TrajectoryTests.cs" />
     <Compile Include="DataProviderTests\VehicleNoteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

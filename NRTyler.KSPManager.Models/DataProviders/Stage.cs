@@ -12,8 +12,8 @@
 
 namespace NRTyler.KSPManager.Models.DataProviders
 {
-	public class StageBreakdown
+	public class Stage
 	{
-		
+
 	}
 }

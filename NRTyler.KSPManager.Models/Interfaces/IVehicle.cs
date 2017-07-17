@@ -20,7 +20,7 @@ namespace NRTyler.KSPManager.Models.Interfaces
 	{
 		string Name { get; set; }
 		Dictionary<string, string> VehicleNotes { get; set; }
-		Dictionary<string, StageBreakdown> StageInfo { get; set; }
+		Dictionary<int, Stage> StageInfo { get; set; }
 		Dictionary<string, decimal> PacificationOptions { get; set; }
 		VehicleType VehicleType { get; set; }
 	}

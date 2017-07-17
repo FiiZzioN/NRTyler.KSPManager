@@ -48,9 +48,9 @@
     <Compile Include="DataControllers\RomanNumeralHandler.cs" />
     <Compile Include="DataProviders\PacificationOption.cs" />
     <Compile Include="DataProviders\PayloadRange.cs" />
-    <Compile Include="DataProviders\StageBreakdown.cs" />
+    <Compile Include="DataProviders\Stage.cs" />
+    <Compile Include="DataProviders\VehicleCapability.cs" />
     <Compile Include="DataProviders\Trajectory.cs" />
-    <Compile Include="DataProviders\TrajectoryParameters.cs" />
     <Compile Include="DataProviders\Vehicle.cs" />
     <Compile Include="DataProviders\VehicleNote.cs" />
     <Compile Include="Interfaces\IBurn.cs" />

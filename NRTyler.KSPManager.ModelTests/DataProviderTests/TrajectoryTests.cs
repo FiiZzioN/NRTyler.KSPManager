@@ -18,13 +18,13 @@ using NRTyler.KSPManager.Models.DataProviders;
 namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 {
 	[TestClass]
-	public class TrajectoryParametersTests
+	public class TrajectoryTests
 	{
 		[TestMethod]
 		public void RangeAssignment_Succeeded()
 		{
 			//Arrange
-			var parameters = new TrajectoryParameters();
+			var parameters = new Trajectory();
 
 			parameters.Apoapsis = 200000;
 			parameters.Periapsis = 120000;
@@ -58,7 +58,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void RangeGoof_Succeeded()
 		{
 			//Arrange
-			var parameters = new TrajectoryParameters(103500, 850000, 18.35m, 6920);
+			var parameters = new Trajectory(103500, 850000, 18.35m, 6920);
 			var parameterList = new List<decimal>()
 			{
 				parameters.Apoapsis,
@@ -87,7 +87,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void NegativeParameter_Succeeded()
 		{
 			//Arrange
-			var parameters = new TrajectoryParameters(103500, -90000, 57.28m, 7000);
+			var parameters = new Trajectory(103500, -90000, 57.28m, 7000);
 			var parameterList = new List<decimal>()
 			{
 				parameters.Apoapsis,
@@ -115,7 +115,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void TrajectoryName()
 		{
 			//Arrange
-			var parameters = new TrajectoryParameters(11475000, 200000, 26.2m, 7400, "GTO");
+			var parameters = new Trajectory(11475000, 200000, 26.2m, 7400, "GTO");
 
 			var expected = "GTO";
 
@@ -130,7 +130,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void TrajectoryParameters_ToString()
 		{
 			//Arrange
-			var parameters = new TrajectoryParameters(320000, 318000, 22.36m, 6850, "Random");
+			var parameters = new Trajectory(320000, 318000, 22.36m, 6850, "Random");
 			var oldString = $"Name: {"Random"}@Apoapsis: {320000}@Periapsis: {318000}@Inclination: {22.36}@Required DeltaV: {6850}";
 
 			var expected = oldString.Replace("@", "\n");

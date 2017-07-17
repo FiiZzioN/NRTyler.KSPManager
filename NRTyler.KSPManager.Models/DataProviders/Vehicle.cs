@@ -35,7 +35,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		private string name;
 		private decimal? price;
 		private Dictionary<string, string> vehicleNotes;
-		private Dictionary<string, StageBreakdown> stageInfo;
+		private Dictionary<int, Stage> stageInfo;
 		private Dictionary<string, decimal> pacificationOptions;
 		private VehicleType vehicleType;
 
@@ -57,7 +57,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			set { this.vehicleNotes = value; }
 		}
 
-		public Dictionary<string, StageBreakdown> StageInfo
+		public Dictionary<int, Stage> StageInfo
 		{
 			get { return this.stageInfo; }
 			set { this.stageInfo = value; }

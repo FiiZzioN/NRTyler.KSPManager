@@ -5,51 +5,66 @@
 // Created          : 07-14-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-14-2017
+// Last Modified On : 07-17-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
-using NRTyler.KSPManager.Models.DataProviders;
 
-namespace NRTyler.KSPManager.Models.DataCollections
+namespace NRTyler.KSPManager.Models.DataProviders
 {
-	/// <summary>
-	/// Holds a collection of trajectories that a vehicle can reach.
-	/// </summary>
-	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-	public class TrajectoryCollection : INotifyPropertyChanged
+	public class VehicleCapability : INotifyPropertyChanged
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="TrajectoryCollection"/> class.
+		/// Initializes a new instance of the <see cref="VehicleCapability"/> class.
 		/// </summary>
-		public TrajectoryCollection()
+		public VehicleCapability()
 		{
-			this.trajectories = new Dictionary<string, VehicleCapability>();
+			
 		}
 
-		private Dictionary<string, VehicleCapability> trajectories;
+		private PayloadRange payloadRange;
+		private Trajectory trajectory;
 
 		/// <summary>
-		/// Gets or sets the trajectories that the specified vehicle is capable of reaching.
+		/// Gets or sets the payload weight range.
 		/// </summary>
-		public Dictionary<string, VehicleCapability> Trajectories
+		public PayloadRange PayloadRange
 		{
 			get
 			{
-				if (this.trajectories != null) return this.trajectories;
+				if (this.payloadRange != null) return this.payloadRange;
 
-				this.trajectories = new Dictionary<string, VehicleCapability>();
-				return this.trajectories;
+				this.payloadRange = new PayloadRange();
+				return this.payloadRange;
 			}
 			set
 			{
-				this.trajectories = value;
-				OnPropertyChanged(nameof(this.Trajectories));
+				this.payloadRange = value;
+				OnPropertyChanged(nameof(PayloadRange));
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the trajectory parameters.
+		/// </summary>
+		/// <value>The trajectory parameters.</value>
+		public Trajectory Trajectory
+		{
+			get
+			{
+				if (this.trajectory != null) return this.trajectory;
+				
+				this.trajectory = new Trajectory();
+				return this.trajectory;
+			}
+			set
+			{
+				this.trajectory = value;
+				OnPropertyChanged(nameof(this.Trajectory));
 			}
 		}
 
