@@ -10,6 +10,7 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
@@ -22,6 +23,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		public VehicleNote()
 		{
 			Title = null;
+			Content = String.Empty;
 		}
 
 		public VehicleNote(string title)

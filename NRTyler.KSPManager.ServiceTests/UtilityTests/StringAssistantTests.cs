@@ -5,13 +5,15 @@
 // Created          : 07-17-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-17-2017
+// Last Modified On : 07-18-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NRTyler.KSPManager.Models.DataProviders;
 using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.ServiceTests.UtilityTests
@@ -44,6 +46,38 @@ namespace NRTyler.KSPManager.ServiceTests.UtilityTests
 
 			//Act
 			var actual = StringAssistant.ToInvariantTitleCase(title);
+
+			//Assert
+			Assert.AreEqual(expected, actual);
+		}
+
+		[TestMethod]
+		public void InsureValidTitle()
+		{
+			//Arrange
+			var trajectory = new Trajectory("Billy");
+
+			var expected = "Billy";
+
+			//Act
+			var actual = trajectory.TrajectoryName;
+
+			//Assert
+			Assert.AreEqual(expected, actual);
+		}
+
+		[TestMethod]
+		public void InsureAgainstInvalidTitle()
+		{
+			//Arrange
+			var trajectory = new Trajectory("Bob");
+
+			trajectory.TrajectoryName = String.Empty;
+
+			var expected = "Invalid Title";
+
+			//Act
+			var actual = trajectory.TrajectoryName;
 
 			//Assert
 			Assert.AreEqual(expected, actual);

@@ -26,8 +26,8 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 			var range = new PayloadRange(500, 5000);
 			var rangeList = new List<int>
 			{
-				range.Smallest,
-				range.Largest
+				range.Lightest,
+				range.Heaviest
 			};
 
 			var expected = new List<int> { 500, 5000 };
@@ -46,8 +46,8 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 			var range = new PayloadRange(2000, 200);
 			var rangeList = new List<int>
 			{
-				range.Smallest,
-				range.Largest
+				range.Lightest,
+				range.Heaviest
 			};
 
 			var expected = new List<int> { 200, 2000 };
@@ -66,8 +66,8 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 			var range = new PayloadRange(-50, 350);
 			var rangeList = new List<int>
 			{
-				range.Smallest,
-				range.Largest
+				range.Lightest,
+				range.Heaviest
 			};
 
 			var expected = new List<int> { 0, 350 };
@@ -84,7 +84,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		{
 			//Arrange
 			var range = new PayloadRange(400, 1000);
-			var oldString = $"Smallest: {400}@Largest: {1000}";
+			var oldString = $"Lightest: {400}@Heaviest: {1000}";
 
 			var expected = oldString.Replace("@", "\n");
 

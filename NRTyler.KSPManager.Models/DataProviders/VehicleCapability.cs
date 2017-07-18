@@ -5,7 +5,7 @@
 // Created          : 07-14-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-17-2017
+// Last Modified On : 07-18-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -16,6 +16,10 @@ using NRTyler.KSPManager.Models.Annotations;
 
 namespace NRTyler.KSPManager.Models.DataProviders
 {
+	/// <summary>
+	/// Holds information containing what a <see cref="LaunchVehicle"/> can lift and where it can place it's <see cref="Payload"/>.
+	/// </summary>
+	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
 	public class VehicleCapability : INotifyPropertyChanged
 	{
 		/// <summary>
@@ -23,7 +27,13 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		public VehicleCapability()
 		{
-			
+			PayloadRange = new PayloadRange();
+			if (Trajectory == null) Trajectory = new Trajectory();
+		}
+
+		public VehicleCapability(string trajectoryName) : this()
+		{
+			Trajectory = new Trajectory(trajectoryName);
 		}
 
 		private PayloadRange payloadRange;
@@ -34,33 +44,20 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		public PayloadRange PayloadRange
 		{
-			get
-			{
-				if (this.payloadRange != null) return this.payloadRange;
-
-				this.payloadRange = new PayloadRange();
-				return this.payloadRange;
-			}
+			get { return this.payloadRange; }
 			set
 			{
 				this.payloadRange = value;
-				OnPropertyChanged(nameof(PayloadRange));
+				OnPropertyChanged(nameof(this.PayloadRange));
 			}
 		}
 
 		/// <summary>
 		/// Gets or sets the trajectory parameters.
 		/// </summary>
-		/// <value>The trajectory parameters.</value>
 		public Trajectory Trajectory
 		{
-			get
-			{
-				if (this.trajectory != null) return this.trajectory;
-				
-				this.trajectory = new Trajectory();
-				return this.trajectory;
-			}
+			get { return this.trajectory; }
 			set
 			{
 				this.trajectory = value;

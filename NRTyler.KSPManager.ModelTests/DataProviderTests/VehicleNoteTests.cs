@@ -20,12 +20,12 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 	public class VehicleNoteTests
 	{
 		[TestMethod]
-		public void TitleNotNull()
+		public void VehicleNoteTitleNotNull()
 		{
 			//Arrange
 			var vehicleNote = new VehicleNote();
 
-			var expected = "Value Not Set";
+			var expected = "Invalid Title";
 
 			//Act
 			var actual = vehicleNote.Title;
@@ -36,7 +36,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
-		public void TitleValid()
+		public void VehicleNoteTitleValid()
 		{
 			//Arrange
 			var vehicleNote = new VehicleNote("Best Note");
@@ -51,7 +51,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
-		public void NoteContentSet()
+		public void VehicleNoteContentSet()
 		{
 			//Arrange
 			var vehicleNote = new VehicleNote();

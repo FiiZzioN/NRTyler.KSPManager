@@ -50,12 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilityTests\EntryValidatorTests.cs" />
     <Compile Include="UtilityTests\StringAssistantTests.cs" />
+    <Compile Include="UtilityTests\StringEnumTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NRTyler.KSPManager.Models\NRTyler.KSPManager.Models.csproj">
+      <Project>{2ff4d7e5-52c4-4fad-8fdb-0b14a673f251}</Project>
+      <Name>NRTyler.KSPManager.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NRTyler.KSPManager.Services\NRTyler.KSPManager.Services.csproj">
       <Project>{03da5e5d-c80f-4e1b-b0ac-ab5f1e1a704f}</Project>
       <Name>NRTyler.KSPManager.Services</Name>

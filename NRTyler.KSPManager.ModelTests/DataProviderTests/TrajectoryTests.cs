@@ -5,12 +5,11 @@
 // Created          : 07-14-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-17-2017
+// Last Modified On : 07-18-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
-using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NRTyler.KSPManager.Models.DataProviders;
@@ -21,17 +20,17 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 	public class TrajectoryTests
 	{
 		[TestMethod]
-		public void RangeAssignment_Succeeded()
+		public void TrajectoryRangeAssignment()
 		{
 			//Arrange
 			var parameters = new Trajectory();
 
 			parameters.Apoapsis = 200000;
 			parameters.Periapsis = 120000;
-			parameters.Inclination = -32.22m;
+			parameters.Inclination = -32.22;
 			parameters.RequiredDeltaV = 6500;
 
-			var parameterList = new List<decimal>()
+			var parameterList = new List<double>()
 			{
 				parameters.Apoapsis,
 				parameters.Periapsis,
@@ -39,11 +38,11 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 				parameters.RequiredDeltaV 
 			};
 
-			var expected = new List<decimal>()
+			var expected = new List<double>()
 			{
 				200000,
 				120000,
-				-32.22m,
+				-32.22,
 				6500
 			};
 
@@ -55,11 +54,11 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
-		public void RangeGoof_Succeeded()
+		public void TrajectoryValuesInWrongLocation()
 		{
 			//Arrange
-			var parameters = new Trajectory(103500, 850000, 18.35m, 6920);
-			var parameterList = new List<decimal>()
+			var parameters = new Trajectory(103500, 850000, 18.35, 6920);
+			var parameterList = new List<double>()
 			{
 				parameters.Apoapsis,
 				parameters.Periapsis,
@@ -67,11 +66,11 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 				parameters.RequiredDeltaV
 			};
 
-			var expected = new List<decimal>()
+			var expected = new List<double>()
 			{
 				850000,
 				103500,
-				18.35m,
+				18.35,
 				6920
 			};
 
@@ -81,14 +80,13 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 			//Assert
 			CollectionAssert.AreEqual(expected, actual);
 		}
-
 	
 		[TestMethod]
-		public void NegativeParameter_Succeeded()
+		public void TrajectoryHandledNegativeParameter()
 		{
 			//Arrange
-			var parameters = new Trajectory(103500, -90000, 57.28m, 7000);
-			var parameterList = new List<decimal>()
+			var parameters = new Trajectory(103500, -90000, 57.28, 7000);
+			var parameterList = new List<double>()
 			{
 				parameters.Apoapsis,
 				parameters.Periapsis,
@@ -96,11 +94,11 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 				parameters.RequiredDeltaV
 			};
 
-			var expected = new List<decimal>()
+			var expected = new List<double>()
 			{
 				103500,
 				0,
-				57.28m,
+				57.28,
 				7000
 			};
 
@@ -112,10 +110,10 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
-		public void TrajectoryName()
+		public void TrajectoryNameSet()
 		{
 			//Arrange
-			var parameters = new Trajectory(11475000, 200000, 26.2m, 7400, "GTO");
+			var parameters = new Trajectory(11475000, 200000, 26.2, 7400, "GTO");
 
 			var expected = "GTO";
 
@@ -127,10 +125,25 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
-		public void TrajectoryParameters_ToString()
+		public void TrajectoryNameCatchInvalidName()
 		{
 			//Arrange
-			var parameters = new Trajectory(320000, 318000, 22.36m, 6850, "Random");
+			var parameters = new Trajectory(11475000, 200000, 26.2, 7400, " ");
+
+			var expected = "Invalid Title";
+
+			//Act
+			var actual = parameters.TrajectoryName;
+
+			//Assert
+			Assert.AreEqual(expected, actual);
+		}
+
+		[TestMethod]
+		public void Trajectory_ToString()
+		{
+			//Arrange
+			var parameters = new Trajectory(320000, 318000, 22.36, 6850, "Random");
 			var oldString = $"Name: {"Random"}@Apoapsis: {320000}@Periapsis: {318000}@Inclination: {22.36}@Required DeltaV: {6850}";
 
 			var expected = oldString.Replace("@", "\n");

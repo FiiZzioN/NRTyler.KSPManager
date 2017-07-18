@@ -10,7 +10,6 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
-using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
@@ -18,7 +17,7 @@ using NRTyler.KSPManager.Models.Annotations;
 namespace NRTyler.KSPManager.Models.DataProviders
 {
 	/// <summary>
-	/// <see cref="PayloadRange"/> holds the smallest and largest weight values that a vehicle can safely lift.
+	/// <see cref="PayloadRange"/> holds the lightest and heaviest values that a payload can be for the vehicle to safely lift.
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
 	public class PayloadRange : INotifyPropertyChanged
@@ -33,46 +32,46 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PayloadRange"/> class.
 		/// </summary>
-		/// <param name="smallest">The smallest.</param>
-		/// <param name="largest">The largest.</param>
-		public PayloadRange(int smallest, int largest)
+		/// <param name="lightest">The smallest.</param>
+		/// <param name="heaviest">The largest.</param>
+		public PayloadRange(int lightest, int heaviest)
 		{
-			Smallest = smallest;
-			Largest = largest;
+			Lightest = lightest;
+			Heaviest = heaviest;
 
 			EnsureProperAssignment();
 		}
 
-		private int smallest;
-		private int largest;
+		private int lightest;
+		private int heaviest;
 
 		/// <summary>
 		/// Gets or sets the weight of the smallest payload.
 		/// </summary>
-		public int Smallest
+		public int Lightest
 		{
-			get { return this.smallest; }
+			get { return this.lightest; }
 			set
 			{
 				if (value < 0) return;
 
-				this.smallest = value;
-				OnPropertyChanged(nameof(this.Smallest));
+				this.lightest = value;
+				OnPropertyChanged(nameof(Lightest));
 			}
 		}
 
 		/// <summary>
 		/// Gets or sets the weight of the largest payload.
 		/// </summary>
-		public int Largest
+		public int Heaviest
 		{
-			get { return this.largest; }
+			get { return this.heaviest; }
 			set
 			{
 				if (value < 0) return;
 
-				this.largest = value;
-				OnPropertyChanged(nameof(this.Largest));
+				this.heaviest = value;
+				OnPropertyChanged(nameof(Heaviest));
 			}
 		}
 
@@ -81,13 +80,13 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		private void EnsureProperAssignment()
 		{
-			var smaller = this.smallest;
-			var larger = this.largest;
+			var smaller = this.lightest;
+			var larger = this.heaviest;
 
-			if (this.smallest < this.largest) return;
+			if (this.lightest < this.heaviest) return;
 
-			this.smallest = larger;
-			this.largest = smaller;
+			this.lightest = larger;
+			this.heaviest = smaller;
 		}
 
 		#region Overrides of Object
@@ -96,7 +95,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <returns>A string that represents the current object.</returns>
 		public override string ToString()
 		{
-			var oldString = $"Smallest: {Smallest}@Largest: {Largest}";
+			var oldString = $"Lightest: {this.Lightest}@Heaviest: {this.Heaviest}";
 			var newString = oldString.Replace("@", "\n");
 
 			return newString;

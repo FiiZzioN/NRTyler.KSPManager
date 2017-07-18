@@ -5,7 +5,7 @@
 // Created          : 07-17-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-17-2017
+// Last Modified On : 07-18-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -19,9 +19,10 @@ namespace NRTyler.KSPManager.Models.Interfaces
 	public interface IVehicle : IValuable
 	{
 		string Name { get; set; }
-		Dictionary<string, string> VehicleNotes { get; set; }
-		Dictionary<int, Stage> StageInfo { get; set; }
-		Dictionary<string, decimal> PacificationOptions { get; set; }
+		decimal Mass { get; set; }
+		SortedDictionary<int, Stage> StageInfo { get; set; }
+		List<VehicleNote> VehicleNotes { get; set; }
+		List<PacificationOption> PacificationOptions { get; set; }
 		VehicleType VehicleType { get; set; }
 	}
 }

@@ -51,7 +51,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		/// <param name="pacificationType">The pacification type.</param>
 		/// <param name="requiredDeltaV">The required delta v.</param>
-		public PacificationOption(PacificationType pacificationType, decimal requiredDeltaV)
+		public PacificationOption(PacificationType pacificationType, double requiredDeltaV)
 		{
 			PacificationType = pacificationType;
 			RequiredDeltaV = requiredDeltaV;
@@ -60,7 +60,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		#endregion
 
 		private PacificationType pacificationType;
-		private decimal requiredDeltaV;
+		private double requiredDeltaV;
 
 		#region Properties
 
@@ -82,7 +82,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// Gets or sets the required amount of delta v to accomplish the pacification type.
 		/// </summary>
 		/// <value>The required delta v.</value>
-		public decimal RequiredDeltaV
+		public double RequiredDeltaV
 		{
 			get { return this.requiredDeltaV; }
 			set

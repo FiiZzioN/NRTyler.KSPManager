@@ -5,16 +5,12 @@
 // Created          : 07-13-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-13-2017
+// Last Modified On : 07-18-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
 using System;
-using System.Collections.Generic;
-using NRTyler.KSPManager.Models.DataCollections;
-using NRTyler.KSPManager.Models.DataProviders;
-using NRTyler.KSPManager.Services.Enums;
 using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.ConsoleAid
@@ -23,18 +19,15 @@ namespace NRTyler.KSPManager.ConsoleAid
 	{
 		public static void Main()
 		{
-			var pacificationCollection = new PacificationCollection();
-			var pacificationOption = new PacificationOption(PacificationType.GraveyardOrbit, 300);
+			double? valueOne = 123;
+			double? valueTwo = 32;
 
-			pacificationCollection.GetOrAdd(StringEnum.GetStringValue(pacificationOption.PacificationType), pacificationOption.RequiredDeltaV);
+			valueTwo = null;
 
-			foreach (var option in pacificationCollection)
-			{
-				var message = $"Type: {option.Key}@DeltaV: {option.Value} m/s";
-				var newMessage = message.Replace("@", "\n");
+			EntryValidator.EnsureProperAssignment(ref valueOne, ref valueTwo);
 
-				Console.WriteLine(newMessage);
-			}
+			Console.WriteLine(valueOne);
+			Console.WriteLine(valueTwo);
 		}
 	}
 }

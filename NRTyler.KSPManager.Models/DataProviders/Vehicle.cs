@@ -5,7 +5,7 @@
 // Created          : 07-16-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-16-2017
+// Last Modified On : 07-18-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -22,25 +22,44 @@ namespace NRTyler.KSPManager.Models.DataProviders
 {
 	public class Vehicle : IVehicle, INotifyPropertyChanged
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Vehicle"/> class.
+		/// </summary>
 		public Vehicle()
 		{
-
+			VehicleType         = VehicleType.Undefined;
+			StageInfo           = new SortedDictionary<int, Stage>();
+			VehicleNotes        = new List<VehicleNote>();
+			PacificationOptions = new List<PacificationOption>();
 		}
 
-		public Vehicle(string name)
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Vehicle"/> class.
+		/// </summary>
+		/// <param name="name">The name of the vehicle.</param>
+		public Vehicle(string name) : this()
 		{
 			Name = name;
 		}
 
+		#region Backing Fields
+
 		private string name;
+		private decimal mass;
 		private decimal? price;
-		private Dictionary<string, string> vehicleNotes;
-		private Dictionary<int, Stage> stageInfo;
-		private Dictionary<string, decimal> pacificationOptions;
 		private VehicleType vehicleType;
+		private SortedDictionary<int, Stage> stageInfo;
+		private List<VehicleNote> vehicleNotes;
+		private List<PacificationOption> pacificationOptions;
+		
+		#endregion
 
 		#region Implementation of IVehicle
 
+		/// <summary>
+		/// Gets or sets the name of the vehicle.
+		/// </summary>
+		/// <value>The name.</value>
 		public string Name
 		{
 			get { return this.name; }
@@ -51,28 +70,70 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			}
 		}
 
-		public Dictionary<string, string> VehicleNotes
+		/// <summary>
+		/// Gets or sets the mass of the vehicle.
+		/// </summary>
+		public decimal Mass
 		{
-			get { return this.vehicleNotes; }
-			set { this.vehicleNotes = value; }
+			get { return this.mass; }
+			set
+			{
+				if (value < 0) return;
+				this.mass = value;
+				OnPropertyChanged(nameof(Mass));
+			}
 		}
 
-		public Dictionary<int, Stage> StageInfo
-		{
-			get { return this.stageInfo; }
-			set { this.stageInfo = value; }
-		}
-
-		public Dictionary<string, decimal> PacificationOptions
-		{
-			get { return this.pacificationOptions; }
-			set { this.pacificationOptions = value; }
-		}
-
+		/// <summary>
+		/// Gets or sets the type of the vehicle.
+		/// </summary>
 		public VehicleType VehicleType
 		{
 			get { return this.vehicleType; }
-			set { this.vehicleType = value; }
+			set
+			{
+				this.vehicleType = value;
+				OnPropertyChanged(nameof(VehicleType));
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the dictionary of stage information.
+		/// </summary>
+		public SortedDictionary<int, Stage> StageInfo
+		{
+			get { return this.stageInfo; }
+			set
+			{
+				this.stageInfo = value;
+				OnPropertyChanged(nameof(StageInfo));
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the dictionary of vehicle notes.
+		/// </summary>
+		public List<VehicleNote> VehicleNotes
+		{
+			get { return this.vehicleNotes; }
+			set
+			{
+				this.vehicleNotes = value;
+				OnPropertyChanged(nameof(VehicleNotes));
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the dictionary of pacification options.
+		/// </summary>
+		public List<PacificationOption> PacificationOptions
+		{
+			get { return this.pacificationOptions; }
+			set
+			{
+				this.pacificationOptions = value;
+				OnPropertyChanged(nameof(Price));
+			}
 		}
 
 		#endregion
@@ -80,12 +141,17 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		#region Implementation of IValuable
 
 		/// <summary>
-		/// Gets or sets the price of an object.
+		/// Gets or sets the price of the vehicle.
 		/// </summary>
 		public decimal? Price
 		{
 			get { return this.price; }
-			set { this.price = value; }
+			set
+			{
+				if (value < 0) return;
+				this.price = value;
+				OnPropertyChanged(nameof(Price));
+			}
 		}
 
 		#endregion

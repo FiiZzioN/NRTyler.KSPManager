@@ -2,21 +2,20 @@
 // Assembly         : NRTyler.KSPManager.Models
 //
 // Author           : Nicholas Tyler
-// Created          : 07-17-2017
+// Created          : 07-18-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-17-2017
+// Last Modified On : 07-18-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
-namespace NRTyler.KSPManager.Models.Interfaces
+using System.ComponentModel;
+
+namespace NRTyler.KSPManager.Models.DataProviders
 {
-	/// <summary>
-	/// Indicates that a given type can execute a maneuver.
-	/// </summary>
-	public interface IBurn
+	public class LaunchVehicle : Vehicle, INotifyPropertyChanged
 	{
-		double RequiredDeltaV { get; set; }
+		
 	}
 }

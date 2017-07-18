@@ -42,7 +42,7 @@ namespace NRTyler.KSPManager.Services.Utilities
 		}
 
 		/// <summary>
-		/// Insures that a field that's meant to be a title will never be null.
+		/// Insures that a field meant to be a title will never be null.
 		/// </summary>
 		/// <param name="incomingValue">The incoming value.</param>
 		/// <param name="backingField">The backing field that's meant to be a title.</param>
@@ -50,10 +50,10 @@ namespace NRTyler.KSPManager.Services.Utilities
 		{
 			if (String.IsNullOrWhiteSpace(incomingValue))
 			{
-				var nameIfNull = "Value Not Set";
+				var titleIfNull = "Invalid Title";
+				if (backingField == titleIfNull) return;
 
-				if (backingField == nameIfNull) return;
-				backingField = nameIfNull;
+				backingField = titleIfNull;
 				return;
 			}
 

@@ -51,10 +51,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataProviderTests\OrbitTests.cs" />
     <Compile Include="DataProviderTests\PacificationOptionTests.cs" />
     <Compile Include="DataProviderTests\PayloadRangeTests.cs" />
     <Compile Include="DataProviderTests\TrajectoryTests.cs" />
+    <Compile Include="DataProviderTests\VehicleCapabilityTests.cs" />
     <Compile Include="DataProviderTests\VehicleNoteTests.cs" />
+    <Compile Include="DataProviderTests\VehicleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
