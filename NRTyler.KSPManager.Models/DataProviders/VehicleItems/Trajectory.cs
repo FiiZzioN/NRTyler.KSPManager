@@ -16,7 +16,7 @@ using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Models.Interfaces;
 using NRTyler.KSPManager.Services.Utilities;
 
-namespace NRTyler.KSPManager.Models.DataProviders
+namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
 	/// <summary>
 	/// Contains the parameters used to make up a specified orbit. Those include LEO, SSO, GTO and GEO.
@@ -39,9 +39,9 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// Initializes a new instance of the <see cref="Trajectory"/> class.
 		/// </summary>
 		/// <param name="name">The name of the trajectory.</param>
-		public Trajectory(string name = "Name Not Set")
+		public Trajectory(string name = "Name Not Set") : this(0, 0, 0, 0, name)
 		{
-			TrajectoryName = name;
+
 		}
 
 		/// <summary>
@@ -51,12 +51,9 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <param name="periapsis">The trajectory's targeted periapsis.</param>
 		/// <param name="inclination">The trajectory's targeted inclination.</param>
 		/// <param name="name">The name of the trajectory.</param>
-		public Trajectory(double apoapsis, double periapsis, double inclination, string name = "Name Not Set")
+		public Trajectory(double apoapsis, double periapsis, double inclination, string name = "Name Not Set") : this(apoapsis, periapsis, inclination, 0, name)
 		{
-			Apoapsis       = apoapsis;
-			Periapsis      = periapsis;
-			Inclination    = inclination;
-			TrajectoryName = name;
+
 		}
 
 		/// <summary>
@@ -94,7 +91,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 				if (value < 0) return;
 
 				this.requiredDeltaV = value;
-				OnPropertyChanged(nameof(RequiredDeltaV));
+				OnPropertyChanged(nameof(this.RequiredDeltaV));
 			}
 		}
 
@@ -104,7 +101,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			set
 			{
 				StringAssistant.TitleInsurance(value, ref this.trajectoryName);
-				OnPropertyChanged(nameof(TrajectoryName));
+				OnPropertyChanged(nameof(this.TrajectoryName));
 			}
 		}
 
@@ -116,7 +113,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <returns>A string that represents the current object.</returns>
 		public override string ToString()
 		{
-			var oldString = $"Name: {TrajectoryName}@Apoapsis: {Apoapsis}@Periapsis: {Periapsis}@Inclination: {Inclination}@Required DeltaV: {RequiredDeltaV}";
+			var oldString = $"Name: {this.TrajectoryName}@Apoapsis: {this.Apoapsis}@Periapsis: {this.Periapsis}@Inclination: {this.Inclination}@Required DeltaV: {this.RequiredDeltaV}";
 			var newString = oldString.Replace("@", "\n");
 
 			return newString;

@@ -13,8 +13,9 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
+using NRTyler.KSPManager.Models.DataProviders.VehicleTypes;
 
-namespace NRTyler.KSPManager.Models.DataProviders
+namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
 	/// <summary>
 	/// Holds information containing what a <see cref="LaunchVehicle"/> can lift and where it can place it's <see cref="Payload"/>.
@@ -27,13 +28,13 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		public VehicleCapability()
 		{
-			PayloadRange = new PayloadRange();
-			if (Trajectory == null) Trajectory = new Trajectory();
+			this.PayloadRange = new PayloadRange();
+			if (this.Trajectory == null) this.Trajectory = new Trajectory();
 		}
 
 		public VehicleCapability(string trajectoryName) : this()
 		{
-			Trajectory = new Trajectory(trajectoryName);
+			this.Trajectory = new Trajectory(trajectoryName);
 		}
 
 		private PayloadRange payloadRange;

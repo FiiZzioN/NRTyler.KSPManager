@@ -10,11 +10,9 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
-using System.ComponentModel;
-
-namespace NRTyler.KSPManager.Models.DataProviders
+namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
-	public class LaunchVehicle : Vehicle, INotifyPropertyChanged
+	public class Payload
 	{
 		
 	}

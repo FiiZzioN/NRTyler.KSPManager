@@ -11,7 +11,10 @@
 // ***********************************************************************
 
 using System;
-using NRTyler.KSPManager.Services.Utilities;
+using NRTyler.KSPManager.Models.DataControllers;
+using NRTyler.KSPManager.Models.DataProviders.GameSettings;
+using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
+using NRTyler.KSPManager.Models.DataProviders.VehicleTypes;
 
 namespace NRTyler.KSPManager.ConsoleAid
 {
@@ -19,15 +22,37 @@ namespace NRTyler.KSPManager.ConsoleAid
 	{
 		public static void Main()
 		{
-			double? valueOne = 123;
-			double? valueTwo = 32;
+			var basegameSettings = new BaseGameSettings();
+			basegameSettings.DayLengthMultiplier = 2;
 
-			valueTwo = null;
+			var lifesupportSettings = new LifeSupportSettings();
 
-			EntryValidator.EnsureProperAssignment(ref valueOne, ref valueTwo);
+			var crewedVessel = new CrewedVehicle(basegameSettings, lifesupportSettings)
+			{
+				NumberOfCrew = 1
+			};
 
-			Console.WriteLine(valueOne);
-			Console.WriteLine(valueTwo);
+			var lifeSupportSystem = crewedVessel.LifeSupportSystem;
+
+			lifeSupportSystem.ProvisionsStorage.TotalFoodStored = 1.10;
+			lifeSupportSystem.ProvisionsStorage.TotalWaterStored = 0.73;
+			lifeSupportSystem.ProvisionsStorage.TotalOxygenStored = 111.04;
+			lifeSupportSystem.ProvisionsStorage.TotalElectricityStored = 50;
+
+			var food  = lifeSupportSystem.DaysWorthOfFood;
+			var water = lifeSupportSystem.DaysWorthOfWater;
+			var oxy   = lifeSupportSystem.DaysWorthOfOxygen;
+			var elc   = lifeSupportSystem.DaysWorthOfElectricity;
+
+			Write(food);
+			Write(water);
+			Write(oxy);
+			Write(elc);
+		}
+
+		public static void Write(object value)
+		{
+			Console.WriteLine(value);
 		}
 	}
 }

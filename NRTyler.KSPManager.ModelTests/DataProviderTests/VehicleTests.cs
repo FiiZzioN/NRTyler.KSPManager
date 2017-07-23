@@ -13,6 +13,8 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NRTyler.KSPManager.Models.DataProviders;
+using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
+using NRTyler.KSPManager.Models.DataProviders.VehicleTypes;
 using NRTyler.KSPManager.Services.Enums;
 
 namespace NRTyler.KSPManager.ModelTests.DataProviderTests
@@ -53,16 +55,32 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
-		public void VehicleMassValid()
+		public void VehicleWetMassMassValid()
 		{
 			//Arrange
 			var vehicle = new Vehicle();
-			vehicle.Mass = 965854;
+			vehicle.WetMass = 965854;
 
 			var expected = 965854;
 
 			//Act
-			var actual = vehicle.Mass;
+			var actual = vehicle.WetMass;
+
+			//Assert
+			Assert.AreEqual(expected, actual);
+		}
+
+		[TestMethod]
+		public void VehicleDryMassMassValid()
+		{
+			//Arrange
+			var vehicle = new Vehicle();
+			vehicle.DryMass = 42500;
+
+			var expected = 42500;
+
+			//Act
+			var actual = vehicle.DryMass;
 
 			//Assert
 			Assert.AreEqual(expected, actual);
@@ -145,24 +163,38 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
-		public void VehiclePacificationOptionAdded()
+		public void VehicleDeltaVCalculated()
 		{
 			//Arrange
-			var vehicle = new Vehicle();
-			var option = new PacificationOption(PacificationType.GraveyardOrbit, 325);
-
-			vehicle.PacificationOptions.Add(option);
-
-			var expectedType = PacificationType.GraveyardOrbit;
-			var expectedDeltaV = 325;
+			string expected = null;
 
 			//Act
-			var actualType = vehicle.PacificationOptions[0].PacificationType;
-			var actualDeltaV = vehicle.PacificationOptions[0].RequiredDeltaV;
+			string actual = null;
 
 			//Assert
-			Assert.AreEqual(expectedType, actualType);
-			Assert.AreEqual(expectedDeltaV, actualDeltaV);
+			Assert.AreEqual(expected, actual);
 		}
+
+
+		//[TestMethod]
+		//public void VehiclePacificationOptionAdded()
+		//{
+		//	//Arrange
+		//	var vehicle = new Vehicle();
+		//	var option = new PacificationOption(PacificationType.GraveyardOrbit, 325);
+
+		//	vehicle.PacificationOptions.Add(option);
+
+		//	var expectedType = PacificationType.GraveyardOrbit;
+		//	var expectedDeltaV = 325;
+
+		//	//Act
+		//	var actualType = vehicle.PacificationOptions[0].PacificationType;
+		//	var actualDeltaV = vehicle.PacificationOptions[0].RequiredDeltaV;
+
+		//	//Assert
+		//	Assert.AreEqual(expectedType, actualType);
+		//	Assert.AreEqual(expectedDeltaV, actualDeltaV);
+		//}
 	}
 }

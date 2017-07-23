@@ -11,7 +11,7 @@
 // ***********************************************************************
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NRTyler.KSPManager.Models.DataProviders;
+using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Services.Enums;
 using NRTyler.KSPManager.Services.Utilities;
 

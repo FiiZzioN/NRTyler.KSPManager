@@ -13,7 +13,7 @@
 using System;
 using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NRTyler.KSPManager.Models.DataProviders;
+using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.ServiceTests.UtilityTests

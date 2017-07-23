@@ -51,9 +51,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataControllerTests\DeltaVCalculatorTests.cs" />
+    <Compile Include="DataProviderTests\FairingTests.cs" />
     <Compile Include="DataProviderTests\OrbitTests.cs" />
     <Compile Include="DataProviderTests\PacificationOptionTests.cs" />
     <Compile Include="DataProviderTests\PayloadRangeTests.cs" />
+    <Compile Include="DataProviderTests\StageTests.cs" />
     <Compile Include="DataProviderTests\TrajectoryTests.cs" />
     <Compile Include="DataProviderTests\VehicleCapabilityTests.cs" />
     <Compile Include="DataProviderTests\VehicleNoteTests.cs" />
@@ -76,7 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataCollectionTests\" />
-    <Folder Include="DataControllerTests\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

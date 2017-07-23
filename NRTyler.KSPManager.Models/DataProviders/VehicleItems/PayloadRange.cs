@@ -14,7 +14,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
 
-namespace NRTyler.KSPManager.Models.DataProviders
+namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
 	/// <summary>
 	/// <see cref="PayloadRange"/> holds the lightest and heaviest values that a payload can be for the vehicle to safely lift.

@@ -10,7 +10,6 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
-using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
@@ -18,7 +17,7 @@ using NRTyler.KSPManager.Models.Interfaces;
 using NRTyler.KSPManager.Services.Enums;
 using NRTyler.KSPManager.Services.Utilities;
 
-namespace NRTyler.KSPManager.Models.DataProviders
+namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
 	/// <summary>
 	/// Contains pacification information such as the type and the amount of delta v required for such a maneuver.
@@ -43,7 +42,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <param name="pacificationType">The pacification type.</param>
 		public PacificationOption(PacificationType pacificationType)
 		{
-			PacificationType = pacificationType;
+			this.PacificationType = pacificationType;
 		}
 
 		/// <summary>
@@ -53,8 +52,8 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <param name="requiredDeltaV">The required delta v.</param>
 		public PacificationOption(PacificationType pacificationType, double requiredDeltaV)
 		{
-			PacificationType = pacificationType;
-			RequiredDeltaV = requiredDeltaV;
+			this.PacificationType = pacificationType;
+			this.RequiredDeltaV = requiredDeltaV;
 		}
 
 		#endregion
@@ -74,7 +73,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			set
 			{
 				this.pacificationType = value;
-				OnPropertyChanged(nameof(PacificationType));
+				OnPropertyChanged(nameof(this.PacificationType));
 			}
 		}
 
@@ -90,7 +89,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 				if (value < 0) return;
 
 				this.requiredDeltaV = value;
-				OnPropertyChanged(nameof(RequiredDeltaV));
+				OnPropertyChanged(nameof(this.RequiredDeltaV));
 			}
 		}
 
@@ -102,7 +101,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <returns>A string that represents the current object.</returns>
 		public override string ToString()
 		{
-			var oldString = $"Pacification Type: {StringEnum.GetStringValue(PacificationType)}@Required DeltaV: {RequiredDeltaV}";
+			var oldString = $"Pacification Type: {StringEnum.GetStringValue(this.PacificationType)}@Required DeltaV: {this.RequiredDeltaV}";
 			var newString = oldString.Replace("@", "\n");
 
 			return newString;

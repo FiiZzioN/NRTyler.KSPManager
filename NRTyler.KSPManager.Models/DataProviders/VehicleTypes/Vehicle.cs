@@ -5,7 +5,7 @@
 // Created          : 07-16-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-18-2017
+// Last Modified On : 07-21-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -14,11 +14,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
+using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.Interfaces;
 using NRTyler.KSPManager.Services.Enums;
 using NRTyler.KSPManager.Services.Utilities;
 
-namespace NRTyler.KSPManager.Models.DataProviders
+namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 {
 	public class Vehicle : IVehicle, INotifyPropertyChanged
 	{
@@ -27,10 +28,9 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// </summary>
 		public Vehicle()
 		{
-			VehicleType         = VehicleType.Undefined;
-			StageInfo           = new SortedDictionary<int, Stage>();
-			VehicleNotes        = new List<VehicleNote>();
-			PacificationOptions = new List<PacificationOption>();
+			this.VehicleType  = VehicleType.Undefined;
+			this.StageInfo    = new SortedDictionary<int, Stage>();
+			this.VehicleNotes = new List<VehicleNote>();
 		}
 
 		/// <summary>
@@ -39,18 +39,19 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <param name="name">The name of the vehicle.</param>
 		public Vehicle(string name) : this()
 		{
-			Name = name;
+			this.Name = name;
 		}
 
 		#region Backing Fields
-
+		 
 		private string name;
-		private decimal mass;
-		private decimal? price;
+		private double dryMass;
+		private double wetMass;
+		private double deltaV;
+		private decimal price;
 		private VehicleType vehicleType;
 		private SortedDictionary<int, Stage> stageInfo;
 		private List<VehicleNote> vehicleNotes;
-		private List<PacificationOption> pacificationOptions;
 		
 		#endregion
 
@@ -59,28 +60,72 @@ namespace NRTyler.KSPManager.Models.DataProviders
 		/// <summary>
 		/// Gets or sets the name of the vehicle.
 		/// </summary>
-		/// <value>The name.</value>
 		public string Name
 		{
 			get { return this.name; }
 			set
 			{
 				StringAssistant.TitleInsurance(value, ref this.name);
-				OnPropertyChanged(nameof(Name));
+				OnPropertyChanged(nameof(this.Name));
 			}
 		}
 
 		/// <summary>
-		/// Gets or sets the mass of the vehicle.
+		/// Gets or sets the total dry mass of the vehicle.
 		/// </summary>
-		public decimal Mass
+		public double DryMass
 		{
-			get { return this.mass; }
+			get { return this.dryMass; }
 			set
 			{
 				if (value < 0) return;
-				this.mass = value;
-				OnPropertyChanged(nameof(Mass));
+
+				this.dryMass = value;
+				OnPropertyChanged(nameof(this.DryMass));
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the total wet mass of the vehicle.
+		/// </summary>
+		public double WetMass
+		{
+			get { return this.wetMass; }
+			set
+			{
+				if (value < 0) return;
+
+				this.wetMass = value;
+				OnPropertyChanged(nameof(this.WetMass));
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the total amount of Delta V available to the vehicle.
+		/// </summary>
+		public double DeltaV
+		{
+			get { return this.deltaV; }
+			set
+			{
+				if (value < 0) return;
+
+				this.deltaV = value;
+				OnPropertyChanged(nameof(this.DeltaV));
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the total price of the vehicle.
+		/// </summary>
+		public decimal Price
+		{
+			get { return this.price; }
+			set
+			{
+				if (value < 0) return;
+				this.price = value;
+				OnPropertyChanged(nameof(this.Price));
 			}
 		}
 
@@ -93,7 +138,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			set
 			{
 				this.vehicleType = value;
-				OnPropertyChanged(nameof(VehicleType));
+				OnPropertyChanged(nameof(this.VehicleType));
 			}
 		}
 
@@ -106,7 +151,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			set
 			{
 				this.stageInfo = value;
-				OnPropertyChanged(nameof(StageInfo));
+				OnPropertyChanged(nameof(this.StageInfo));
 			}
 		}
 
@@ -119,38 +164,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			set
 			{
 				this.vehicleNotes = value;
-				OnPropertyChanged(nameof(VehicleNotes));
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets the dictionary of pacification options.
-		/// </summary>
-		public List<PacificationOption> PacificationOptions
-		{
-			get { return this.pacificationOptions; }
-			set
-			{
-				this.pacificationOptions = value;
-				OnPropertyChanged(nameof(Price));
-			}
-		}
-
-		#endregion
-
-		#region Implementation of IValuable
-
-		/// <summary>
-		/// Gets or sets the price of the vehicle.
-		/// </summary>
-		public decimal? Price
-		{
-			get { return this.price; }
-			set
-			{
-				if (value < 0) return;
-				this.price = value;
-				OnPropertyChanged(nameof(Price));
+				OnPropertyChanged(nameof(this.VehicleNotes));
 			}
 		}
 

@@ -13,13 +13,13 @@
 namespace NRTyler.KSPManager.Models.Interfaces
 {
 	/// <summary>
-	/// Applies to <see cref="object"/>'s that have value, such as vehicles and options stages.
+	/// Applies to <see cref="object"/>'s that have value, such as vehicles and optional stages.
 	/// </summary>
 	public interface IValuable
 	{
 		/// <summary>
 		/// Gets or sets the price of an object.
 		/// </summary>
-		decimal? Price { get; set; }
+		decimal Price { get; set; }
 	}
 }

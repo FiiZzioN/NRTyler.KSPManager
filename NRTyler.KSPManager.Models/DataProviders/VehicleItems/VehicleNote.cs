@@ -16,19 +16,19 @@ using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Services.Utilities;
 
-namespace NRTyler.KSPManager.Models.DataProviders
+namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
 	public class VehicleNote : INotifyPropertyChanged
 	{
 		public VehicleNote()
 		{
-			Title = null;
-			Content = String.Empty;
+			this.Title = null;
+			this.Content = String.Empty;
 		}
 
 		public VehicleNote(string title)
 		{
-			Title = title;
+			this.Title = title;
 		}
 
 		private string title;
@@ -40,7 +40,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			set
 			{
 				StringAssistant.TitleInsurance(value, ref this.title);
-				OnPropertyChanged(nameof(Title));
+				OnPropertyChanged(nameof(this.Title));
 			}
 		}
 

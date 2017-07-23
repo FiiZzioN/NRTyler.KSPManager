@@ -1,19 +1,21 @@
 ﻿// ***********************************************************************
-// Assembly         : NRTyler.KSPManager.Models
+// Assembly         : NRTyler.KSPManager.Services
 //
 // Author           : Nicholas Tyler
-// Created          : 07-17-2017
+// Created          : 07-21-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-17-2017
+// Last Modified On : 07-21-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
-namespace NRTyler.KSPManager.Models.DataProviders
-{
-	public class Stage
-	{
+using System;
 
+namespace NRTyler.KSPManager.Services.Utilities
+{
+	public class ExtendedMathConstants
+	{
+		public const double ɡ0 = 9.80665;
 	}
 }
