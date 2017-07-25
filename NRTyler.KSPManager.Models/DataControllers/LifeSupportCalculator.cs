@@ -5,7 +5,7 @@
 // Created          : 07-21-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-23-2017
+// Last Modified On : 07-25-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -46,21 +46,40 @@ namespace NRTyler.KSPManager.Models.DataControllers
 
 
 		/// <summary>
-		/// Calculates how many days the life support resources will last.
+		/// Calculates how many days the life support resources will last. The value returned takes into account both the number of crew that this is supposed to support, as well as taking into consideration how long an in-game day is supposed to last. This is based of the values in the <see cref="BaseGameSettings"/>.
 		/// </summary>
-		/// <param name="unitsPerDay">The number of units used or generated per day.</param>
+		/// <param name="unitsPerDay">The number of units used per day.</param>
 		/// <param name="totalUnitsStored">The total amount of units stored in the vehicle.</param>
 		/// <returns>System.Double.</returns>
 		public double CalculateLifeSupportResources(double unitsPerDay, double totalUnitsStored)
 		{
 			var numberOfKerbals     = CrewedVehicle.NumberOfCrew;
-			var adjustedUnitsPerDay = (unitsPerDay * numberOfKerbals) * (DayLength / 6);
+			var adjustedUnitsPerDay = (unitsPerDay * numberOfKerbals) * (DayLength / BaseGameSettings.DefaultHoursInKerbinDay);
 
+			
 			return totalUnitsStored / adjustedUnitsPerDay;
 		}
 
 		/// <summary>
-		/// Calculates how many days the electricity will last.
+		/// Calculates how many days the electricity will last. The value returned takes into account both the number of crew that this is supposed to support, as well as taking into consideration how long an in-game day is supposed to last. This is based off of the values in the <see cref="BaseGameSettings"/>.
+		/// </summary>
+		/// <param name="vehicle">The <see cref="ICrewable"/> vehicle that needs its electrical system analyzed.</param>
+		/// <returns>System.Double.</returns>
+		public double CalculateElectricity(ICrewable vehicle)
+		{
+			// Set fields to their respective data point for easier readability in the formula below.
+			var numberOfKerbals   = vehicle.NumberOfCrew;
+			var baseUnitsPerDay   = vehicle.LifeSupportSettings.BaseElectricityPerDay;
+			var kerbalUnitsPerDay = vehicle.LifeSupportSettings.KerbalElectricityPerDay;
+			var totalUnitsStored  = vehicle.LifeSupportSystem.ProvisionsStorage.TotalElectricityStored;
+
+			var totalUnitsPerDay = (baseUnitsPerDay + (kerbalUnitsPerDay * numberOfKerbals)) * (DayLength / BaseGameSettings.DefaultHoursInKerbinDay);
+
+			return CalculateLifeSupportResources(totalUnitsPerDay, totalUnitsStored);
+		}
+
+		/// <summary>
+		/// Calculates how many days the electricity will last. The value returned takes into account both the number of crew that this is supposed to support, as well as taking into consideration how long an in-game day is supposed to last. This is based off of the values in the <see cref="BaseGameSettings"/>.
 		/// </summary>
 		/// <param name="baseUnitsPerDay">The number of units the vehicle will use per day.</param>
 		/// <param name="kerbalUnitsPerDay">The number of units a single kerbal will use per day.</param>
@@ -69,7 +88,7 @@ namespace NRTyler.KSPManager.Models.DataControllers
 		public double CalculateElectricity(double baseUnitsPerDay, double kerbalUnitsPerDay, double totalUnitsStored)
 		{
 			var numberOfKerbals  = CrewedVehicle.NumberOfCrew;
-			var totalUnitsPerDay = (baseUnitsPerDay + (kerbalUnitsPerDay * numberOfKerbals)) * (DayLength / 6);
+			var totalUnitsPerDay = (baseUnitsPerDay + (kerbalUnitsPerDay * numberOfKerbals)) * (DayLength / BaseGameSettings.DefaultHoursInKerbinDay);
 
 			return CalculateLifeSupportResources(totalUnitsPerDay, totalUnitsStored);
 		}

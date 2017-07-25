@@ -28,16 +28,16 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 	{
 		public CrewedVehicle()
 		{
-			VehicleType       = VehicleType.Undefined;
-			StageInfo         = new SortedDictionary<int, Stage>();
-			VehicleNotes      = new List<VehicleNote>();
+			VehicleType  = VehicleType.Undefined;
+			StageInfo    = new SortedDictionary<int, Stage>();
+			VehicleNotes = new List<VehicleNote>();
 		}
 
 		public CrewedVehicle(BaseGameSettings baseSettings, LifeSupportSettings supportSettings) : this()
 		{
-			BaseGameSettings = baseSettings;
+			BaseGameSettings    = baseSettings;
 			LifeSupportSettings = supportSettings;
-			LifeSupportSystem = new LifeSupportSystem(this);
+			LifeSupportSystem   = new LifeSupportSystem(this);
 		}
 
 

@@ -5,7 +5,7 @@
 // Created          : 07-18-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-18-2017
+// Last Modified On : 07-25-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -61,8 +61,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 			get { return this.periapsis; }
 			set
 			{
-				if (value < 0) return;
-				//if (value > this.Apoapsis) return;
+				if (value < 0) return; 
 
 				this.periapsis = value;
 				EntryValidator.EnsureProperAssignment(ref this.periapsis, ref this.apoapsis);

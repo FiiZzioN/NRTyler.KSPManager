@@ -5,11 +5,13 @@
 // Created          : 07-21-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-21-2017
+// Last Modified On : 07-25-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
@@ -20,7 +22,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.GameSettings
 	/// Holds information about how many units are used / generated of various life support systems per day. 
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-	public class LifeSupportSettings : INotifyPropertyChanged
+	public class LifeSupportSettings : INotifyPropertyChanged, IEnumerable<double>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LifeSupportSettings"/> class.
@@ -169,14 +171,28 @@ namespace NRTyler.KSPManager.Models.DataProviders.GameSettings
 		/// </summary>
 		private void InitializeClass()
 		{
-			FoodPerDay              = 0.365625;
-			WaterPerDay             = 0.241663;
-			OxygenPerDay            = 37.01241;
-			BaseElectricityPerDay   = 459;
-			KerbalElectricityPerDay = 306;
-			WastePerDay             = 0.03325;
-			WasteWaterPerDay        = 0.30775;
-			CO2PerDay               = 31.97079;
+			var sixHours = BaseGameSettings.DefaultHoursInKerbinDay;
+
+			FoodPerDay              = 0.000016927083333 * sixHours;
+			WaterPerDay             = 0.000011188078704 * sixHours;
+			OxygenPerDay            = 0.001713537562385 * sixHours;
+			BaseElectricityPerDay   = 0.02125           * sixHours;
+			KerbalElectricityPerDay = 0.014166666666667 * sixHours;
+			WastePerDay             = 0.0000015393519   * sixHours;
+			WasteWaterPerDay        = 0.000014247685185 * sixHours;
+			CO2PerDay               = 0.00148012889876  * sixHours;
+
+			//? Make this into a list
+			/*
+			FoodPerDay              = 0.365625 * sixHours;
+			WaterPerDay             = 0.241663 * sixHours;
+			OxygenPerDay            = 37.01241 * sixHours;
+			BaseElectricityPerDay   = 459      * sixHours;
+			KerbalElectricityPerDay = 306      * sixHours;
+			WastePerDay             = 0.03325  * sixHours;
+			WasteWaterPerDay        = 0.30775  * sixHours;
+			CO2PerDay               = 31.97079 * sixHours;
+			*/
 		}
 
 		#region INotifyPropertyChanged Members
@@ -194,6 +210,39 @@ namespace NRTyler.KSPManager.Models.DataProviders.GameSettings
 		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		#endregion
+
+		#region Implementation of IEnumerable
+
+		/// <summary>Returns an enumerator that iterates through the collection.</summary>
+		/// <returns>An enumerator that can be used to iterate through the collection.</returns>
+		public IEnumerator<double> GetEnumerator()
+		{
+			var resourceList = new List<double>()
+			{
+				FoodPerDay,
+				WaterPerDay,
+				OxygenPerDay,
+				BaseElectricityPerDay,
+				KerbalElectricityPerDay,
+				WastePerDay,
+				WasteWaterPerDay,
+				CO2PerDay
+			};
+
+			foreach (var resource in resourceList)
+			{
+				yield return resource;
+			}
+		}
+
+		/// <summary>Returns an enumerator that iterates through a collection.</summary>
+		/// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
 		}
 
 		#endregion

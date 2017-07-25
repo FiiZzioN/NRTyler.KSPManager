@@ -22,6 +22,12 @@ namespace NRTyler.KSPManager.ConsoleAid
 	{
 		public static void Main()
 		{
+			var test = new LifeSupportSettings();
+			Console.WriteLine(test.GetEnumerator());
+		}
+
+		private static void TestLifeSupport()
+		{
 			var basegameSettings = new BaseGameSettings();
 			basegameSettings.DayLengthMultiplier = 2;
 
@@ -39,10 +45,10 @@ namespace NRTyler.KSPManager.ConsoleAid
 			lifeSupportSystem.ProvisionsStorage.TotalOxygenStored = 111.04;
 			lifeSupportSystem.ProvisionsStorage.TotalElectricityStored = 50;
 
-			var food  = lifeSupportSystem.DaysWorthOfFood;
+			var food = lifeSupportSystem.DaysWorthOfFood;
 			var water = lifeSupportSystem.DaysWorthOfWater;
-			var oxy   = lifeSupportSystem.DaysWorthOfOxygen;
-			var elc   = lifeSupportSystem.DaysWorthOfElectricity;
+			var oxy = lifeSupportSystem.DaysWorthOfOxygen;
+			var elc = lifeSupportSystem.DaysWorthOfElectricity;
 
 			Write(food);
 			Write(water);

@@ -69,8 +69,6 @@ namespace NRTyler.KSPManager.ModelTests.DataControllerTests
 			//Arrange
 			Stage stage = null;
 
-			var expected = 1350.48419958761;
-
 			//Act
 			var actual = DeltaVCalculator.CalulateDeltaV(stage);
 
