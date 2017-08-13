@@ -5,7 +5,7 @@
 // Created          : 07-21-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-21-2017
+// Last Modified On : 08-12-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -67,7 +67,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.GameSettings
 		}
 
 		/// <summary>
-		/// Gets or sets a value indicating whether the player is using a life support mod..
+		/// Gets or sets a value indicating whether the player is using a life support mod.
 		/// </summary>
 		public bool UsingLifeSupport
 		{

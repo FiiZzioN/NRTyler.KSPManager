@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NRTyler.CodeLibrary">
+      <HintPath>..\..\NRTyler.CodeLibrary\NRTyler.CodeLibrary\bin\Debug\NRTyler.CodeLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="ParallelExtensionsExtras">
       <HintPath>..\ParallelExtensionsExtras.dll</HintPath>
     </Reference>

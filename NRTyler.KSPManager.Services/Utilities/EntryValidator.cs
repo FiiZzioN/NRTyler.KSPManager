@@ -25,25 +25,22 @@ namespace NRTyler.KSPManager.Services.Utilities
 		/// <typeparam name="T">The type of the value to be compared.</typeparam>
 		/// <param name="smallerValue">The smaller value's backing field.</param>
 		/// <param name="largerValue">The larger value's backing field.</param>
-		/// <exception cref="ArgumentNullException">
-		/// smallerValue - Incoming value was null.
-		/// or
-		/// largerValue - Incoming value was null.
-		/// </exception>
-		public static void EnsureProperAssignment<T>(ref T smallerValue, ref T largerValue)
+		/// <exception cref="ArgumentNullException"></exception>
+		public static void EnsureProperAssignment<T>(ref T smallerValue, ref T largerValue) where T : IComparable<T>
 		{
-			//if (smallerValue == null) return;
-			//if (largerValue  == null) return;
 			if (smallerValue == null) throw new ArgumentNullException(nameof(smallerValue), "Incoming value was null.");
 			if (largerValue  == null) throw new ArgumentNullException(nameof(largerValue) , "Incoming value was null.");
 
-			dynamic smaller = smallerValue;
-			dynamic larger = largerValue;
+			// Smaller should precede larger.
+			if (smallerValue.CompareTo(largerValue) < 0) return;
 
-			if (smaller < larger) return;
+			// Make new fields to preserve values.
+			var smaller = smallerValue;
+			var larger  = largerValue;
 
+			// Put the values in their proper position.
 			smallerValue = larger;
-			largerValue = smaller;
+			largerValue  = smaller;
 		}
 	}
 }

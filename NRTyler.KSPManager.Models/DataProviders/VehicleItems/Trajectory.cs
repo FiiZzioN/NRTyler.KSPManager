@@ -22,7 +22,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 	/// Contains the parameters used to make up a specified orbit. Those include LEO, SSO, GTO and GEO.
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-	/// <seealso cref="NRTyler.KSPManager.Models.Interfaces.IBurn" />
+	/// <seealso cref="IBurn" />
 	public class Trajectory : Orbit, INotifyPropertyChanged, IBurn
 	{
 		#region Constructors

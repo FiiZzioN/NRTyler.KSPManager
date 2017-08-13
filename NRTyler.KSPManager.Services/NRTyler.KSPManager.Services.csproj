@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NRTyler.CodeLibrary">
+      <HintPath>..\..\NRTyler.CodeLibrary\NRTyler.CodeLibrary\bin\Debug\NRTyler.CodeLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\StringValueAttribute.cs" />
     <Compile Include="Enums\BuildingLevel.cs" />
     <Compile Include="Enums\BuildingName.cs" />
     <Compile Include="Enums\CraftSituation.cs" />
@@ -58,10 +60,10 @@
     <Compile Include="Utilities\ExtendedMathConstants.cs" />
     <Compile Include="Utilities\Messenger.cs" />
     <Compile Include="Utilities\StringAssistant.cs" />
-    <Compile Include="Utilities\StringEnum.cs" />
     <Compile Include="Utilities\TrajectoryComparer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Attributes\" />
     <Folder Include="EventArgs\" />
     <Folder Include="Infrastructure\" />
   </ItemGroup>

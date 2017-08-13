@@ -52,7 +52,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilityTests\EntryValidatorTests.cs" />
     <Compile Include="UtilityTests\StringAssistantTests.cs" />
-    <Compile Include="UtilityTests\StringEnumTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

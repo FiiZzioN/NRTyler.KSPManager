@@ -101,10 +101,10 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		/// </summary>
 		private void InitializeClass()
 		{
-			this.TotalFoodStored        = 0;
-			this.TotalWaterStored       = 0;
-			this.TotalOxygenStored      = 0;
-			this.TotalElectricityStored = 0;
+			TotalFoodStored        = 0;
+			TotalWaterStored       = 0;
+			TotalOxygenStored      = 0;
+			TotalElectricityStored = 0;
 		}
 
 		#region INotifyPropertyChanged Members

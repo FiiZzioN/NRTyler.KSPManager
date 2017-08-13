@@ -26,19 +26,21 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Vehicle"/> class.
 		/// </summary>
-		public Vehicle()
+		public Vehicle() : this("Not Set")
 		{
-			this.VehicleType  = VehicleType.Undefined;
-			this.StageInfo    = new SortedDictionary<int, Stage>();
-			this.VehicleNotes = new List<VehicleNote>();
+
 		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Vehicle"/> class.
 		/// </summary>
 		/// <param name="name">The name of the vehicle.</param>
-		public Vehicle(string name) : this()
+		public Vehicle(string name)
 		{
+			this.VehicleType  = VehicleType.Undefined;
+			this.StageInfo    = new SortedDictionary<int, Stage>();
+			this.VehicleNotes = new List<VehicleNote>();
+
 			this.Name = name;
 		}
 
@@ -114,6 +116,71 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 				OnPropertyChanged(nameof(this.DeltaV));
 			}
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		/// <summary>
+		/// Calculates the delta-v.
+		/// </summary>
+		/// <returns>System.Double.</returns>
+		public double CalculateDeltaV()
+		{
+			return 0;
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		/// <summary>
 		/// Gets or sets the total price of the vehicle.

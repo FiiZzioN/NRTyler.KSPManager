@@ -11,10 +11,12 @@
 // ***********************************************************************
 
 using System;
+using System.ComponentModel;
 using NRTyler.KSPManager.Models.DataControllers;
 using NRTyler.KSPManager.Models.DataProviders.GameSettings;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.DataProviders.VehicleTypes;
+using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.ConsoleAid
 {
@@ -22,14 +24,68 @@ namespace NRTyler.KSPManager.ConsoleAid
 	{
 		public static void Main()
 		{
-			var test = new LifeSupportSettings();
-			Console.WriteLine(test.GetEnumerator());
+			var stageOne = new Stage()
+			{
+				DryMass = 250,
+				WetMass = 650,
+				SpecificImpulse = 302
+			};
+
+			var stageTwo = new Stage()
+			{
+				DryMass = 500,
+				WetMass = 1200,
+				SpecificImpulse = 332
+			};
+
+			var stageThree = new Stage()
+			{
+				DryMass = 2200,
+				WetMass = 7000,
+				SpecificImpulse = 348
+			};
+
+			var stageOneDeltaV   = DeltaVCalculator.CalulateDeltaV(stageOne);
+			var stageTwoDeltaV   = DeltaVCalculator.CalulateDeltaV(stageTwo);
+			var stageThreeDeltaV = DeltaVCalculator.CalulateDeltaV(stageThree);
+
+
+			Write(Math.Round(stageOneDeltaV, 2));
+			Write(null);
+			Write(Math.Round(stageTwoDeltaV, 2));
+			Write(null);
+			Write(Math.Round(stageThreeDeltaV, 2));
+			Write("----------------------------------------");
+
+
+
+			var vehicle = new Vehicle("DeltaV Testing");
+
+			vehicle.StageInfo.Add(1, stageOne);
+			vehicle.StageInfo.Add(2, stageTwo);
+			vehicle.StageInfo.Add(3, stageThree);
+
+			Write(null);
+			Write(Math.Round(DeltaVCalculator.CalculateVehicleDeltaV(vehicle), 2));
+
+
+
+
+
+
+			#region Ending
+
+			//Write(null);
+			//Write("Press any key to continue...");
+			//Console.ReadKey();
+
+			#endregion
 		}
 
-		private static void TestLifeSupport()
+		private static Tuple<double, double, double, double> TestLifeSupport(double dayLengthModifier)
 		{
 			var basegameSettings = new BaseGameSettings();
-			basegameSettings.DayLengthMultiplier = 2;
+			basegameSettings.DayLengthMultiplier = dayLengthModifier;
 
 			var lifesupportSettings = new LifeSupportSettings();
 
@@ -40,20 +96,24 @@ namespace NRTyler.KSPManager.ConsoleAid
 
 			var lifeSupportSystem = crewedVessel.LifeSupportSystem;
 
-			lifeSupportSystem.ProvisionsStorage.TotalFoodStored = 1.10;
-			lifeSupportSystem.ProvisionsStorage.TotalWaterStored = 0.73;
-			lifeSupportSystem.ProvisionsStorage.TotalOxygenStored = 111.04;
+			lifeSupportSystem.ProvisionsStorage.TotalFoodStored        = 1.10;
+			lifeSupportSystem.ProvisionsStorage.TotalWaterStored       = 0.73;
+			lifeSupportSystem.ProvisionsStorage.TotalOxygenStored      = 111.04;
 			lifeSupportSystem.ProvisionsStorage.TotalElectricityStored = 50;
 
-			var food = lifeSupportSystem.DaysWorthOfFood;
+			var food  = lifeSupportSystem.DaysWorthOfFood;
 			var water = lifeSupportSystem.DaysWorthOfWater;
-			var oxy = lifeSupportSystem.DaysWorthOfOxygen;
-			var elc = lifeSupportSystem.DaysWorthOfElectricity;
+			var oxy   = lifeSupportSystem.DaysWorthOfOxygen;
+			var elec  = lifeSupportSystem.DaysWorthOfElectricity;
 
-			Write(food);
-			Write(water);
-			Write(oxy);
-			Write(elc);
+			var eatenPerSecond = crewedVessel.LifeSupportSettings.FoodPerDay / 21600;
+			var foodTotalTimeSeconds = lifeSupportSystem.ProvisionsStorage.TotalFoodStored / eatenPerSecond;
+
+			Write(foodTotalTimeSeconds);
+
+			Write(DeltaVCalculator.CalulateDeltaV(10470, 19357, 312));
+
+			return new Tuple<double, double, double, double>(food, water, oxy, elec);
 		}
 
 		public static void Write(object value)

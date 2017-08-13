@@ -50,7 +50,7 @@ namespace NRTyler.KSPManager.Services.Utilities
 		{
 			if (String.IsNullOrWhiteSpace(incomingValue))
 			{
-				var titleIfNull = "Invalid Title";
+				var titleIfNull  = "Invalid Title";
 				if (backingField == titleIfNull) return;
 
 				backingField = titleIfNull;

@@ -12,10 +12,10 @@
 
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using NRTyler.CodeLibrary.Utilities;
 using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Models.Interfaces;
 using NRTyler.KSPManager.Services.Enums;
-using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
@@ -40,9 +40,9 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		/// Initializes a new instance of the <see cref="PacificationOption"/> class.
 		/// </summary>
 		/// <param name="pacificationType">The pacification type.</param>
-		public PacificationOption(PacificationType pacificationType)
+		public PacificationOption(PacificationType pacificationType) : this(pacificationType, 0)
 		{
-			this.PacificationType = pacificationType;
+
 		}
 
 		/// <summary>

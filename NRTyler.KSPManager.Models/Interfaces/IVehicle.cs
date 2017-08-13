@@ -11,7 +11,6 @@
 // ***********************************************************************
 
 using System.Collections.Generic;
-using NRTyler.KSPManager.Models.DataProviders;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Services.Enums;
 
@@ -21,7 +20,7 @@ namespace NRTyler.KSPManager.Models.Interfaces
 	/// Contains items that any type of vehicle should have.
 	/// </summary>
 	/// <seealso cref="NRTyler.KSPManager.Models.Interfaces.IValuable" />
-	public interface IVehicle : IValuable
+	public interface IVehicle : IHasDeltaV, IValuable
 	{
 		/// <summary>
 		/// Gets or sets the vehicle's the name.
@@ -37,11 +36,6 @@ namespace NRTyler.KSPManager.Models.Interfaces
 		/// Gets or sets vehicle's the wet mass.
 		/// </summary>
 		double WetMass { get; set; }
-
-		/// <summary>
-		/// Gets or sets the vehicle's available delta v.
-		/// </summary>
-		double DeltaV { get; set; }
 
 		/// <summary>
 		/// Gets or sets the vehicle's stage information.

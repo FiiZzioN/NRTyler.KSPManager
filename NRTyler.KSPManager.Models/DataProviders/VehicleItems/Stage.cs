@@ -18,12 +18,20 @@ using NRTyler.KSPManager.Models.Interfaces;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
-	public class Stage : IValuable, INotifyPropertyChanged
+	public class Stage : IHasDeltaV, IValuable, INotifyPropertyChanged
 	{
-		public Stage()
+		public Stage() : this(0, 0, 0)
 		{
 			
 		}
+
+		public Stage(double dryMass, double wetMass, double? specificImpulse)
+		{
+			DryMass         = dryMass;
+			WetMass         = wetMass;
+			SpecificImpulse = specificImpulse;
+		}
+
 
 		private double wetMass;
 		private double dryMass;
@@ -72,12 +80,13 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 				if (value < 0) return;
 
 				this.specificImpulse = value;
+				SetDeltaV();
 				OnPropertyChanged(nameof(SpecificImpulse));
 			}
 		}
 
 		/// <summary>
-		/// Gets or sets the stage's delta v.
+		/// Gets or sets the stage's delta-v.
 		/// </summary>
 		public double DeltaV
 		{
@@ -106,10 +115,18 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 			}
 		}
 
-		public double CalculateDeltaV()
+		/// <summary>
+		/// Calculates the stage's total delta-v.
+		/// </summary>
+		/// <returns>System.Double.</returns>
+		public virtual double CalculateDeltaV()
 		{
-			DeltaV = DeltaVCalculator.CalulateDeltaV(this);
-			return DeltaV;
+			return DeltaVCalculator.CalulateDeltaV(this);
+		}
+
+		private void SetDeltaV()
+		{
+			if (SpecificImpulse != null) CalculateDeltaV();
 		}
 
 		#region INotifyPropertyChanged Members
@@ -124,7 +141,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		/// </summary>
 		/// <param name="propertyName">Name of the property.</param>
 		[NotifyPropertyChangedInvocator]
-		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}

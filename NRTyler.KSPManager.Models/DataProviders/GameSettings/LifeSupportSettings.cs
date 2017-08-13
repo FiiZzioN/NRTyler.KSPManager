@@ -171,6 +171,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.GameSettings
 		/// </summary>
 		private void InitializeClass()
 		{
+			/*
 			var sixHours = BaseGameSettings.DefaultHoursInKerbinDay;
 
 			FoodPerDay              = 0.000016927083333 * sixHours;
@@ -181,18 +182,16 @@ namespace NRTyler.KSPManager.Models.DataProviders.GameSettings
 			WastePerDay             = 0.0000015393519   * sixHours;
 			WasteWaterPerDay        = 0.000014247685185 * sixHours;
 			CO2PerDay               = 0.00148012889876  * sixHours;
-
-			//? Make this into a list
-			/*
-			FoodPerDay              = 0.365625 * sixHours;
-			WaterPerDay             = 0.241663 * sixHours;
-			OxygenPerDay            = 37.01241 * sixHours;
-			BaseElectricityPerDay   = 459      * sixHours;
-			KerbalElectricityPerDay = 306      * sixHours;
-			WastePerDay             = 0.03325  * sixHours;
-			WasteWaterPerDay        = 0.30775  * sixHours;
-			CO2PerDay               = 31.97079 * sixHours;
 			*/
+
+			FoodPerDay              = 0.365625;
+			WaterPerDay             = 0.241663;
+			OxygenPerDay            = 37.01241;
+			BaseElectricityPerDay   = 459;
+			KerbalElectricityPerDay = 306;
+			WastePerDay             = 0.03325 ;
+			WasteWaterPerDay        = 0.30775 ;
+			CO2PerDay               = 31.97079;			
 		}
 
 		#region INotifyPropertyChanged Members

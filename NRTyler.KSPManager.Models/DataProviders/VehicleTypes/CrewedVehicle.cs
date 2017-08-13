@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
+using NRTyler.KSPManager.Models.DataControllers;
 using NRTyler.KSPManager.Models.DataProviders.GameSettings;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.Interfaces;
@@ -137,6 +138,22 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 				this.deltaV = value;
 				OnPropertyChanged(nameof(this.DeltaV));
 			}
+		}
+
+		/// <summary>
+		/// Calculates the delta-v.
+		/// </summary>
+		/// <returns>System.Double.</returns>
+		public double CalculateDeltaV()
+		{
+			DeltaV = 0;
+			
+			foreach (var stageInfoValue in StageInfo.Values)
+			{
+				DeltaV += stageInfoValue.DeltaV;
+			}
+
+			return DeltaV;
 		}
 
 		/// <summary>
