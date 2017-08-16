@@ -5,7 +5,7 @@
 // Created          : 07-18-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-18-2017
+// Last Modified On : 08-16-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -13,12 +13,10 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NRTyler.KSPManager.Common.Enums;
-using NRTyler.KSPManager.Models.DataControllers;
-using NRTyler.KSPManager.Models.DataProviders;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.DataProviders.VehicleTypes;
 
-namespace NRTyler.KSPManager.ModelTests.DataProviderTests
+namespace NRTyler.KSPManager.ModelTests.DataProviderTests.VehicleTypes
 {
 	[TestClass]
 	public class VehicleTests
@@ -27,8 +25,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void VehicleNameWhitespace()
 		{
 			//Arrange
-			var vehicle = new Vehicle();
-
+			var vehicle  = new Vehicle();
 			vehicle.Name = " ";
 
 			var expected = "Invalid Title";
@@ -44,8 +41,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void VehicleNameValid()
 		{
 			//Arrange
-			var vehicle = new Vehicle("My Vehicle");
-
+			var vehicle  = new Vehicle("My Vehicle");
 			var expected = "My Vehicle";
 
 			//Act
@@ -59,7 +55,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		public void VehicleWetMassMassValid()
 		{
 			//Arrange
-			var vehicle = new Vehicle();
+			var vehicle     = new Vehicle();
 			vehicle.WetMass = 965854;
 
 			var expected = 965854;
@@ -72,10 +68,26 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
+		public void VehicleWetMassMassInvalid()
+		{
+			//Arrange
+			var vehicle     = new Vehicle();
+			vehicle.WetMass = -3799;
+
+			var expected = 0;
+
+			//Act
+			var actual = vehicle.WetMass;
+
+			//Assert
+			Assert.AreEqual(expected, actual);
+		}
+
+		[TestMethod]
 		public void VehicleDryMassMassValid()
 		{
 			//Arrange
-			var vehicle = new Vehicle();
+			var vehicle     = new Vehicle();
 			vehicle.DryMass = 42500;
 
 			var expected = 42500;
@@ -88,10 +100,26 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
-		public void VehiclePriceApplied()
+		public void VehicleDryMassMasInvalid()
 		{
 			//Arrange
-			var vehicle = new Vehicle();
+			var vehicle     = new Vehicle();
+			vehicle.DryMass = -5874;
+
+			var expected = 0;
+
+			//Act
+			var actual = vehicle.DryMass;
+
+			//Assert
+			Assert.AreEqual(expected, actual);
+		}
+
+		[TestMethod]
+		public void VehiclePriceValid()
+		{
+			//Arrange
+			var vehicle   = new Vehicle();
 			vehicle.Price = 13252.3m;
 
 			var expected = 13252.3m;
@@ -104,11 +132,26 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
+		public void VehiclePriceInvalid()
+		{
+			//Arrange
+			var vehicle   = new Vehicle();
+			vehicle.Price = -352.3m;
+
+			var expected = 0;
+
+			//Act
+			var actual = vehicle.Price;
+
+			//Assert
+			Assert.AreEqual(expected, actual);
+		}
+
+		[TestMethod]
 		public void VehicleTypeAssigned()
 		{
 			//Arrange
-			var vehicle = new Vehicle();
-
+			var vehicle         = new Vehicle();
 			vehicle.VehicleType = VehicleType.Rover;
 
 			var expected = VehicleType.Rover;
@@ -121,26 +164,29 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
-		public void VehicleStageInfoAdded()
+		public void VehicleStageInfoAddedAndSorted()
 		{
-			//Arrange
+			// Arrange
 			var vehicle = new Vehicle();
-			var stageNumber = 3;
-			var stage = new Stage();
+			var stage   = new Stage();
 
-			vehicle.StageInfo.Add(stageNumber, stage);
+			vehicle.StageInfo.Add(5, stage);
+			vehicle.StageInfo.Add(2, stage);
+			vehicle.StageInfo.Add(3, stage);
 
-			var sortedDic = new SortedDictionary<int, Stage>
+			var dictionary = new Dictionary<int, Stage>
 			{
-				{ 3, stage }
+				{ 2, stage },
+				{ 3, stage },
+				{ 5, stage },
 			};
 
-			var expected = sortedDic;
+			var expected = dictionary;
 
-			//Act
+			// Act
 			var actual = vehicle.StageInfo;
 
-			//Assert
+			// Assert
 			CollectionAssert.AreEqual(expected, actual);
 		}
 
@@ -198,26 +244,25 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 			Assert.AreEqual(expected, actual, 0.0000000001);
 		}
 
+		[TestMethod]
+		public void VehicleOptionalStages()
+		{
+			// Arrange
+			var vehicle = new Vehicle();
+			var stage   = new Stage(560, 5200, 305);
 
-		//[TestMethod]
-		//public void VehiclePacificationOptionAdded()
-		//{
-		//	//Arrange
-		//	var vehicle = new Vehicle();
-		//	var option = new PacificationOption(PacificationType.GraveyardOrbit, 325);
+			vehicle.OptionalStages.Add(stage);
 
-		//	vehicle.PacificationOptions.Add(option);
+			var expected = stage;
 
-		//	var expectedType = PacificationType.GraveyardOrbit;
-		//	var expectedDeltaV = 325;
+			// Act
+			var actual = vehicle.OptionalStages[0];
 
-		//	//Act
-		//	var actualType = vehicle.PacificationOptions[0].PacificationType;
-		//	var actualDeltaV = vehicle.PacificationOptions[0].RequiredDeltaV;
+			// Assert
+			Assert.AreEqual(expected, actual);
+		}
 
-		//	//Assert
-		//	Assert.AreEqual(expectedType, actualType);
-		//	Assert.AreEqual(expectedDeltaV, actualDeltaV);
-		//}
+
+
 	}
 }

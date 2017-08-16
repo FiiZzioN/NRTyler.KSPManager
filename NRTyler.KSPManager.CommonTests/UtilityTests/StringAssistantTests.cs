@@ -60,7 +60,7 @@ namespace NRTyler.KSPManager.CommonTests.UtilityTests
 			var expected = "Billy";
 
 			//Act
-			var actual = trajectory.TrajectoryName;
+			var actual = trajectory.Name;
 
 			//Assert
 			Assert.AreEqual(expected, actual);
@@ -72,12 +72,12 @@ namespace NRTyler.KSPManager.CommonTests.UtilityTests
 			//Arrange
 			var trajectory = new Trajectory("Bob");
 
-			trajectory.TrajectoryName = String.Empty;
+			trajectory.Name = String.Empty;
 
 			var expected = "Invalid Title";
 
 			//Act
-			var actual = trajectory.TrajectoryName;
+			var actual = trajectory.Name;
 
 			//Assert
 			Assert.AreEqual(expected, actual);

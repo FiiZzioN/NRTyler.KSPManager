@@ -10,23 +10,15 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
-#region Using Statements
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Common.Enums;
-using NRTyler.KSPManager.Common.Utilities;
-using NRTyler.KSPManager.Models.Annotations;
-using NRTyler.KSPManager.Models.DataControllers;
 using NRTyler.KSPManager.Models.DataProviders.GameSettings;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.Interfaces;
 
-#endregion
-
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 {
-	public class CrewedVehicle : ICrewable, INotifyPropertyChanged
+	public class CrewedVehicle : Vehicle, ICrewable
 	{
 		public CrewedVehicle()
 		{
@@ -45,150 +37,10 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 
 		#region Backing Fields
 
-		private decimal price;
-		private string name;
-		private double dryMass;
-		private double wetMass;
-		private double deltaV;
-		private SortedDictionary<int, Stage> stageInfo;
-		private List<VehicleNote> vehicleNotes;
-		private VehicleType vehicleType;
 		private int numberOfCrew;
 		private LifeSupportSystem lifeSupportSystem;
 		private BaseGameSettings baseGameSettings;
 		private LifeSupportSettings lifeSupportSettings;
-
-		#endregion
-
-		#region Properties
-
-		#region Implementation of IValuable
-
-		/// <summary>
-		/// Gets or sets the price of the vehicle.
-		/// </summary>
-		public decimal Price
-		{
-			get { return this.price; }
-			set
-			{
-				if (value < 0) return;
-
-				this.price = value;
-				OnPropertyChanged(nameof(Price));
-			}
-		}
-
-		#endregion
-
-		#region Implementation of IVehicle
-
-		/// <summary>
-		/// Gets or sets the name of the vehicle.
-		/// </summary>
-		public string Name
-		{
-			get { return this.name; }
-			set
-			{
-				StringAssistant.TitleInsurance(value, ref this.name);
-				OnPropertyChanged(nameof(this.Name));
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets the vehicle's dry mass.
-		/// </summary>
-		public double DryMass
-		{
-			get { return this.dryMass; }
-			set
-			{
-				if (value < 0) return;
-
-				this.dryMass = value;
-				OnPropertyChanged(nameof(this.DryMass));
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets the total wet mass of the vehicle.
-		/// </summary>
-		public double WetMass
-		{
-			get { return this.wetMass; }
-			set
-			{
-				if (value < 0) return;
-
-				this.wetMass = value;
-				OnPropertyChanged(nameof(this.WetMass));
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets the total amount of Delta V available to the vehicle.
-		/// </summary>
-		public double DeltaV
-		{
-			get { return this.deltaV; }
-			set
-			{
-				if (value < 0) return;
-
-				this.deltaV = value;
-				OnPropertyChanged(nameof(this.DeltaV));
-			}
-		}
-
-		/// <summary>
-		/// Calculates the vehicle's total delta-v.
-		/// </summary>
-		/// <returns>System.Double.</returns>
-		public double CalculateDeltaV()
-		{
-			DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
-			return DeltaV;
-		}
-
-		/// <summary>
-		/// Gets or sets the type of the vehicle.
-		/// </summary>
-		public VehicleType VehicleType
-		{
-			get { return this.vehicleType; }
-			set
-			{
-				this.vehicleType = value;
-				OnPropertyChanged(nameof(this.VehicleType));
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets the dictionary of stage information.
-		/// </summary>
-		public SortedDictionary<int, Stage> StageInfo
-		{
-			get { return this.stageInfo; }
-			set
-			{
-				this.stageInfo = value;
-				OnPropertyChanged(nameof(this.StageInfo));
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets the dictionary of vehicle notes.
-		/// </summary>
-		public List<VehicleNote> VehicleNotes
-		{
-			get { return this.vehicleNotes; }
-			set
-			{
-				this.vehicleNotes = value;
-				OnPropertyChanged(nameof(this.VehicleNotes));
-			}
-		}
 
 		#endregion
 
@@ -246,27 +98,6 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 				this.lifeSupportSettings = value;
 				OnPropertyChanged(nameof(LifeSupportSettings));
 			}
-		}
-
-		#endregion
-
-		#endregion
-
-		#region INotifyPropertyChanged Members
-
-		/// <summary>
-		/// Occurs when a property value changes.
-		/// </summary>
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		/// <summary>
-		/// Called when [property changed].
-		/// </summary>
-		/// <param name="propertyName">Name of the property.</param>
-		[NotifyPropertyChangedInvocator]
-		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 
 		#endregion

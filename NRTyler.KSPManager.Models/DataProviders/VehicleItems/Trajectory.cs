@@ -72,13 +72,13 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 			Periapsis      = periapsis;
 			Inclination    = inclination;
 			RequiredDeltaV = requiredDeltaV;
-			TrajectoryName = name;
+			this.Name = name;
 		}
 
 		#endregion
 
 		private double requiredDeltaV;
-		private string trajectoryName;
+		private string name;
 
 		#region Properties
 
@@ -97,13 +97,13 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 			}
 		}
 
-		public string TrajectoryName
+		public string Name
 		{
-			get { return this.trajectoryName; }
+			get { return this.name; }
 			set
 			{
-				StringAssistant.TitleInsurance(value, ref this.trajectoryName);
-				OnPropertyChanged(nameof(this.TrajectoryName));
+				StringAssistant.TitleInsurance(value, ref this.name);
+				OnPropertyChanged(nameof(this.Name));
 			}
 		}
 
@@ -115,7 +115,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		/// <returns>A string that represents the current object.</returns>
 		public override string ToString()
 		{
-			var oldString = $"Name: {this.TrajectoryName}@Apoapsis: {this.Apoapsis}@Periapsis: {this.Periapsis}@Inclination: {this.Inclination}@Required DeltaV: {this.RequiredDeltaV}";
+			var oldString = $"Name: {this.Name}@Apoapsis: {this.Apoapsis}@Periapsis: {this.Periapsis}@Inclination: {this.Inclination}@Required DeltaV: {this.RequiredDeltaV}";
 			var newString = oldString.Replace("@", "\n");
 
 			return newString;

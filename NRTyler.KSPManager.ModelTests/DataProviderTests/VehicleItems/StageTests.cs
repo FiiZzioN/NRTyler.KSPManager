@@ -13,7 +13,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 
-namespace NRTyler.KSPManager.ModelTests.DataProviderTests
+namespace NRTyler.KSPManager.ModelTests.DataProviderTests.VehicleItems
 {
 	[TestClass]
 	public class StageTests

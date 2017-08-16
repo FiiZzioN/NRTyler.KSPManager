@@ -14,7 +14,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.DataProviders.VehicleTypes;
 
-namespace NRTyler.KSPManager.ModelTests.DataProviderTests
+namespace NRTyler.KSPManager.ModelTests.DataProviderTests.VehicleItems
 {
 	[TestClass]
 	public class PayloadTests

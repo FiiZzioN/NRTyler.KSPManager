@@ -38,9 +38,10 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		/// <param name="name">The name of the vehicle.</param>
 		public Vehicle(string name)
 		{
-			VehicleType  = VehicleType.Undefined;
-			StageInfo    = new SortedDictionary<int, Stage>();
-			VehicleNotes = new List<VehicleNote>();
+			VehicleType    = VehicleType.Undefined;
+			StageInfo      = new SortedDictionary<int, Stage>();
+			VehicleNotes   = new List<VehicleNote>();
+			OptionalStages = new List<Stage>();
 
 			Name = name;
 		}
@@ -55,6 +56,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		private VehicleType vehicleType;
 		private SortedDictionary<int, Stage> stageInfo;
 		private List<VehicleNote> vehicleNotes;
+		private List<Stage> optionalStages;
 
 		#endregion
 
@@ -172,10 +174,23 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		}
 
 		/// <summary>
+		/// Gets or sets any optional stages that the vehicle may have at its' disposal.
+		/// </summary>
+		public List<Stage> OptionalStages
+		{
+			get { return this.optionalStages; }
+			set
+			{
+				this.optionalStages = value;
+				OnPropertyChanged(nameof(OptionalStages));
+			}
+		}
+
+		/// <summary>
 		/// Calculates the vehicle's total delta-v.
 		/// </summary>
 		/// <returns>System.Double.</returns>
-		public double CalculateDeltaV()
+		public virtual double CalculateDeltaV()
 		{
 			DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
 			return DeltaV;
@@ -195,7 +210,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		/// </summary>
 		/// <param name="propertyName">Name of the property.</param>
 		[NotifyPropertyChangedInvocator]
-		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}

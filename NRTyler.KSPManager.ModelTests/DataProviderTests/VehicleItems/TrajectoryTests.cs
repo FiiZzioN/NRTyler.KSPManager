@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 
-namespace NRTyler.KSPManager.ModelTests.DataProviderTests
+namespace NRTyler.KSPManager.ModelTests.DataProviderTests.VehicleItems
 {
 	[TestClass]
 	public class TrajectoryTests
@@ -118,7 +118,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 			var expected = "GTO";
 
 			//Act
-			var actual = parameters.TrajectoryName;
+			var actual = parameters.Name;
 
 			//Assert
 			Assert.AreEqual(expected, actual);
@@ -133,7 +133,7 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 			var expected = "Invalid Title";
 
 			//Act
-			var actual = parameters.TrajectoryName;
+			var actual = parameters.Name;
 
 			//Assert
 			Assert.AreEqual(expected, actual);
