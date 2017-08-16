@@ -12,6 +12,7 @@
 
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using NRTyler.KSPManager.Common.Utilities;
 using NRTyler.KSPManager.Models.Annotations;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
@@ -25,28 +26,21 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PayloadRange"/> class.
 		/// </summary>
-		public PayloadRange()
-		{
-
-		}
-		/// <summary>
-		/// Initializes a new instance of the <see cref="PayloadRange"/> class.
-		/// </summary>
-		/// <param name="lightest">The smallest.</param>
-		/// <param name="heaviest">The largest.</param>
+		/// <param name="lightest">The lightest payload weight.</param>
+		/// <param name="heaviest">The heaviest payload weight.</param>
 		public PayloadRange(int lightest, int heaviest)
 		{
 			Lightest = lightest;
 			Heaviest = heaviest;
 
-			EnsureProperAssignment();
+			EntryValidator.EnsureProperAssignment(ref this.lightest, ref this.heaviest);
 		}
 
 		private int lightest;
 		private int heaviest;
 
 		/// <summary>
-		/// Gets or sets the weight of the smallest payload.
+		/// Gets or sets the weight of the lightest payload.
 		/// </summary>
 		public int Lightest
 		{
@@ -61,7 +55,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		}
 
 		/// <summary>
-		/// Gets or sets the weight of the largest payload.
+		/// Gets or sets the weight of the heaviest payload.
 		/// </summary>
 		public int Heaviest
 		{
@@ -69,24 +63,10 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 			set
 			{
 				if (value < 0) return;
-
+		
 				this.heaviest = value;
 				OnPropertyChanged(nameof(Heaviest));
 			}
-		}
-
-		/// <summary>
-		/// Ensures that the weight values are assigned to the proper fields.
-		/// </summary>
-		private void EnsureProperAssignment()
-		{
-			var smaller = this.lightest;
-			var larger = this.heaviest;
-
-			if (this.lightest < this.heaviest) return;
-
-			this.lightest = larger;
-			this.heaviest = smaller;
 		}
 
 		#region Overrides of Object

@@ -23,8 +23,8 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 	/// Contains pacification information such as the type and the amount of delta v required for such a maneuver.
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-	/// <seealso cref="IBurn" />
-	public class PacificationOption : INotifyPropertyChanged, IBurn
+	/// <seealso cref="IManeuver" />
+	public class PacificationOption : INotifyPropertyChanged, IManeuver
 	{
 		#region Constructors
 

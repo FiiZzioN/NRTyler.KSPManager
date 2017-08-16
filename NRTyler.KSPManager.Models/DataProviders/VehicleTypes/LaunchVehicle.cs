@@ -5,7 +5,7 @@
 // Created          : 07-18-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-18-2017
+// Last Modified On : 08-16-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -24,11 +24,28 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 {
 	public class LaunchVehicle : IVehicle, INotifyPropertyChanged
 	{
-		public LaunchVehicle()
+		/// <summary>
+		/// Initializes a new instance of the <see cref="LaunchVehicle"/> class.
+		/// </summary>
+		public LaunchVehicle() : this("Not Set")
 		{
 			
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="LaunchVehicle"/> class.
+		/// </summary>
+		/// <param name="name">The name of the vehicle.</param>
+		public LaunchVehicle(string name)
+		{
+			VehicleType  = VehicleType.Undefined;
+			StageInfo    = new SortedDictionary<int, Stage>();
+			VehicleNotes = new List<VehicleNote>();
+			Fairings     = new Dictionary<string, Fairing>();
+			Capability   = new Dictionary<string, VehicleCapability>();
+
+			Name = name;
+		}
 
 		#region Backing Fields
 
@@ -40,6 +57,8 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		private VehicleType vehicleType;
 		private SortedDictionary<int, Stage> stageInfo;
 		private List<VehicleNote> vehicleNotes;
+		private Dictionary<string, Fairing> fairings;
+		private Dictionary<string, VehicleCapability> capability;
 
 		#endregion
 
@@ -104,16 +123,6 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		}
 
 		/// <summary>
-		/// Calculates the vehicle's total delta-v.
-		/// </summary>
-		/// <returns>System.Double.</returns>
-		public double CalculateDeltaV()
-		{
-			DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
-			return DeltaV;
-		}
-
-		/// <summary>
 		/// Gets or sets the total price of the vehicle.
 		/// </summary>
 		public decimal Price
@@ -166,7 +175,43 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 			}
 		}
 
+		/// <summary>
+		/// Calculates the vehicle's total delta-v.
+		/// </summary>
+		/// <returns>System.Double.</returns>
+		public double CalculateDeltaV()
+		{
+			DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
+			return DeltaV;
+		}
+
 		#endregion
+
+		/// <summary>
+		/// Gets or sets the fairing options that are available to this vehicle.
+		/// </summary>
+		public Dictionary<string, Fairing> Fairings
+		{
+			get { return this.fairings; }
+			set
+			{
+				this.fairings = value;
+				OnPropertyChanged(nameof(Fairings));
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the types of trajectories you can reach and the payload range you can place there.
+		/// </summary>
+		public Dictionary<string, VehicleCapability> Capability
+		{
+			get { return this.capability; }
+			set
+			{
+				this.capability = value;
+				OnPropertyChanged(nameof(Capability));
+			}
+		}
 
 		#region INotifyPropertyChanged Members
 

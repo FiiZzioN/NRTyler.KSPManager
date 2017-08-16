@@ -11,6 +11,8 @@
 // ***********************************************************************
 
 using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using NRTyler.KSPManager.Models.DataControllers;
 using NRTyler.KSPManager.Models.DataProviders.GameSettings;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
@@ -22,32 +24,7 @@ namespace NRTyler.KSPManager.ConsoleAid
 	{
 		public static void Main()
 		{
-			var vehicle = new Vehicle("DeltaV Testing");
-
-			#region Stages
-
-			var stageOne = new Stage()
-			{
-				DryMass = 1010,
-				WetMass = 4010,
-				SpecificImpulse = 340
-			};
-
-			var stageTwo = new Stage()
-			{
-				DryMass = 2050,
-				WetMass = 8050,
-				SpecificImpulse = 310
-			};
-
-			#endregion
-
-			vehicle.StageInfo.Add(1, stageOne);
-			vehicle.StageInfo.Add(2, stageTwo);
-
-
-			Write(DeltaVCalculator.CalculateVehicleDeltaV(vehicle));
-
+			TestSerialization();
 
 			#region Ending
 
@@ -57,6 +34,53 @@ namespace NRTyler.KSPManager.ConsoleAid
 
 			#endregion
 		}
+
+
+		private static void TestSerialization()
+		{
+			var fileName = "datatest.txt";
+
+			var fairing = new Fairing(1.25, 4.2, 50);
+			var stream = File.Open(fileName, FileMode.Create);
+			var formatter = new BinaryFormatter();
+
+
+			Write("---------------------");
+			Write("Before deserialization the object contains:");
+			Write("---------------------");
+			Write(fairing.ToString());
+
+			// Opens a file and serializes the object into it in binary format.
+			formatter.Serialize(stream, fairing);
+			stream.Close();
+
+
+			// Empties fairing.
+			Write("");
+			Write("---------------------");
+			Write("Interim value:");
+			Write("---------------------");
+			fairing = new Fairing(0, 0, 0);
+			Write(fairing.ToString());
+
+
+			// Opens file "data.xml" and deserializes the object from it.
+			stream = File.Open(fileName, FileMode.Open);
+			formatter = new BinaryFormatter();
+
+			fairing = (Fairing)formatter.Deserialize(stream);
+			stream.Close();
+
+			Write("");
+			Write("---------------------");
+			Write("After deserialization the object contains:");
+			Write("---------------------");
+			Write(fairing.ToString());
+			Write("");
+		}
+
+
+
 
 		private static Tuple<double, double, double, double> TestLifeSupport(double dayLengthModifier)
 		{

@@ -21,60 +21,42 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 	public class FairingTests
 	{
 		[TestMethod]
-		public void FairingInstantiation()
+		public void FairingConstructorOne()
 		{
 			//Arrange instantiation
-			var fairing = new Fairing(14, 3.25m);
-
-			var expected = new List<decimal?> { 14, 3.25m};
+			var fairing  = new Fairing();
+			var expected = new List<double?> { null, null, 0 };
 
 			//Act
-			var actual = new List<decimal?> { fairing.Length, fairing.Diameter };
+			var actual = new List<double?> {  fairing.Length, fairing.Diameter, fairing.Mass };
 
 			//Assert
 			CollectionAssert.AreEqual(expected, actual);
 		}
 
 		[TestMethod]
-		public void FairingInvalidLength()
+		public void FairingConstructorTwo()
 		{
 			//Arrange instantiation
-			var fairing = new Fairing(-1, 2m);
-
-			var expected = new List<decimal?> { null, 2m };
+			var fairing  = new Fairing(12.2, 2.5, 2.2);
+			var expected = new List<double?> { 12.2, 2.5, 2.2 };
 
 			//Act
-			var actual = new List<decimal?> { fairing.Length, fairing.Diameter };
+			var actual = new List<double?> { fairing.Length, fairing.Diameter, fairing.Mass };
 
 			//Assert
 			CollectionAssert.AreEqual(expected, actual);
 		}
 
 		[TestMethod]
-		public void FairingInvalidDiameter()
+		public void FairingInvlaidEntries()
 		{
 			//Arrange instantiation
-			var fairing = new Fairing(10, -1m);
-
-			var expected = new List<decimal?> { 10, null};
-
-			//Act
-			var actual = new List<decimal?> { fairing.Length, fairing.Diameter };
-
-			//Assert
-			CollectionAssert.AreEqual(expected, actual);
-		}
-
-		[TestMethod]
-		public void FairingNullEntry()
-		{
-			//Arrange instantiation
-			var fairing = new Fairing(null, 1.5m);
-
-			var expected = new List<decimal?> { null, 1.5m };
+			var fairing = new Fairing(-1.1, -5.1, -0.9);
+			var expected = new List<double?> { null, null, 0 };
 
 			//Act
-			var actual = new List<decimal?> { fairing.Length, fairing.Diameter };
+			var actual = new List<double?> { fairing.Length, fairing.Diameter, fairing.Mass };
 
 			//Assert
 			CollectionAssert.AreEqual(expected, actual);

@@ -5,7 +5,7 @@
 // Created          : 07-14-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-18-2017
+// Last Modified On : 08-16-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -22,8 +22,8 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 	/// Contains the parameters used to make up a specified orbit. Those include LEO, SSO, GTO and GEO.
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-	/// <seealso cref="IBurn" />
-	public class Trajectory : Orbit, INotifyPropertyChanged, IBurn
+	/// <seealso cref="IManeuver" />
+	public class Trajectory : Orbit, INotifyPropertyChanged, IManeuver
 	{
 		#region Constructors
 
@@ -39,7 +39,8 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		/// Initializes a new instance of the <see cref="Trajectory"/> class.
 		/// </summary>
 		/// <param name="name">The name of the trajectory.</param>
-		public Trajectory(string name = "Name Not Set") : this(0, 0, 0, 0, name)
+		public Trajectory(string name = "Name Not Set") 
+			: this(0, 0, 0, 0, name)
 		{
 
 		}
@@ -51,7 +52,8 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		/// <param name="periapsis">The trajectory's targeted periapsis.</param>
 		/// <param name="inclination">The trajectory's targeted inclination.</param>
 		/// <param name="name">The name of the trajectory.</param>
-		public Trajectory(double apoapsis, double periapsis, double inclination, string name = "Name Not Set") : this(apoapsis, periapsis, inclination, 0, name)
+		public Trajectory(double apoapsis, double periapsis, double inclination, string name = "Name Not Set") 
+			: this(apoapsis, periapsis, inclination, 0, name)
 		{
 
 		}

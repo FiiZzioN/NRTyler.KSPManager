@@ -2,10 +2,10 @@
 // Assembly         : NRTyler.KSPManager.Models
 //
 // Author           : Nicholas Tyler
-// Created          : 07-21-2017
+// Created          : 08-16-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-25-2017
+// Last Modified On : 08-16-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -26,12 +26,12 @@ namespace NRTyler.KSPManager.Models.DataControllers
 		/// <param name="crewedVehicle">The crewed vehicle.</param>
 		public LifeSupportCalculator(ICrewable crewedVehicle)
 		{
-			CrewedVehicle        = crewedVehicle;
+			this.CrewedVehicle        = crewedVehicle;
 
 			var defaultLength    = BaseGameSettings.DefaultHoursInKerbinDay;
 			var lengthMultiplier = crewedVehicle.BaseGameSettings.DayLengthMultiplier;
 
-			DayLength            = defaultLength * lengthMultiplier;			
+			this.DayLength            = defaultLength * lengthMultiplier;			
 		}
 
 		/// <summary>
@@ -53,8 +53,8 @@ namespace NRTyler.KSPManager.Models.DataControllers
 		/// <returns>System.Double.</returns>
 		public double CalculateLifeSupportResources(double unitsPerDay, double totalUnitsStored)
 		{
-			var numberOfKerbals     = CrewedVehicle.NumberOfCrew;
-			var adjustedUnitsPerDay = (unitsPerDay * numberOfKerbals) * (DayLength / BaseGameSettings.DefaultHoursInKerbinDay);
+			var numberOfKerbals     = this.CrewedVehicle.NumberOfCrew;
+			var adjustedUnitsPerDay = (unitsPerDay * numberOfKerbals) * (this.DayLength / BaseGameSettings.DefaultHoursInKerbinDay);
 
 			
 			return totalUnitsStored / adjustedUnitsPerDay;
@@ -73,7 +73,7 @@ namespace NRTyler.KSPManager.Models.DataControllers
 			var kerbalUnitsPerDay = vehicle.LifeSupportSettings.KerbalElectricityPerDay;
 			var totalUnitsStored  = vehicle.LifeSupportSystem.ProvisionsStorage.TotalElectricityStored;
 
-			var totalUnitsPerDay = (baseUnitsPerDay + (kerbalUnitsPerDay * numberOfKerbals)) * (DayLength / BaseGameSettings.DefaultHoursInKerbinDay);
+			var totalUnitsPerDay = (baseUnitsPerDay + (kerbalUnitsPerDay * numberOfKerbals)) * (this.DayLength / BaseGameSettings.DefaultHoursInKerbinDay);
 
 			return CalculateLifeSupportResources(totalUnitsPerDay, totalUnitsStored);
 		}
@@ -87,8 +87,8 @@ namespace NRTyler.KSPManager.Models.DataControllers
 		/// <returns>System.Double.</returns>
 		public double CalculateElectricity(double baseUnitsPerDay, double kerbalUnitsPerDay, double totalUnitsStored)
 		{
-			var numberOfKerbals  = CrewedVehicle.NumberOfCrew;
-			var totalUnitsPerDay = (baseUnitsPerDay + (kerbalUnitsPerDay * numberOfKerbals)) * (DayLength / BaseGameSettings.DefaultHoursInKerbinDay);
+			var numberOfKerbals  = this.CrewedVehicle.NumberOfCrew;
+			var totalUnitsPerDay = (baseUnitsPerDay + (kerbalUnitsPerDay * numberOfKerbals)) * (this.DayLength / BaseGameSettings.DefaultHoursInKerbinDay);
 
 			return CalculateLifeSupportResources(totalUnitsPerDay, totalUnitsStored);
 		}

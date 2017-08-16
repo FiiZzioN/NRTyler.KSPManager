@@ -5,7 +5,7 @@
 // Created          : 07-16-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-21-2017
+// Last Modified On : 08-16-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -38,11 +38,11 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		/// <param name="name">The name of the vehicle.</param>
 		public Vehicle(string name)
 		{
-			this.VehicleType  = VehicleType.Undefined;
-			this.StageInfo    = new SortedDictionary<int, Stage>();
-			this.VehicleNotes = new List<VehicleNote>();
+			VehicleType  = VehicleType.Undefined;
+			StageInfo    = new SortedDictionary<int, Stage>();
+			VehicleNotes = new List<VehicleNote>();
 
-			this.Name = name;
+			Name = name;
 		}
 
 		#region Backing Fields
@@ -55,7 +55,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		private VehicleType vehicleType;
 		private SortedDictionary<int, Stage> stageInfo;
 		private List<VehicleNote> vehicleNotes;
-		
+
 		#endregion
 
 		#region Implementation of IVehicle
@@ -69,7 +69,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 			set
 			{
 				StringAssistant.TitleInsurance(value, ref this.name);
-				OnPropertyChanged(nameof(this.Name));
+				OnPropertyChanged(nameof(Name));
 			}
 		}
 
@@ -84,7 +84,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 				if (value < 0) return;
 
 				this.dryMass = value;
-				OnPropertyChanged(nameof(this.DryMass));
+				OnPropertyChanged(nameof(DryMass));
 			}
 		}
 
@@ -99,7 +99,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 				if (value < 0) return;
 
 				this.wetMass = value;
-				OnPropertyChanged(nameof(this.WetMass));
+				OnPropertyChanged(nameof(WetMass));
 			}
 		}
 
@@ -114,18 +114,8 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 				if (value < 0) return;
 
 				this.deltaV = value;
-				OnPropertyChanged(nameof(this.DeltaV));
+				OnPropertyChanged(nameof(DeltaV));
 			}
-		}
-
-		/// <summary>
-		/// Calculates the vehicle's total delta-v.
-		/// </summary>
-		/// <returns>System.Double.</returns>
-		public double CalculateDeltaV()
-		{
-			DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
-			return DeltaV;
 		}
 
 		/// <summary>
@@ -138,7 +128,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 			{
 				if (value < 0) return;
 				this.price = value;
-				OnPropertyChanged(nameof(this.Price));
+				OnPropertyChanged(nameof(Price));
 			}
 		}
 
@@ -151,7 +141,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 			set
 			{
 				this.vehicleType = value;
-				OnPropertyChanged(nameof(this.VehicleType));
+				OnPropertyChanged(nameof(VehicleType));
 			}
 		}
 
@@ -164,7 +154,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 			set
 			{
 				this.stageInfo = value;
-				OnPropertyChanged(nameof(this.StageInfo));
+				OnPropertyChanged(nameof(StageInfo));
 			}
 		}
 
@@ -177,8 +167,18 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 			set
 			{
 				this.vehicleNotes = value;
-				OnPropertyChanged(nameof(this.VehicleNotes));
+				OnPropertyChanged(nameof(VehicleNotes));
 			}
+		}
+
+		/// <summary>
+		/// Calculates the vehicle's total delta-v.
+		/// </summary>
+		/// <returns>System.Double.</returns>
+		public double CalculateDeltaV()
+		{
+			DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
+			return DeltaV;
 		}
 
 		#endregion

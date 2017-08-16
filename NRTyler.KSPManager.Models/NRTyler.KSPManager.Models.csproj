@@ -48,13 +48,11 @@
   <ItemGroup>
     <Compile Include="DataControllers\DeltaVCalculator.cs" />
     <Compile Include="DataControllers\LifeSupportCalculator.cs" />
-    <Compile Include="DataControllers\OrbitCalculator.cs" />
     <Compile Include="DataControllers\RomanNumeralHandler.cs" />
     <Compile Include="DataProviders\VehicleItems\Fairing.cs" />
     <Compile Include="DataProviders\GameSettings\LifeSupportSettings.cs" />
     <Compile Include="DataProviders\GameSettings\BaseGameSettings.cs" />
     <Compile Include="DataProviders\VehicleItems\LifeSupportSystem.cs" />
-    <Compile Include="DataProviders\VehicleItems\OptionalBoostStage.cs" />
     <Compile Include="DataProviders\VehicleItems\WasteStorage.cs" />
     <Compile Include="DataProviders\VehicleTypes\CrewedVehicle.cs" />
     <Compile Include="DataProviders\VehicleTypes\LaunchVehicle.cs" />
@@ -68,7 +66,7 @@
     <Compile Include="DataProviders\VehicleItems\Trajectory.cs" />
     <Compile Include="DataProviders\VehicleTypes\Vehicle.cs" />
     <Compile Include="DataProviders\VehicleItems\VehicleNote.cs" />
-    <Compile Include="Interfaces\IBurn.cs" />
+    <Compile Include="Interfaces\IManeuver.cs" />
     <Compile Include="Interfaces\ICrewable.cs" />
     <Compile Include="Interfaces\IHasDeltaV.cs" />
     <Compile Include="Interfaces\IValuable.cs" />
@@ -76,15 +74,10 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\NRTyler.KSPManager.Common\NRTyler.KSPManager.Common.csproj">
       <Project>{74b09671-14a3-4448-83b6-af8b10e8c196}</Project>
       <Name>NRTyler.KSPManager.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NRTyler.KSPManager.Services\NRTyler.KSPManager.Services.csproj">
-      <Project>{03da5e5d-c80f-4e1b-b0ac-ab5f1e1a704f}</Project>
-      <Name>NRTyler.KSPManager.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

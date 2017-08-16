@@ -30,6 +30,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 			DryMass         = dryMass;
 			WetMass         = wetMass;
 			SpecificImpulse = specificImpulse;
+			CalculateDeltaV();
 		}
 
 
@@ -119,7 +120,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		/// Calculates the stage's total delta-v.
 		/// </summary>
 		/// <returns>System.Double.</returns>
-		public virtual double CalculateDeltaV()
+		public double CalculateDeltaV()
 		{
 			return DeltaVCalculator.CalulateDeltaV(this);
 		}

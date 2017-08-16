@@ -58,7 +58,6 @@
     <Compile Include="Utilities\EntryValidator.cs" />
     <Compile Include="Utilities\Messenger.cs" />
     <Compile Include="Utilities\StringAssistant.cs" />
-    <Compile Include="Utilities\TrajectoryComparer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attributes\" />

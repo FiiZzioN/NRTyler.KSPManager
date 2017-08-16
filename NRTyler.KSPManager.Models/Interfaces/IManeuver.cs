@@ -13,9 +13,9 @@
 namespace NRTyler.KSPManager.Models.Interfaces
 {
 	/// <summary>
-	/// Indicates that a given type can execute a maneuver.
+	/// Indicates that a given type can execute or holds information about a maneuver.
 	/// </summary>
-	public interface IBurn
+	public interface IManeuver
 	{
 		double RequiredDeltaV { get; set; }
 	}

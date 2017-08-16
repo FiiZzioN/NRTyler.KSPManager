@@ -23,18 +23,16 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
 	public class VehicleCapability : INotifyPropertyChanged
 	{
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="VehicleCapability"/> class.
 		/// </summary>
-		public VehicleCapability()
+		/// <param name="payloadRange">The payload weight range.</param>
+		/// <param name="trajectory">The trajectory parameters.</param>
+		public VehicleCapability(PayloadRange payloadRange, Trajectory trajectory)
 		{
-			this.PayloadRange = new PayloadRange();
-			if (this.Trajectory == null) this.Trajectory = new Trajectory();
-		}
-
-		public VehicleCapability(string trajectoryName) : this()
-		{
-			this.Trajectory = new Trajectory(trajectoryName);
+			PayloadRange = payloadRange;
+			Trajectory   = trajectory;
 		}
 
 		private PayloadRange payloadRange;
@@ -49,7 +47,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 			set
 			{
 				this.payloadRange = value;
-				OnPropertyChanged(nameof(this.PayloadRange));
+				OnPropertyChanged(nameof(PayloadRange));
 			}
 		}
 
@@ -62,7 +60,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 			set
 			{
 				this.trajectory = value;
-				OnPropertyChanged(nameof(this.Trajectory));
+				OnPropertyChanged(nameof(Trajectory));
 			}
 		}
 
@@ -78,7 +76,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		/// </summary>
 		/// <param name="propertyName">Name of the property.</param>
 		[NotifyPropertyChangedInvocator]
-		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}

@@ -10,6 +10,7 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
@@ -20,12 +21,13 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 	/// Holds information about a given <see cref="Fairing"/> that a <see cref="INotifyPropertyChanged"/> has at its disposal.
 	/// </summary>
 	/// <seealso cref="System.ComponentModel" />
+	[Serializable]
 	public class Fairing : INotifyPropertyChanged
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Fairing"/> class.
 		/// </summary>
-		public Fairing()
+		public Fairing() : this(null, null, 0)
 		{
 			
 		}
@@ -34,29 +36,23 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		/// Initializes a new instance of the <see cref="Fairing"/> class.
 		/// </summary>
 		/// <param name="length">The length of the fairing.</param>
-		public Fairing(decimal? length)
-		{
-			this.Length = length;
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Fairing"/> class.
-		/// </summary>
-		/// <param name="length">The length of the fairing.</param>
 		/// <param name="diameter">The diameter of the fairing.</param>
-		public Fairing(decimal? length, decimal? diameter)
+		/// <param name="mass">The mass of the fairing.</param>
+		public Fairing( double? length, double? diameter, double mass)
 		{
-			this.Length = length;
-			this.Diameter = diameter;
+			Length = length;
+			Diameter = diameter;
+			Mass = mass;
 		}
 
-		private decimal? length;
-		private decimal? diameter;
+		private double? length;
+		private double? diameter;
+		private double mass;
 
 		/// <summary>
 		/// Gets or sets the length of the fairing.
 		/// </summary>
-		public decimal? Length
+		public double? Length
 		{
 			get { return this.length; }
 			set
@@ -64,14 +60,14 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 				if (value < 0) return;
 
 				this.length = value;
-				OnPropertyChanged(nameof(this.Length));
+				OnPropertyChanged(nameof(Length));
 			}
 		}
 
 		/// <summary>
 		/// Gets or sets the diameter of the fairing.
 		/// </summary>
-		public decimal? Diameter
+		public double? Diameter
 		{
 			get { return this.diameter; }
 			set
@@ -79,9 +75,36 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 				if (value < 0) return;
 
 				this.diameter = value;
-				OnPropertyChanged(nameof(this.Diameter));
+				OnPropertyChanged(nameof(Diameter));
 			}
 		}
+
+		/// <summary>
+		/// Gets or sets the mass of the fairing.
+		/// </summary>
+		public double Mass
+		{
+			get { return this.mass; }
+			set
+			{
+				if (value < 0) return;
+
+				this.mass = value;
+				OnPropertyChanged(nameof(Mass));
+			}
+		}
+
+		#region Overrides of Object
+
+		/// <summary>Returns a string that represents the current object.</summary>
+		/// <returns>A string that represents the current object.</returns>
+		public override string ToString()
+		{
+			var newString = $"Length: {Length}@Diameter: {Diameter}@Mass: {Mass}";
+			return newString.Replace("@", "\n");
+		}
+
+		#endregion
 
 		#region INotifyPropertyChanged Members
 
