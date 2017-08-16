@@ -1,11 +1,11 @@
 ﻿// ***********************************************************************
-// Assembly         : NRTyler.KSPManager.Services
+// Assembly         : NRTyler.KSPManager.Common
 //
 // Author           : Nicholas Tyler
-// Created          : 07-17-2017
+// Created          : 08-16-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-17-2017
+// Last Modified On : 08-16-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -13,7 +13,7 @@
 using System;
 using System.Globalization;
 
-namespace NRTyler.KSPManager.Services.Utilities
+namespace NRTyler.KSPManager.Common.Utilities
 {
 	public static class StringAssistant
 	{

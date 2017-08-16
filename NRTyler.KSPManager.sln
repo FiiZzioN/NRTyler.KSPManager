@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRTyler.KSPManager.Models", "NRTyler.KSPManager.Models\NRTyler.KSPManager.Models.csproj", "{2FF4D7E5-52C4-4FAD-8FDB-0B14A673F251}"
 EndProject
@@ -22,6 +22,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRTyler.KSPManager.ConsoleAid", "NRTyler.KSPManager.ConsoleAid\NRTyler.KSPManager.ConsoleAid.csproj", "{E30033D0-3529-43D1-8B37-BE2139540576}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRTyler.KSPManager.API", "NRTyler.KSPManager.API\NRTyler.KSPManager.API.csproj", "{4AE1526E-4A47-4782-A535-78558BA5D9AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRTyler.KSPManager.Common", "NRTyler.KSPManager.Common\NRTyler.KSPManager.Common.csproj", "{74B09671-14A3-4448-83B6-AF8B10E8C196}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRTyler.KSPManager.CommonTests", "NRTyler.KSPManager.CommonTests\NRTyler.KSPManager.CommonTests.csproj", "{931055F7-4AE3-4EC1-8C5A-16FDF2A319FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +65,14 @@ Global
 		{4AE1526E-4A47-4782-A535-78558BA5D9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AE1526E-4A47-4782-A535-78558BA5D9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AE1526E-4A47-4782-A535-78558BA5D9AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74B09671-14A3-4448-83B6-AF8B10E8C196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B09671-14A3-4448-83B6-AF8B10E8C196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B09671-14A3-4448-83B6-AF8B10E8C196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B09671-14A3-4448-83B6-AF8B10E8C196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{931055F7-4AE3-4EC1-8C5A-16FDF2A319FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{931055F7-4AE3-4EC1-8C5A-16FDF2A319FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{931055F7-4AE3-4EC1-8C5A-16FDF2A319FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{931055F7-4AE3-4EC1-8C5A-16FDF2A319FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +83,6 @@ Global
 		{A87FEF93-8ABF-4AA6-9232-38FCF2F3FF19} = {C994631A-AE73-4B47-BD59-1F0609DC173E}
 		{D6355511-0B7C-4E7E-95B5-D597182986E8} = {C994631A-AE73-4B47-BD59-1F0609DC173E}
 		{E30033D0-3529-43D1-8B37-BE2139540576} = {D6355511-0B7C-4E7E-95B5-D597182986E8}
+		{931055F7-4AE3-4EC1-8C5A-16FDF2A319FF} = {C994631A-AE73-4B47-BD59-1F0609DC173E}
 	EndGlobalSection
 EndGlobal

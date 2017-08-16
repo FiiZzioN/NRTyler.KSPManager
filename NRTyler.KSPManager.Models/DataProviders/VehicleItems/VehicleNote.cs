@@ -13,8 +13,8 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using NRTyler.KSPManager.Common.Utilities;
 using NRTyler.KSPManager.Models.Annotations;
-using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {

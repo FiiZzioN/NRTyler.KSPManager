@@ -1,11 +1,11 @@
 ﻿// ***********************************************************************
-// Assembly         : NRTyler.KSPManager.ServiceTests
+// Assembly         : NRTyler.KSPManager.CommonTests
 //
 // Author           : Nicholas Tyler
-// Created          : 07-17-2017
+// Created          : 08-16-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-18-2017
+// Last Modified On : 08-16-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -13,10 +13,10 @@
 using System;
 using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NRTyler.KSPManager.Common.Utilities;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
-using NRTyler.KSPManager.Services.Utilities;
 
-namespace NRTyler.KSPManager.ServiceTests.UtilityTests
+namespace NRTyler.KSPManager.CommonTests.UtilityTests
 {
 	[TestClass]
 	public class StringAssistantTests

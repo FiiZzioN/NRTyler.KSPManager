@@ -49,6 +49,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NRTyler.KSPManager.Common\NRTyler.KSPManager.Common.csproj">
+      <Project>{74b09671-14a3-4448-83b6-af8b10e8c196}</Project>
+      <Name>NRTyler.KSPManager.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NRTyler.KSPManager.Models\NRTyler.KSPManager.Models.csproj">
       <Project>{2ff4d7e5-52c4-4fad-8fdb-0b14a673f251}</Project>
       <Name>NRTyler.KSPManager.Models</Name>

@@ -5,18 +5,16 @@
 // Created          : 07-13-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-18-2017
+// Last Modified On : 08-15-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
 using System;
-using System.ComponentModel;
 using NRTyler.KSPManager.Models.DataControllers;
 using NRTyler.KSPManager.Models.DataProviders.GameSettings;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.DataProviders.VehicleTypes;
-using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.ConsoleAid
 {
@@ -24,53 +22,31 @@ namespace NRTyler.KSPManager.ConsoleAid
 	{
 		public static void Main()
 		{
+			var vehicle = new Vehicle("DeltaV Testing");
+
+			#region Stages
+
 			var stageOne = new Stage()
 			{
-				DryMass = 250,
-				WetMass = 650,
-				SpecificImpulse = 302
+				DryMass = 1010,
+				WetMass = 4010,
+				SpecificImpulse = 340
 			};
 
 			var stageTwo = new Stage()
 			{
-				DryMass = 500,
-				WetMass = 1200,
-				SpecificImpulse = 332
+				DryMass = 2050,
+				WetMass = 8050,
+				SpecificImpulse = 310
 			};
 
-			var stageThree = new Stage()
-			{
-				DryMass = 2200,
-				WetMass = 7000,
-				SpecificImpulse = 348
-			};
-
-			var stageOneDeltaV   = DeltaVCalculator.CalulateDeltaV(stageOne);
-			var stageTwoDeltaV   = DeltaVCalculator.CalulateDeltaV(stageTwo);
-			var stageThreeDeltaV = DeltaVCalculator.CalulateDeltaV(stageThree);
-
-
-			Write(Math.Round(stageOneDeltaV, 2));
-			Write(null);
-			Write(Math.Round(stageTwoDeltaV, 2));
-			Write(null);
-			Write(Math.Round(stageThreeDeltaV, 2));
-			Write("----------------------------------------");
-
-
-
-			var vehicle = new Vehicle("DeltaV Testing");
+			#endregion
 
 			vehicle.StageInfo.Add(1, stageOne);
 			vehicle.StageInfo.Add(2, stageTwo);
-			vehicle.StageInfo.Add(3, stageThree);
-
-			Write(null);
-			Write(Math.Round(DeltaVCalculator.CalculateVehicleDeltaV(vehicle), 2));
 
 
-
-
+			Write(DeltaVCalculator.CalculateVehicleDeltaV(vehicle));
 
 
 			#region Ending

@@ -12,10 +12,11 @@
 
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NRTyler.KSPManager.Common.Enums;
+using NRTyler.KSPManager.Models.DataControllers;
 using NRTyler.KSPManager.Models.DataProviders;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.DataProviders.VehicleTypes;
-using NRTyler.KSPManager.Services.Enums;
 
 namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 {
@@ -163,16 +164,38 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests
 		}
 
 		[TestMethod]
-		public void VehicleDeltaVCalculated()
+		public void CalulateVehicleDeltaV()
 		{
-			//Arrange
-			string expected = null;
+			var vehicle = new Vehicle("DeltaV Testing");
+
+			#region Stages
+
+			var stageOne = new Stage()
+			{
+				DryMass = 1010,
+				WetMass = 4010,
+				SpecificImpulse = 340
+			};
+
+			var stageTwo = new Stage()
+			{
+				DryMass = 2050,
+				WetMass = 8050,
+				SpecificImpulse = 310
+			};
+
+			#endregion
+
+			vehicle.StageInfo.Add(1, stageOne);
+			vehicle.StageInfo.Add(2, stageTwo);
+
+			var expected = 6689.53834561119;
 
 			//Act
-			string actual = null;
+			var actual = vehicle.CalculateDeltaV();
 
 			//Assert
-			Assert.AreEqual(expected, actual);
+			Assert.AreEqual(expected, actual, 0.0000000001);
 		}
 
 

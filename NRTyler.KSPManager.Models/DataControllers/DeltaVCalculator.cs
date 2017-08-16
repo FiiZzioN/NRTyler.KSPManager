@@ -13,9 +13,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NRTyler.CodeLibrary.Utilities;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.Interfaces;
-using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.Models.DataControllers
 {
@@ -30,9 +30,12 @@ namespace NRTyler.KSPManager.Models.DataControllers
 
 		public static double CalulateDeltaV(double dryMass, double wetMass, double? specificImpulse)
 		{
+			// We have to have a specific impulse in order for our reaction mass to do anything.
+			// If we don't have that, in the form of null, zero, or NaN, then we have no delta-v.
 			if (specificImpulse == null || specificImpulse <= 0 || Double.IsNaN((double)specificImpulse)) return 0;
 
-			var ve = specificImpulse * ExtendedMathConstants.ɡ0;
+			// Tsiolkovsky Rocket Equation, more info here: http://enwp.org/Tsiolkovsky_rocket_equation
+			var ve = specificImpulse * ExtendedMathConstants.ɡ;
 			var m0 = wetMass;
 			var mf = dryMass;
 			var ln = Math.Log(m0 / mf);

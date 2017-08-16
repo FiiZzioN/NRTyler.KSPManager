@@ -11,8 +11,8 @@
 // ***********************************************************************
 
 using System.Collections.Generic;
+using NRTyler.KSPManager.Common.Enums;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
-using NRTyler.KSPManager.Services.Enums;
 
 namespace NRTyler.KSPManager.Models.Interfaces
 {

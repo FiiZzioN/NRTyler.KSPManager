@@ -13,9 +13,9 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.CodeLibrary.Utilities;
+using NRTyler.KSPManager.Common.Enums;
 using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Models.Interfaces;
-using NRTyler.KSPManager.Services.Enums;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {

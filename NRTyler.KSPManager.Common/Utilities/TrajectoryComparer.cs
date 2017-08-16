@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace NRTyler.KSPManager.Services.Utilities
+namespace NRTyler.KSPManager.Common.Utilities
 {
 	public class TrajectoryComparer : IEqualityComparer
 	{

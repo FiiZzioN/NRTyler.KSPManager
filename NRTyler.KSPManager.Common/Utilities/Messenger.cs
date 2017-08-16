@@ -1,18 +1,18 @@
 ﻿// ***********************************************************************
-// Assembly         : NRTyler.KSPManager.Services
+// Assembly         : NRTyler.KSPManager.Common
 //
 // Author           : Nicholas Tyler
-// Created          : 07-15-2017
+// Created          : 08-16-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-15-2017
+// Last Modified On : 08-16-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
 using System;
 
-namespace NRTyler.KSPManager.Services.Utilities
+namespace NRTyler.KSPManager.Common.Utilities
 {
 	/// <summary>
 	/// <see cref="Messenger"/> contains methods that help send messages to the console or into log files.

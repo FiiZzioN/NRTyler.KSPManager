@@ -14,13 +14,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using NRTyler.KSPManager.Common.Enums;
+using NRTyler.KSPManager.Common.Utilities;
 using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Models.DataControllers;
 using NRTyler.KSPManager.Models.DataProviders.GameSettings;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.Interfaces;
-using NRTyler.KSPManager.Services.Enums;
-using NRTyler.KSPManager.Services.Utilities;	
+
 #endregion
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
@@ -141,18 +142,12 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		}
 
 		/// <summary>
-		/// Calculates the delta-v.
+		/// Calculates the vehicle's total delta-v.
 		/// </summary>
 		/// <returns>System.Double.</returns>
 		public double CalculateDeltaV()
 		{
-			DeltaV = 0;
-			
-			foreach (var stageInfoValue in StageInfo.Values)
-			{
-				DeltaV += stageInfoValue.DeltaV;
-			}
-
+			DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
 			return DeltaV;
 		}
 

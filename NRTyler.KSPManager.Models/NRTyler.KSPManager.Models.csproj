@@ -76,10 +76,12 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="DataCollections\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\NRTyler.KSPManager.Common\NRTyler.KSPManager.Common.csproj">
+      <Project>{74b09671-14a3-4448-83b6-af8b10e8c196}</Project>
+      <Name>NRTyler.KSPManager.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NRTyler.KSPManager.Services\NRTyler.KSPManager.Services.csproj">
       <Project>{03da5e5d-c80f-4e1b-b0ac-ab5f1e1a704f}</Project>
       <Name>NRTyler.KSPManager.Services</Name>

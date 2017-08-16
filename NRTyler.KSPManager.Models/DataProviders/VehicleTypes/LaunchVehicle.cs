@@ -13,11 +13,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using NRTyler.KSPManager.Common.Enums;
+using NRTyler.KSPManager.Common.Utilities;
 using NRTyler.KSPManager.Models.Annotations;
+using NRTyler.KSPManager.Models.DataControllers;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.Interfaces;
-using NRTyler.KSPManager.Services.Enums;
-using NRTyler.KSPManager.Services.Utilities;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 {
@@ -102,45 +103,15 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 			}
 		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		/// <summary>
-		/// Calculates the delta-v.
+		/// Calculates the vehicle's total delta-v.
 		/// </summary>
 		/// <returns>System.Double.</returns>
 		public double CalculateDeltaV()
 		{
-			return 0;
+			DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
+			return DeltaV;
 		}
-
-
-
-
-
-
-
-
-
-
-
 
 		/// <summary>
 		/// Gets or sets the total price of the vehicle.
