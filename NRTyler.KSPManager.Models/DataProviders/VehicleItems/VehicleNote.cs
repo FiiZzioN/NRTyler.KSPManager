@@ -13,11 +13,12 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using NRTyler.KSPManager.Common.Utilities;
+using NRTyler.KSPManager.Common.ExtensionMethods;
 using NRTyler.KSPManager.Models.Annotations;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
+	[Serializable]
 	public class VehicleNote : INotifyPropertyChanged
 	{
 		public VehicleNote()
@@ -39,7 +40,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 			get { return this.title; }
 			set
 			{
-				StringAssistant.TitleInsurance(value, ref this.title);
+				value.TitleInsurance(ref this.title);
 				OnPropertyChanged(nameof(this.Title));
 			}
 		}

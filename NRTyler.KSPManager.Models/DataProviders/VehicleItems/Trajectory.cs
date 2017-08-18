@@ -12,6 +12,7 @@
 
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using NRTyler.KSPManager.Common.ExtensionMethods;
 using NRTyler.KSPManager.Common.Utilities;
 using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Models.Interfaces;
@@ -23,6 +24,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
 	/// <seealso cref="IManeuver" />
+	///	[Serializable]
 	public class Trajectory : Orbit, INotifyPropertyChanged, IManeuver
 	{
 		#region Constructors
@@ -102,7 +104,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 			get { return this.name; }
 			set
 			{
-				StringAssistant.TitleInsurance(value, ref this.name);
+				value.TitleInsurance(ref this.name);
 				OnPropertyChanged(nameof(this.Name));
 			}
 		}

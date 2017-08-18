@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="DataControllerTests\DeltaVCalculatorTests.cs" />
     <Compile Include="DataControllerTests\LifeSupportCalculatorTests.cs" />
+    <Compile Include="DataProviderTests\VehicleEntryTests.cs" />
     <Compile Include="DataProviderTests\VehicleItems\FairingTests.cs" />
     <Compile Include="DataProviderTests\OrbitTests.cs" />
     <Compile Include="DataProviderTests\VehicleItems\PacificationOptionTests.cs" />

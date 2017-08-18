@@ -5,16 +5,19 @@
 // Created          : 07-16-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 08-16-2017
+// Last Modified On : 08-17-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
+using NRTyler.CodeLibrary.Utilities;
 using NRTyler.KSPManager.Common.Enums;
-using NRTyler.KSPManager.Common.Utilities;
+using NRTyler.KSPManager.Common.ExtensionMethods;
 using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Models.DataControllers;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
@@ -22,6 +25,13 @@ using NRTyler.KSPManager.Models.Interfaces;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 {
+	/// <summary>
+	/// The base class for any other type of vehicle available. This can be used by itself should you need a basic
+	/// vehicle, or you're creating your own. Otherwise, I highly recommend using a more specific type of vehicle class.
+	/// </summary>
+	/// <seealso cref="NRTyler.KSPManager.Models.Interfaces.IVehicle" />
+	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
+	[Serializable]
 	public class Vehicle : IVehicle, INotifyPropertyChanged
 	{
 		/// <summary>
@@ -70,7 +80,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 			get { return this.name; }
 			set
 			{
-				StringAssistant.TitleInsurance(value, ref this.name);
+				value.TitleInsurance(ref this.name);
 				OnPropertyChanged(nameof(Name));
 			}
 		}
@@ -150,6 +160,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		/// <summary>
 		/// Gets or sets the dictionary of stage information.
 		/// </summary>
+		[XmlIgnore]
 		public SortedDictionary<int, Stage> StageInfo
 		{
 			get { return this.stageInfo; }
@@ -194,6 +205,19 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		{
 			DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
 			return DeltaV;
+		}
+
+		#endregion
+
+		#region Overrides of Object
+
+		/// <summary>Returns a string that represents the current object.</summary>
+		/// <returns>A string that represents the current object.</returns>
+		public override string ToString()
+		{
+			var baseString = $"Name: {Name}@DryMass: {DryMass}@WetMass: {WetMass}@Delta-V: {DeltaV}@Price: {Price}@VehicleType: {StringEnum.GetStringValue(VehicleType)}";
+
+			return baseString.Replace("@", "\n");
 		}
 
 		#endregion

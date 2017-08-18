@@ -13,13 +13,13 @@
 using System;
 using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NRTyler.KSPManager.Common.Utilities;
+using NRTyler.KSPManager.Common.ExtensionMethods;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 
-namespace NRTyler.KSPManager.CommonTests.UtilityTests
+namespace NRTyler.KSPManager.CommonTests.ExtensionMethodTests
 {
 	[TestClass]
-	public class StringAssistantTests
+	public class StringExtensionTests
 	{
 		[TestMethod]
 		public void ConvertToCultureTitleCase()
@@ -30,7 +30,7 @@ namespace NRTyler.KSPManager.CommonTests.UtilityTests
 			var expected = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(title);
 
 			//Act
-			var actual = StringAssistant.ToTitleCase(title);
+			var actual = title.ToTitleCase();
 
 			//Assert
 			Assert.AreEqual(expected, actual);
@@ -45,7 +45,7 @@ namespace NRTyler.KSPManager.CommonTests.UtilityTests
 			var expected = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(title);
 
 			//Act
-			var actual = StringAssistant.ToInvariantTitleCase(title);
+			var actual = title.ToInvariantTitleCase();
 
 			//Assert
 			Assert.AreEqual(expected, actual);

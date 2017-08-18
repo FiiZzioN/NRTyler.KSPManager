@@ -10,6 +10,7 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
@@ -21,6 +22,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 	/// Holds information containing what a <see cref="LaunchVehicle"/> can lift and where it can place it's <see cref="Payload"/>.
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
+	[Serializable]
 	public class VehicleCapability : INotifyPropertyChanged
 	{
 

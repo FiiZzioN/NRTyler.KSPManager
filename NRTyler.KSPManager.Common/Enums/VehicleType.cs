@@ -49,5 +49,8 @@ namespace NRTyler.KSPManager.Common.Enums
 
         [StringValue("Kerbal")]
         Kerbal = 9,
-    }
+
+	    [StringValue("Launch Vehicle")]
+	    LaunchVehicle = 10,
+	}
 }

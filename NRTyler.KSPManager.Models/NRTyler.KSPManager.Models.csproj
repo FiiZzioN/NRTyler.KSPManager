@@ -49,6 +49,7 @@
     <Compile Include="DataControllers\DeltaVCalculator.cs" />
     <Compile Include="DataControllers\LifeSupportCalculator.cs" />
     <Compile Include="DataControllers\RomanNumeralHandler.cs" />
+    <Compile Include="DataProviders\VehicleEntry.cs" />
     <Compile Include="DataProviders\VehicleItems\Fairing.cs" />
     <Compile Include="DataProviders\GameSettings\LifeSupportSettings.cs" />
     <Compile Include="DataProviders\GameSettings\BaseGameSettings.cs" />

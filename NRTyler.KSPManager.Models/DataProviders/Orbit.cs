@@ -10,6 +10,7 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Common.Utilities;
@@ -21,6 +22,7 @@ namespace NRTyler.KSPManager.Models.DataProviders
 	/// Holds the basic parameters that make up an orbit: Apoapsis, Periapsis, Inclination and Semi-Major Axis 
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
+	[Serializable]
 	public class Orbit : INotifyPropertyChanged
 	{
 		/// <summary>

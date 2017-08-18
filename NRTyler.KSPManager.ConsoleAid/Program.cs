@@ -12,7 +12,10 @@
 
 using System;
 using System.IO;
+using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using NRTyler.KSPManager.Common.Enums;
 using NRTyler.KSPManager.Models.DataControllers;
 using NRTyler.KSPManager.Models.DataProviders.GameSettings;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
@@ -24,7 +27,50 @@ namespace NRTyler.KSPManager.ConsoleAid
 	{
 		public static void Main()
 		{
-			TestSerialization();
+			#region Stages
+
+			var stageOne = new Stage()
+			{
+				DryMass = 250,
+				WetMass = 650,
+				SpecificImpulse = 302
+			};
+
+			var stageTwo = new Stage()
+			{
+				DryMass = 500,
+				WetMass = 1200,
+				SpecificImpulse = 332
+			};
+
+			var stageThree = new Stage()
+			{
+				DryMass = 2200,
+				WetMass = 7000,
+				SpecificImpulse = 348
+			};
+
+			#endregion
+
+			var fileName = "datatest.xml";
+			var obj      = new Vehicle("To Be Serialized");
+			var note = new VehicleNote()
+			{
+				Title   = "This is a Note.",
+				Content = "This is a simple note, but it's my note."
+			};
+
+			obj.DryMass     = 30000;
+			obj.WetMass     = 200000;
+			obj.Price       = 130500;
+			obj.VehicleType = VehicleType.LaunchVehicle;
+			obj.StageInfo   .Add(1, stageOne);
+			obj.StageInfo   .Add(2, stageTwo);
+			obj.StageInfo   .Add(3, stageThree);
+			obj.VehicleNotes.Add(note);
+			obj.CalculateDeltaV();
+
+			TestSerialization(fileName, obj);
 
 			#region Ending
 
@@ -36,46 +82,43 @@ namespace NRTyler.KSPManager.ConsoleAid
 		}
 
 
-		private static void TestSerialization()
+		private static void TestSerialization(string fileName, object obj)
 		{
-			var fileName = "datatest.txt";
-
-			var fairing = new Fairing(1.25, 4.2, 50);
 			var stream = File.Open(fileName, FileMode.Create);
-			var formatter = new BinaryFormatter();
+			//var formatter = new BinaryFormatter();
+			var formatter = new XmlSerializer(typeof(Vehicle));
 
 
 			Write("---------------------");
 			Write("Before deserialization the object contains:");
 			Write("---------------------");
-			Write(fairing.ToString());
+			Write(obj.ToString());
 
 			// Opens a file and serializes the object into it in binary format.
-			formatter.Serialize(stream, fairing);
+			formatter.Serialize(stream, obj);
 			stream.Close();
 
-
-			// Empties fairing.
+			// Empties object.
 			Write("");
 			Write("---------------------");
 			Write("Interim value:");
 			Write("---------------------");
-			fairing = new Fairing(0, 0, 0);
-			Write(fairing.ToString());
+			obj = new Vehicle("Interim Vehicle");
+			Write(obj.ToString());
 
 
 			// Opens file "data.xml" and deserializes the object from it.
-			stream = File.Open(fileName, FileMode.Open);
-			formatter = new BinaryFormatter();
+			stream    = File.Open(fileName, FileMode.Open);
+			formatter = new XmlSerializer(typeof(Vehicle));
 
-			fairing = (Fairing)formatter.Deserialize(stream);
+			obj = (Vehicle)formatter.Deserialize(stream);
 			stream.Close();
 
 			Write("");
 			Write("---------------------");
 			Write("After deserialization the object contains:");
 			Write("---------------------");
-			Write(fairing.ToString());
+			Write(obj.ToString());
 			Write("");
 		}
 

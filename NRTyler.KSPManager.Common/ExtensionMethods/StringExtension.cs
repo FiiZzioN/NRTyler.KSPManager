@@ -13,16 +13,16 @@
 using System;
 using System.Globalization;
 
-namespace NRTyler.KSPManager.Common.Utilities
+namespace NRTyler.KSPManager.Common.ExtensionMethods
 {
-	public static class StringAssistant
+	public static class StringExtension
 	{
 		/// <summary>
-		/// Gets the value returned in the current cultures title case.
+		/// Returns the input value in the current cultures title case.
 		/// </summary>
 		/// <param name="value">The value that's to be converted.</param>
 		/// <returns>System.String.</returns>
-		public static string ToTitleCase(string value)
+		public static string ToTitleCase(this string value)
 		{
 			if (value == null) return null;
 			
@@ -30,11 +30,11 @@ namespace NRTyler.KSPManager.Common.Utilities
 		}
 
 		/// <summary>
-		/// Gets the value returned in a culture-independent (invariant) title case.
+		/// Returns the input value in a culture-independent (invariant) title case.
 		/// </summary>
 		/// <param name="value">The value that's to be converted.</param>
 		/// <returns>System.String.</returns>
-		public static string ToInvariantTitleCase(string value)
+		public static string ToInvariantTitleCase(this string value)
 		{
 			if (value == null) return null;
 
@@ -46,7 +46,7 @@ namespace NRTyler.KSPManager.Common.Utilities
 		/// </summary>
 		/// <param name="incomingValue">The incoming value.</param>
 		/// <param name="backingField">The backing field that's meant to be a title.</param>
-		public static void TitleInsurance(string incomingValue, ref string backingField)
+		public static void TitleInsurance(this string incomingValue, ref string backingField)
 		{
 			if (String.IsNullOrWhiteSpace(incomingValue))
 			{

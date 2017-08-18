@@ -10,6 +10,7 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
@@ -18,6 +19,7 @@ using NRTyler.KSPManager.Models.Interfaces;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
+	[Serializable]
 	public class Stage : IHasDeltaV, IValuable, INotifyPropertyChanged
 	{
 		public Stage() : this(0, 0, 0)

@@ -10,6 +10,7 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.CodeLibrary.Utilities;
@@ -24,6 +25,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
 	/// <seealso cref="IManeuver" />
+	[Serializable]
 	public class PacificationOption : INotifyPropertyChanged, IManeuver
 	{
 		#region Constructors
