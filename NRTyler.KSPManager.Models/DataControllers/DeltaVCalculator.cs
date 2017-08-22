@@ -25,7 +25,7 @@ namespace NRTyler.KSPManager.Models.DataControllers
 	{
 		public static double CalulateDeltaV(Stage stage)
 		{
-			if (stage == null) throw new ArgumentNullException(nameof(stage), "Argument Was Null");
+			if (stage == null) throw new ArgumentNullException(nameof(stage), @"The object being serialized can not be null!");
 			
 			return CalulateDeltaV(stage.DryMass, stage.WetMass, stage.SpecificImpulse);
 		}
@@ -55,7 +55,7 @@ namespace NRTyler.KSPManager.Models.DataControllers
 		/// <exception cref="System.ArgumentNullException"></exception>
 		public static double CalculateVehicleDeltaV(IVehicle vehicle)
 		{
-			if (vehicle == null) throw new ArgumentNullException(nameof(vehicle), "Argument Was Null");
+			if (vehicle == null) throw new ArgumentNullException(nameof(vehicle), @"The object being serialized can not be null!");
 
 			double totalDeltaV = 0;
 

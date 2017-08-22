@@ -5,7 +5,7 @@
 // Created          : 08-16-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 08-16-2017
+// Last Modified On : 08-20-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -37,17 +37,18 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests.VehicleTypes
 			var expectedMass     = 220;
 
 			//Act
-			var actualName     = vehicle.Fairings.Keys.ToList()[0];
-			var actualLength   = vehicle.Fairings.Values.ToList()[0].Length;
-			var actualDiameter = vehicle.Fairings.Values.ToList()[0].Diameter;
-			var actualMass     = vehicle.Fairings.Values.ToList()[0].Mass;
+			var vFairings = vehicle.Fairings;
+
+			var actualName     = vFairings.Keys  .ElementAt(0);
+			var actualLength   = vFairings.Values.ElementAt(0).Length;
+			var actualDiameter = vFairings.Values.ElementAt(0).Diameter;
+			var actualMass     = vFairings.Values.ElementAt(0).Mass;
 
 			//Assert
 			Assert.AreEqual(expectedName, actualName);
 			Assert.AreEqual(expectedLength, actualLength);
 			Assert.AreEqual(expectedDiameter, actualDiameter);
 			Assert.AreEqual(expectedMass, actualMass);
-
 		}
 
 		[TestMethod]
@@ -64,9 +65,11 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests.VehicleTypes
 			var expectedDeltaV = 325;
 
 			//Act
-			var actualName   = vehicle.PacificationOptions.Keys  .ToList()[0];
-			var actualType   = vehicle.PacificationOptions.Values.ToList()[0].PacificationType;
-			var actualDeltaV = vehicle.PacificationOptions.Values.ToList()[0].RequiredDeltaV;
+			var vOptions = vehicle.PacificationOptions;
+
+			var actualName   = vOptions.Keys  .ElementAt(0);
+			var actualType   = vOptions.Values.ElementAt(0).PacificationType;
+			var actualDeltaV = vOptions.Values.ElementAt(0).RequiredDeltaV;
 
 			//Assert
 			Assert.AreEqual(expectedName, actualName);
@@ -91,9 +94,11 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests.VehicleTypes
 			var expectedTrajectory = trajectory;
 
 			//Act
-			var actualName       = vehicle.Capability.Keys  .ToList()[0];
-			var actualRange      = vehicle.Capability.Values.ToList()[0].PayloadRange;
-			var actualTrajectory = vehicle.Capability.Values.ToList()[0].Trajectory;
+			var vCapability = vehicle.Capability;
+
+			var actualName       = vCapability.Keys  .ElementAt(0);
+			var actualRange      = vCapability.Values.ElementAt(0).PayloadRange;
+			var actualTrajectory = vCapability.Values.ElementAt(0).Trajectory;
 
 			//Assert
 			Assert.AreEqual(expectedName, actualName);

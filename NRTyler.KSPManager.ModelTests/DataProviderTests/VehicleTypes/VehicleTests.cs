@@ -261,8 +261,5 @@ namespace NRTyler.KSPManager.ModelTests.DataProviderTests.VehicleTypes
 			// Assert
 			Assert.AreEqual(expected, actual);
 		}
-
-
-
 	}
 }

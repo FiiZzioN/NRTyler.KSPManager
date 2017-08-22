@@ -54,10 +54,12 @@
     <Compile Include="Enums\PacificationType.cs" />
     <Compile Include="Enums\Specialization.cs" />
     <Compile Include="Enums\VehicleType.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\EntryValidator.cs" />
+    <Compile Include="Utilities\KSPDateStructure.cs" />
+    <Compile Include="Utilities\KSPTimeSpan.cs" />
     <Compile Include="Utilities\Messenger.cs" />
-    <Compile Include="ExtensionMethods\StringExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attributes\" />

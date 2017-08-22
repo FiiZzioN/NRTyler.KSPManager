@@ -28,8 +28,8 @@ namespace NRTyler.KSPManager.Common.Utilities
 		/// <exception cref="ArgumentNullException"></exception>
 		public static void EnsureProperAssignment<T>(ref T smallerValue, ref T largerValue) where T : IComparable<T>
 		{
-			if (smallerValue == null) throw new ArgumentNullException(nameof(smallerValue), "Incoming value was null.");
-			if (largerValue  == null) throw new ArgumentNullException(nameof(largerValue) , "Incoming value was null.");
+			if (smallerValue == null) throw new ArgumentNullException(nameof(smallerValue), @"The object being serialized can not be null!");
+			if (largerValue  == null) throw new ArgumentNullException(nameof(largerValue) , @"The object being serialized can not be null!");
 
 			// Smaller should precede larger.
 			if (smallerValue.CompareTo(largerValue) < 0) return;

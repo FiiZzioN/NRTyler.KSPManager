@@ -13,8 +13,8 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using NRTyler.CodeLibrary.Extensions;
 using NRTyler.KSPManager.Common.Enums;
-using NRTyler.KSPManager.Common.ExtensionMethods;
 using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Models.Interfaces;
 

@@ -12,8 +12,7 @@
 
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using NRTyler.KSPManager.Common.ExtensionMethods;
-using NRTyler.KSPManager.Common.Utilities;
+using NRTyler.CodeLibrary.Extensions;
 using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Models.Interfaces;
 
