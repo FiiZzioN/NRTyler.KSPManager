@@ -16,7 +16,12 @@ using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 {
-	public class LaunchVehicle : Vehicle
+    /// <summary>
+    /// Holds information that any launch vehicle should contain. This class can not only hold the same information that
+    /// a <see cref="Vehicle"/> can contain, but also holds lift capability, fairing, and booster pacification options.
+    /// </summary>
+    /// <seealso cref="NRTyler.KSPManager.Models.DataProviders.VehicleTypes.Vehicle" />
+    public class LaunchVehicle : Vehicle
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LaunchVehicle"/> class.
@@ -32,7 +37,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		/// <param name="name">The name of the vehicle.</param>
 		public LaunchVehicle(string name)
 		{
-			VehicleType         = VehicleType.Undefined;
+			VehicleType         = VehicleType.LaunchVehicle;
 			StageInfo           = new SortedDictionary<int, Stage>();
 			VehicleNotes        = new List<VehicleNote>();
 			OptionalStages      = new List<Stage>();

@@ -18,7 +18,8 @@ using NRTyler.KSPManager.Models.Annotations;
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
 	/// <summary>
-	/// <see cref="PayloadRange"/> holds the lightest and heaviest values that a payload can be for the vehicle to safely lift.
+	/// <see cref="PayloadRange"/> holds the lightest and heaviest values 
+	/// that a payload can possibly be for the vehicle to safely lift.
 	/// </summary>
 	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
 	public class PayloadRange : INotifyPropertyChanged

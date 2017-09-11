@@ -10,17 +10,19 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
 
-namespace NRTyler.KSPManager.Models.DataProviders.GameSettings
+namespace NRTyler.KSPManager.Models.DataProviders.Settings
 {
-	/// <summary>
-	/// Holds information from the base game settings.
-	/// </summary>
-	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-	public class BaseGameSettings : INotifyPropertyChanged
+    /// <summary>
+    /// Holds information from the base game settings.
+    /// </summary>
+    /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
+    [Serializable]
+    public class BaseGameSettings : INotifyPropertyChanged
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BaseGameSettings"/> class.
@@ -71,10 +73,10 @@ namespace NRTyler.KSPManager.Models.DataProviders.GameSettings
 		/// </summary>
 		public bool UsingLifeSupport
 		{
-			get { return usingLifeSupport; }
+			get { return this.usingLifeSupport; }
 			set
 			{
-				usingLifeSupport = value;
+				this.usingLifeSupport = value;
 				OnPropertyChanged(nameof(UsingLifeSupport));
 			}
 		}

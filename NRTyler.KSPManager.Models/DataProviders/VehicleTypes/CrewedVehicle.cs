@@ -12,7 +12,7 @@
 
 using System.Collections.Generic;
 using NRTyler.KSPManager.Common.Enums;
-using NRTyler.KSPManager.Models.DataProviders.GameSettings;
+using NRTyler.KSPManager.Models.DataProviders.Settings;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 using NRTyler.KSPManager.Models.Interfaces;
 
@@ -29,18 +29,13 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 
 		public CrewedVehicle(BaseGameSettings baseSettings, LifeSupportSettings supportSettings) : this()
 		{
-			BaseGameSettings    = baseSettings;
-			LifeSupportSettings = supportSettings;
-			LifeSupportSystem   = new LifeSupportSystem(this);
+			LifeSupportSystem   = new LifeSupportSystem(this, baseSettings, supportSettings);
 		}
-
 
 		#region Backing Fields
 
 		private int numberOfCrew;
 		private LifeSupportSystem lifeSupportSystem;
-		private BaseGameSettings baseGameSettings;
-		private LifeSupportSettings lifeSupportSettings;
 
 		#endregion
 
@@ -74,31 +69,6 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 			}
 		}
 
-		/// <summary>
-		/// Gets the base game settings.
-		/// </summary>
-		public BaseGameSettings BaseGameSettings
-		{
-			get { return this.baseGameSettings; }
-			private set
-			{
-				this.baseGameSettings = value;
-				OnPropertyChanged(nameof(BaseGameSettings));
-			}
-		}
-
-		/// <summary>
-		/// Gets the life support settings.
-		/// </summary>
-		public LifeSupportSettings LifeSupportSettings
-		{
-			get { return this.lifeSupportSettings; }
-			private set
-			{
-				this.lifeSupportSettings = value;
-				OnPropertyChanged(nameof(LifeSupportSettings));
-			}
-		}
 
 		#endregion
 	}

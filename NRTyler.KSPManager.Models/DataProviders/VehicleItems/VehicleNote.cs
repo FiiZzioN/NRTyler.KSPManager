@@ -33,7 +33,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		}
 
 		private string title;
-		private string noteField;
+		private string content;
 
 		public string Title
 		{
@@ -48,10 +48,10 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 
 		public string Content
 		{
-			get { return this.noteField; }
+			get { return this.content; }
 			set
 			{
-				this.noteField = value;
+				this.content = value;
 				OnPropertyChanged(nameof(this.Content));
 			}
 		}
@@ -87,5 +87,35 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		}
 
 		#endregion
+
+        /*
+	    #region Implementation of IXmlSerializable
+
+	    public XmlSchema GetSchema()
+	    {
+	        return null;
+	    }
+
+	    public void ReadXml(XmlReader reader)
+	    {
+	        reader.MoveToContent();
+
+	        if (!reader.IsEmptyElement)
+	            Title = reader.GetAttribute(nameof(Title));
+
+	        if (!reader.IsEmptyElement)
+	            Content = reader.GetAttribute(nameof(Content));
+
+            reader.ReadEndElement();
+	    }
+
+	    public void WriteXml(XmlWriter writer)
+	    {
+	        writer.WriteAttributeString(nameof(Title), Title);
+            writer.WriteAttributeString(nameof(Content), Content);
+	    }
+
+	    #endregion
+        */
 	}
 }

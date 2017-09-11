@@ -55,7 +55,7 @@ namespace NRTyler.KSPManager.Models.DataControllers
 		/// <exception cref="System.ArgumentNullException"></exception>
 		public static double CalculateVehicleDeltaV(IVehicle vehicle)
 		{
-			if (vehicle == null) throw new ArgumentNullException(nameof(vehicle), @"The object being serialized can not be null!");
+			if (vehicle == null) throw new ArgumentNullException(nameof(vehicle), @"The object being analyzed can not be null!");
 
 			double totalDeltaV = 0;
 

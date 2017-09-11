@@ -10,19 +10,21 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
 
-namespace NRTyler.KSPManager.Models.DataProviders.GameSettings
+namespace NRTyler.KSPManager.Models.DataProviders.Settings
 {
-	/// <summary>
-	/// Holds information about how many units are used / generated of various life support systems per day. 
-	/// </summary>
-	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-	public class LifeSupportSettings : INotifyPropertyChanged, IEnumerable<double>
+    /// <summary>
+    /// Holds information about how many units are used / generated of various life support systems per day. 
+    /// </summary>
+    /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
+    [Serializable]
+    public class LifeSupportSettings : INotifyPropertyChanged, IEnumerable<double>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LifeSupportSettings"/> class.
@@ -109,7 +111,7 @@ namespace NRTyler.KSPManager.Models.DataProviders.GameSettings
 		/// </summary>
 		public double KerbalElectricityPerDay
 		{
-			get { return kerbalElectricityPerDay; }
+			get { return this.kerbalElectricityPerDay; }
 			set
 			{
 				if (value < 0) return;

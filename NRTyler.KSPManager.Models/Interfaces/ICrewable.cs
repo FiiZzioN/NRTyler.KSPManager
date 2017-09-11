@@ -10,8 +10,6 @@
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
-using NRTyler.KSPManager.Models.DataControllers;
-using NRTyler.KSPManager.Models.DataProviders.GameSettings;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 
 namespace NRTyler.KSPManager.Models.Interfaces
@@ -21,12 +19,14 @@ namespace NRTyler.KSPManager.Models.Interfaces
 	/// </summary>
 	public interface ICrewable : IVehicle
 	{
-		int NumberOfCrew { get; set; }
+        /// <summary>
+        /// Gets or sets the number of crew aboard the vehicle.
+        /// </summary>
+        int NumberOfCrew { get; set; }
 
-		LifeSupportSystem LifeSupportSystem { get; set; }
-
-		BaseGameSettings BaseGameSettings { get; }
-
-		LifeSupportSettings LifeSupportSettings { get; }
+        /// <summary>
+        /// Gets or sets the life support system the vehicle is using.
+        /// </summary>
+        LifeSupportSystem LifeSupportSystem { get; set; }
 	}
 }

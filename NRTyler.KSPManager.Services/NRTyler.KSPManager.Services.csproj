@@ -43,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NRTyler.KSPManager.Common\NRTyler.KSPManager.Common.csproj">
       <Project>{74b09671-14a3-4448-83b6-af8b10e8c196}</Project>

@@ -14,9 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Xml.Serialization;
 using NRTyler.CodeLibrary.Extensions;
-using NRTyler.CodeLibrary.Utilities;
 using NRTyler.KSPManager.Common.Enums;
 using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Models.DataControllers;
@@ -160,7 +158,6 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		/// <summary>
 		/// Gets or sets the dictionary of stage information.
 		/// </summary>
-		[XmlIgnore]
 		public SortedDictionary<int, Stage> StageInfo
 		{
 			get { return this.stageInfo; }
@@ -198,14 +195,16 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		}
 
 		/// <summary>
-		/// Calculates the vehicle's total delta-v.
+		/// Calculates this vehicle's total delta-v.
 		/// </summary>
-		/// <returns>System.Double.</returns>
+		/// <returns>This Vehicle's DeltaV.</returns>
 		public virtual double CalculateDeltaV()
 		{
-			DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
-			return DeltaV;
-		}
+            // Assign the value to the "DeltaV" property.
+		    DeltaV = DeltaVCalculator.CalculateVehicleDeltaV(this);
+
+		    return DeltaV;
+        }
 
 		#endregion
 
@@ -215,12 +214,12 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 		/// <returns>A string that represents the current object.</returns>
 		public override string ToString()
 		{
-			var baseString = $"Name: {Name}@DryMass: {DryMass}@WetMass: {WetMass}@Delta-V: {DeltaV}@Price: {Price}@VehicleType: {StringEnum.GetStringValue(VehicleType)}";
+			var baseString = $"Name: {Name}@DryMass: {DryMass}@WetMass: {WetMass}@Delta-V: {DeltaV}@Price: {Price}@VehicleType: {VehicleType.GetStringValue()}";
 
 			return baseString.Replace("@", "\n");
 		}
 
-		#endregion
+	    #endregion
 
 		#region INotifyPropertyChanged Members
 
@@ -239,7 +238,59 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleTypes
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 
-		#endregion
+        #endregion
 
-	}
+        /*
+        #region Implementation of IXmlSerializable
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+	    public void WriteXml(XmlWriter writer)
+	    {
+	        writer.WriteAttributeString(nameof(Name), Name);
+	        writer.WriteAttributeString(nameof(DryMass), DryMass.ToString());
+	        writer.WriteAttributeString(nameof(WetMass), WetMass.ToString());
+	        writer.WriteAttributeString(nameof(DeltaV),   DeltaV.ToString());
+	        writer.WriteAttributeString(nameof(Price),     Price.ToString());
+	        writer.WriteAttributeString(nameof(VehicleType), StringEnum.GetStringValue(VehicleType));
+
+            // Dictionary converted to and IEnumerable for easy serialization.
+	        var stageEntryList = StageInfo.DictionaryToEntryList();
+
+            // StageInfo
+	        foreach (var dictionaryEntry in stageEntryList)
+	        {
+	            writer.WriteStartElement(nameof(StageInfo));
+	            dictionaryEntry.Value.WriteXml(writer);
+                writer.WriteEndElement();
+	        }
+
+            // VehicleNotes
+	        foreach (var note in VehicleNotes)
+            {
+                writer.WriteStartElement(nameof(VehicleNotes));
+                note.WriteXml(writer);
+                writer.WriteEndElement();
+            }
+
+	        // OptionalStages
+	        foreach (var stage in OptionalStages)
+	        {
+	            writer.WriteStartElement(nameof(OptionalStages));
+	            stage.WriteXml(writer);
+	            writer.WriteEndElement();
+	        }
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+        */
+    }
 }

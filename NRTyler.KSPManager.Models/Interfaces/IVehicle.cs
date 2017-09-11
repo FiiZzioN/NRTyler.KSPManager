@@ -11,6 +11,7 @@
 // ***********************************************************************
 
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using NRTyler.KSPManager.Common.Enums;
 using NRTyler.KSPManager.Models.DataProviders.VehicleItems;
 

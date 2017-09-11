@@ -5,169 +5,256 @@
 // Created          : 07-21-2017
 //
 // Last Modified By : Nicholas Tyler
-// Last Modified On : 07-21-2017
+// Last Modified On : 09-11-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
 
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using NRTyler.KSPManager.Models.Annotations;
 using NRTyler.KSPManager.Models.DataControllers;
-using NRTyler.KSPManager.Models.DataProviders.GameSettings;
+using NRTyler.KSPManager.Models.DataProviders.Settings;
 using NRTyler.KSPManager.Models.Interfaces;
 
 namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 {
-	/// <summary>
-	/// Holds how many days of various life support items are still available.
-	/// </summary>
-	/// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-	public class LifeSupportSystem : INotifyPropertyChanged
-	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="LifeSupportSystem"/> class.
-		/// </summary>
-		/// <param name="crewedVehicle">The crewed vehicle.</param>
-		public LifeSupportSystem(ICrewable crewedVehicle)
-		{
-			SupportSettings       = crewedVehicle.LifeSupportSettings;
-			ProvisionsStorage     = new ProvisionsStorage();
-			WasteStorage          = new WasteStorage();
-			LifeSupportCalculator = new LifeSupportCalculator(crewedVehicle);
-		}
+    /// <summary>
+    /// Holds information about how many days of provision and waste storage are available. Also has access to 
+    /// the life support and base game settings should the user want to customize or add their preferred values.
+    /// </summary>
+    /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
+    [Serializable]
+    public class LifeSupportSystem : INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LifeSupportSystem" /> class.
+        /// </summary>
+        /// <param name="crewedVehicle">The crewed vehicle.</param>
+        /// <param name="baseGameSettings">The base game settings.</param>
+        /// <param name="lifeSupportSettings">The life support settings.</param>
+        public LifeSupportSystem(ICrewable crewedVehicle, BaseGameSettings baseGameSettings, LifeSupportSettings lifeSupportSettings)
+        {
+            Vehicle               = crewedVehicle;
+            LifeSupportSettings   = lifeSupportSettings;
+            BaseGameSettings      = baseGameSettings;
+            ProvisionsStorage     = new ProvisionsStorage();
+            WasteStorage          = new WasteStorage();
+            LifeSupportCalculator = new LifeSupportCalculator(crewedVehicle);
+        }
 
-		private ProvisionsStorage provisionsStorage;
-		private WasteStorage wasteStorage;
-		private LifeSupportSettings supportSettings;
-		private LifeSupportCalculator lifeSupportCalculator;
+        private double daysOfFood;
+		private double daysOfWater;
+		private double daysOfOxygen;
+		private double daysOfElectricity;
+		private double daysOfWasteStorage;
+		private double daysOfWasteWaterStorage;
+		private double daysOfCO2Storage;
 
-		private double daysWorthOfFood;
-		private double daysWorthOfWater;
-		private double daysWorthOfOxygen;
-		private double daysWorthOfElectricity;
-		private double daysWorthOfWasteStorage;
-		private double daysWorthOfWasteWaterStorage;
-		private double daysWorthOfCO2Storage;
+        /// <summary>
+        /// Gets the crewable vehicle.
+        /// </summary>
+        public ICrewable Vehicle { get; }
 
-		/// <summary>
-		/// Gets or sets the life support system.
-		/// </summary>
-		public ProvisionsStorage ProvisionsStorage
-		{
-			get { return this.provisionsStorage; }
-			set { this.provisionsStorage = value; }
-		}
+        /// <summary>
+        /// Gets the life support system.
+        /// </summary>
+        public ProvisionsStorage ProvisionsStorage { get; }
 
-		/// <summary>
-		/// Gets or sets the waste storage system.
-		/// </summary>
-		public WasteStorage WasteStorage
-		{
-			get { return this.wasteStorage; }
-			set { this.wasteStorage = value; }
-		}
+        /// <summary>
+        /// Gets the waste storage system.
+        /// </summary>
+        public WasteStorage WasteStorage { get; }
 
-		public LifeSupportSettings SupportSettings
-		{
-			get { return this.supportSettings; }
-			set { this.supportSettings = value; }
-		}
+        /// <summary>
+        /// Gets the base game settings.
+        /// </summary>
+        public BaseGameSettings BaseGameSettings { get; }
 
-		public LifeSupportCalculator LifeSupportCalculator
-		{
-			get { return this.lifeSupportCalculator; }
-			set { this.lifeSupportCalculator = value; }
-		}
+        /// <summary>
+        /// Gets the life support settings.
+        /// </summary>
+        public LifeSupportSettings LifeSupportSettings { get; }
 
-		public double DaysWorthOfFood
-		{
-			get
-			{
-				var unitsPerDay = SupportSettings.FoodPerDay;
-				var storage     = ProvisionsStorage.TotalFoodStored;
+        /// <summary>
+        /// Gets the life support calculator.
+        /// </summary>
+        public LifeSupportCalculator LifeSupportCalculator { get; }
 
-				DaysWorthOfFood = LifeSupportCalculator.CalculateLifeSupportResources(unitsPerDay, storage);
+        #region Provision Members
 
-				return this.daysWorthOfFood;
-			}
-			set
-			{
-				if (value < 0) return;
+        /// <summary>
+        /// Gets or sets how many days worth of food is available.
+        /// </summary>
+        public double DaysOfFood
+        {
+            get
+            {
+                var unitsPerDay = LifeSupportSettings.FoodPerDay;
+                var storage = ProvisionsStorage.TotalFoodStored;
 
-				this.daysWorthOfFood = value;
-				OnPropertyChanged(nameof(DaysWorthOfFood));
-			}
-		}
+                DaysOfFood = LifeSupportCalculator.CalculateLifeSupportResources(unitsPerDay, storage);
 
-		public double DaysWorthOfWater
-		{
-			get
-			{
-				var unitsPerDay  = SupportSettings.WaterPerDay;
-				var storage      = ProvisionsStorage.TotalWaterStored;
+                return this.daysOfFood;
+            }
+            set
+            {
+                if (value < 0) return;
 
-				DaysWorthOfWater = LifeSupportCalculator.CalculateLifeSupportResources(unitsPerDay, storage);
+                this.daysOfFood = value;
+                OnPropertyChanged(nameof(DaysOfFood));
+            }
+        }
 
-				return this.daysWorthOfWater;
-			}
-			set
-			{
-				if (value < 0) return;
+        /// <summary>
+        /// Gets or sets how many days worth of water is available.
+        /// </summary>
+        public double DaysOfWater
+        {
+            get
+            {
+                var unitsPerDay = LifeSupportSettings.WaterPerDay;
+                var storage = ProvisionsStorage.TotalWaterStored;
 
-				this.daysWorthOfWater = value;
-				OnPropertyChanged(nameof(DaysWorthOfWater));
-			}
-		}
+                DaysOfWater = LifeSupportCalculator.CalculateLifeSupportResources(unitsPerDay, storage);
 
-		public double DaysWorthOfOxygen
-		{
-			get
-			{
-				var unitsPerDay   = SupportSettings.OxygenPerDay;
-				var storage       = ProvisionsStorage.TotalOxygenStored;
+                return this.daysOfWater;
+            }
+            set
+            {
+                if (value < 0) return;
 
-				DaysWorthOfOxygen = LifeSupportCalculator.CalculateLifeSupportResources(unitsPerDay, storage);
+                this.daysOfWater = value;
+                OnPropertyChanged(nameof(DaysOfWater));
+            }
+        }
 
-				return this.daysWorthOfOxygen;
-			}
-			set
-			{
-				if (value < 0) return;
+        /// <summary>
+        /// Gets or sets how many days worth of oxygen is available.
+        /// </summary>
+        public double DaysOfOxygen
+        {
+            get
+            {
+                var unitsPerDay = LifeSupportSettings.OxygenPerDay;
+                var storage = ProvisionsStorage.TotalOxygenStored;
 
-				this.daysWorthOfOxygen = value;
-				OnPropertyChanged(nameof(DaysWorthOfOxygen));
-			}
-		}
+                DaysOfOxygen = LifeSupportCalculator.CalculateLifeSupportResources(unitsPerDay, storage);
+
+                return this.daysOfOxygen;
+            }
+            set
+            {
+                if (value < 0) return;
+
+                this.daysOfOxygen = value;
+                OnPropertyChanged(nameof(DaysOfOxygen));
+            }
+        }
 
 
-		public double DaysWorthOfElectricity
-		{
-			get
-			{
-				var baseUnitsPerDay   = SupportSettings.BaseElectricityPerDay;
-				var kerbalUnitsPerDay = SupportSettings.KerbalElectricityPerDay;
-				var storage           = ProvisionsStorage.TotalElectricityStored;
+        /// <summary>
+        /// Gets or sets how many days worth of electricity is available.
+        /// </summary>
+        public double DaysOfElectricity
+        {
+            get
+            {
+                DaysOfElectricity = LifeSupportCalculator.CalculateElectricity();
 
-				DaysWorthOfElectricity = LifeSupportCalculator.CalculateElectricity(baseUnitsPerDay, kerbalUnitsPerDay, storage);
+                return this.daysOfElectricity;
+            }
+            set
+            {
+                if (value < 0) return;
 
-				return this.daysWorthOfElectricity;
-			}
-			set
-			{
-				if (value < 0) return;
+                this.daysOfElectricity = value;
+                OnPropertyChanged(nameof(DaysOfElectricity));
+            }
+        }
 
-				this.daysWorthOfElectricity = value;
-				OnPropertyChanged(nameof(DaysWorthOfElectricity));
-			}
-		}
+        #endregion
 
-		#region INotifyPropertyChanged Members
+        #region Waste Members
 
-		/// <summary>
-		/// Occurs when a property value changes.
-		/// </summary>
-		public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Gets or sets how many days worth of waste storage is available.
+        /// </summary>
+        public double DaysOfWasteStorage
+        {
+            get
+            {
+                var unitsPerDay = LifeSupportSettings.WastePerDay;
+                var storage     = WasteStorage.WasteUnits;
+
+                DaysOfWasteStorage = LifeSupportCalculator.CalculateLifeSupportResources(unitsPerDay, storage);
+
+                return this.daysOfWasteStorage;
+            }
+            set
+            {
+                if (value < 0) return;
+
+                this.daysOfWasteStorage = value;
+                OnPropertyChanged(nameof(DaysOfWasteStorage));                
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets how many days worth of waste water storage is available.
+        /// </summary>
+        public double DaysOfWasteWaterStorage
+        {
+            get
+            {
+                var unitsPerDay = LifeSupportSettings.WasteWaterPerDay;
+                var storage     = WasteStorage.WasteWaterUnits;
+
+                DaysOfWasteWaterStorage = LifeSupportCalculator.CalculateLifeSupportResources(unitsPerDay, storage);
+
+                return this.daysOfWasteWaterStorage;
+            }
+            set
+            {
+                if (value < 0) return;
+
+                this.daysOfWasteWaterStorage = value;
+                OnPropertyChanged(nameof(DaysOfWasteWaterStorage));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets how many days worth of CO2 storage is available.
+        /// </summary>
+        public double DaysOfCO2Storage
+        {
+            get
+            {
+                var unitsPerDay = LifeSupportSettings.CO2PerDay;
+                var storage     = WasteStorage.CO2Units;
+
+                DaysOfCO2Storage = LifeSupportCalculator.CalculateLifeSupportResources(unitsPerDay, storage);
+
+                return this.daysOfCO2Storage;
+            }
+            set
+            {
+                if (value < 0) return;
+
+                this.daysOfCO2Storage = value;
+                OnPropertyChanged(nameof(DaysOfCO2Storage));
+            }
+        }
+
+        #endregion
+
+        #region INotifyPropertyChanged Members
+
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
 		/// Called when [property changed].

@@ -18,6 +18,7 @@ namespace NRTyler.KSPManager.Common.Enums
 	/// <summary>
 	/// An <see cref="Enum"/> containing the various categories that any given vehicle will fall under.
 	/// </summary>
+	[Serializable]
 	public enum VehicleType
     {
 	    [StringValue("Undefined")]

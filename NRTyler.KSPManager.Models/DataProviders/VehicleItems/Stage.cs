@@ -150,5 +150,43 @@ namespace NRTyler.KSPManager.Models.DataProviders.VehicleItems
 		}
 
 		#endregion
-	}
+
+        /*
+	    #region Implementation of IXmlSerializable
+
+	    public XmlSchema GetSchema()
+	    {
+	        return null;
+	    }
+
+	    public void ReadXml(XmlReader reader)
+	    {
+	        if (!reader.IsEmptyElement)
+	            WetMass = Convert.ToDouble(reader.GetAttribute(nameof(WetMass)));
+
+	        if (!reader.IsEmptyElement)
+	            DryMass = Convert.ToDouble(reader.GetAttribute(nameof(DryMass)));
+
+	        if (!reader.IsEmptyElement)
+	            SpecificImpulse = Convert.ToDouble(reader.GetAttribute(nameof(SpecificImpulse)));
+
+	        if (!reader.IsEmptyElement)
+	            DeltaV = Convert.ToDouble(reader.GetAttribute(nameof(DeltaV)));
+
+	        if (!reader.IsEmptyElement)
+	            Price = Convert.ToDecimal(reader.GetAttribute(nameof(Price)));
+        }
+
+	    public void WriteXml(XmlWriter writer)
+	    {
+	        writer.WriteAttributeString(nameof(WetMass), WetMass.ToString());
+	        writer.WriteAttributeString(nameof(DryMass), DryMass.ToString());
+	        writer.WriteAttributeString(nameof(SpecificImpulse), SpecificImpulse.ToString());
+	        writer.WriteAttributeString(nameof(DeltaV), DeltaV.ToString());
+	        writer.WriteAttributeString(nameof(Price),   Price.ToString());
+        }
+
+        #endregion
+        */
+    }
 }
